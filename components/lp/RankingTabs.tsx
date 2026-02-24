@@ -262,6 +262,7 @@ function RankingRow({
       animate="animate"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className="ranking-row"
       style={{
         display: "flex",
         alignItems: "center",
@@ -281,7 +282,7 @@ function RankingRow({
       <LogoPlaceholder name={service.shortName} index={index} />
 
       {/* Name */}
-      <div style={{ flex: "0 0 auto", minWidth: 0, maxWidth: 160 }}>
+      <div className="ranking-row-name" style={{ flex: "0 0 auto", minWidth: 0, maxWidth: 160 }}>
         <p style={{
           fontSize: 14,
           fontWeight: 700,
@@ -310,12 +311,12 @@ function RankingRow({
       </div>
 
       {/* Highlighted metric */}
-      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div className="ranking-row-metric" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
         <TabMetric service={service} tab={activeTab} />
       </div>
 
       {/* Action buttons */}
-      <div style={{
+      <div className="ranking-row-actions" style={{
         display: "flex",
         alignItems: "center",
         gap: 8,

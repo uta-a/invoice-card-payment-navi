@@ -66,6 +66,7 @@ export default function ConversionPopup() {
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: 40, scale: 0.95 }}
             transition={{ duration: 0.32, ease: EASE }}
+            className="popup-expanded"
             style={{
               position: "fixed", bottom: 24, right: 24,
               width: 360, zIndex: 40,
@@ -75,7 +76,6 @@ export default function ConversionPopup() {
               boxShadow: "0 8px 40px rgba(26,43,74,0.18)",
               overflow: "hidden",
             }}
-            className="w-[320px] sm:w-[360px]"
             role="dialog"
             aria-modal="true"
             aria-label="資金繰りサポートのご案内"

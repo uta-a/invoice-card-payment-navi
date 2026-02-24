@@ -263,7 +263,7 @@ function PreviewCard() {
 export default function Hero() {
   return (
     <section
-      className="relative overflow-hidden section-bg-hero"
+      className="relative overflow-hidden section-bg-hero hero-container"
       style={{
         paddingTop: "calc(64px + 4rem)",
         paddingBottom: "4.5rem",

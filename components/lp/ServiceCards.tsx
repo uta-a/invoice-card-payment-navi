@@ -108,6 +108,7 @@ function LogoPlaceholder({
   const gradient = logoGradients[index % logoGradients.length];
   return (
     <div
+      className="service-card-logo"
       style={{
         width: 80,
         height: 80,
@@ -283,6 +284,7 @@ function ServiceCard({
 
       {/* ── Card Header ─────────────────────────────────────────────────── */}
       <div
+        className="service-card-header"
         style={{
           display: "flex",
           alignItems: "flex-start",
@@ -293,6 +295,7 @@ function ServiceCard({
       >
         {/* Rank badge */}
         <div
+          className="service-card-rank"
           style={{
             width: 52,
             height: 52,
@@ -380,6 +383,7 @@ function ServiceCard({
 
       {/* ── Card Body — two columns ──────────────────────────────────────── */}
       <div
+        className="service-card-body"
         style={{
           display: "flex",
           gap: 24,
@@ -637,6 +641,7 @@ function ServiceCard({
         }}
       >
         <div
+          className="service-card-cta"
           style={{
             display: "flex",
             gap: 12,

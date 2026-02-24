@@ -640,6 +640,7 @@ export default function Top3() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
+          className="top3-cards"
           style={{
             display: "flex",
             flexWrap: "wrap",
@@ -676,14 +677,7 @@ export default function Top3() {
         </motion.p>
       </div>
 
-      {/* ── Responsive styles via <style> ── */}
-      <style>{`
-        @media (max-width: 860px) {
-          #top3 [data-cards] {
-            flex-direction: column;
-          }
-        }
-      `}</style>
+      {/* Responsive styles now handled by .top3-cards in globals.css */}
     </section>
   );
 }

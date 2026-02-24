@@ -189,3 +189,117 @@ a:hover {
   box-shadow: 0 12px 36px rgba(42, 171, 226, 0.18) !important;
   transform: translateY(-4px);
 }
+
+/* ============================================================
+   Responsive utilities
+   ============================================================ */
+
+/* Header — hide desktop nav on mobile, hide hamburger on desktop */
+@media (max-width: 767px) {
+  .desktop-nav {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) {
+  .mobile-hamburger {
+    display: none !important;
+  }
+}
+
+/* Top3 cards — stack on mobile */
+@media (max-width: 768px) {
+  .top3-cards {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* ServiceCards — card header stack */
+  .service-card-header {
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+
+  /* ServiceCards — body columns stack */
+  .service-card-body {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  .service-card-body > * {
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* ServiceCards — logo smaller */
+  .service-card-logo {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 12px !important;
+  }
+
+  /* ServiceCards — rank badge smaller */
+  .service-card-rank {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  /* RankingTabs — row stack */
+  .ranking-row {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding: 12px !important;
+  }
+  .ranking-row-name {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+  .ranking-row-metric {
+    flex: 1 1 100% !important;
+    justify-content: flex-start !important;
+    padding-left: 50px !important;
+  }
+  .ranking-row-actions {
+    flex: 1 1 100% !important;
+    justify-content: flex-start !important;
+    padding-left: 50px !important;
+  }
+
+  /* Footer — single column */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* ConversionPopup — full-width on mobile */
+  .popup-expanded {
+    left: 16px !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    width: auto !important;
+  }
+
+  /* Hero padding */
+  .hero-container {
+    padding-top: calc(64px + 2rem) !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* ServiceCards — CTA buttons stack */
+  .service-card-cta {
+    flex-direction: column !important;
+  }
+  .service-card-cta > a {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ranking-row-metric {
+    padding-left: 0 !important;
+  }
+  .ranking-row-actions {
+    padding-left: 0 !important;
+  }
+}

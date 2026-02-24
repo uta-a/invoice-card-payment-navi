@@ -83,7 +83,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex" style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+          <nav className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
             {[
               { label: "おすすめランキング", action: "ranking" },
               { label: "サービス比較",       action: "services" },
@@ -124,7 +124,7 @@ export default function Header() {
 
           {/* Hamburger button */}
           <button
-            className="md:hidden"
+            className="mobile-hamburger"
             onClick={() => setMobileMenuOpen((v) => !v)}
             aria-label={mobileMenuOpen ? "メニューを閉じる" : "メニューを開く"}
             aria-expanded={mobileMenuOpen}

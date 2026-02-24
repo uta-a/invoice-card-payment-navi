@@ -20,6 +20,7 @@ export default function Footer() {
     <footer style={{ background: "#1A2B4A", color: "#ffffff" }}>
       {/* ── Main grid ── */}
       <div
+        className="footer-grid"
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
