@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Lightbulb, Check } from "lucide-react";
 
 const SCROLL_THRESHOLD = 30; // スクロール率(%)でも表示
 const DELAY_MS = 4000;       // ページ読み込み後4秒で自動表示
@@ -94,7 +95,7 @@ export default function ConversionPopup() {
                 marginBottom: 8, gap: 8,
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 6, flex: 1, minWidth: 0 }}>
-                  <span style={{ fontSize: 18, lineHeight: 1, flexShrink: 0 }} aria-hidden="true">💡</span>
+                  <Lightbulb size={18} style={{ flexShrink: 0, color: "#F5A623" }} aria-hidden="true" />
                   <span style={{ fontSize: 15, fontWeight: 700, color: "#1A2B4A", lineHeight: 1.4 }}>
                     資金繰りでお困りですか？
                   </span>
@@ -165,7 +166,7 @@ export default function ConversionPopup() {
 
               {/* 信頼テキスト */}
               <p style={{ fontSize: 11, color: "#6B7A99", textAlign: "center", margin: "12px 0 0", lineHeight: 1.5 }}>
-                ✓ 完全無料 ✓ 最短3分で完了
+                <Check size={12} strokeWidth={3} style={{ display: "inline", verticalAlign: "middle" }} /> 完全無料 <Check size={12} strokeWidth={3} style={{ display: "inline", verticalAlign: "middle" }} /> 最短3分で完了
               </p>
             </div>
           </motion.div>
@@ -207,7 +208,7 @@ export default function ConversionPopup() {
             whileTap={{ scale: 0.96 }}
           >
             {/* アイコン */}
-            <span style={{ fontSize: 16, lineHeight: 1 }} aria-hidden="true">💡</span>
+            <Lightbulb size={16} style={{ color: "#fff" }} aria-hidden="true" />
 
             {/* 縦書きテキスト */}
             <span style={{

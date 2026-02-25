@@ -438,7 +438,7 @@ export default function RankingTabs() {
       <SectionDecorations variant="b" />
       <div
         className="mx-auto px-4 sm:px-6"
-        style={{ maxWidth: 900 }}
+        style={{ maxWidth: 900, position: "relative", zIndex: 1 }}
       >
         {/* ── Section header ────────────────────────────────────────────── */}
         <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>

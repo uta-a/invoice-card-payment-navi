@@ -556,6 +556,8 @@ export default function Top3() {
           margin: "0 auto",
           paddingLeft: "20px",
           paddingRight: "20px",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         {/* ── Section Header ── */}

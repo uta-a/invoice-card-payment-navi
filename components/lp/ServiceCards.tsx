@@ -6,6 +6,7 @@ import ScoreBar from "@/components/ui/ScoreBar";
 import Badge from "@/components/ui/Badge";
 import { services, Service } from "@/data/services";
 import SectionDecorations from "@/components/ui/SectionDecorations";
+import { Lightbulb, Check } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -521,17 +522,11 @@ function ServiceCard({
           gap: 10,
         }}
       >
-        <span
-          style={{
-            fontSize: 18,
-            lineHeight: 1,
-            flexShrink: 0,
-            marginTop: 1,
-          }}
+        <Lightbulb
+          size={18}
+          style={{ flexShrink: 0, marginTop: 1, color: "#F5A623" }}
           aria-hidden="true"
-        >
-          💡
-        </span>
+        />
         <div>
           <span
             style={{
@@ -618,14 +613,12 @@ function ServiceCard({
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  fontSize: 11,
-                  fontWeight: 800,
                   flexShrink: 0,
                   marginTop: 2,
                 }}
                 aria-hidden="true"
               >
-                ✓
+                <Check size={12} strokeWidth={3} />
               </span>
               {m}
             </li>
@@ -792,14 +785,14 @@ export default function ServiceCards() {
       <SectionDecorations variant="c" />
       <div
         className="mx-auto px-4 sm:px-6"
-        style={{ maxWidth: 1160 }}
+        style={{ maxWidth: 1160, position: "relative", zIndex: 1 }}
       >
         {/* ── Section header ──────────────────────────────────────────────── */}
         <motion.div
           variants={sectionFadeUp}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.15 }}
           style={{ textAlign: "center", marginBottom: "3rem" }}
         >
           {/* Label chip */}

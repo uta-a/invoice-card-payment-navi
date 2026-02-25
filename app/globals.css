@@ -83,21 +83,21 @@ body {
 
 /* 白系セクション（TrustBar, RankingTabs） */
 .section-bg-white {
-  background-color: rgba(255, 255, 255, 0.72);
+  background-color: #FFFFFF;
 }
 
 /* 水色系セクション（Top3, ServiceCards） */
 .section-bg-pale {
-  background-color: rgba(240, 249, 255, 0.68);
+  background-color: #F0F9FF;
 }
 
 /* Heroグラデーション */
 .section-bg-hero {
   background: linear-gradient(
     160deg,
-    rgba(232, 246, 253, 0.88) 0%,
-    rgba(237, 251, 245, 0.88) 50%,
-    rgba(240, 249, 255, 0.88) 100%
+    #E8F6FD 0%,
+    #EDFBF5 50%,
+    #F0F9FF 100%
   );
 }
 
@@ -206,28 +206,98 @@ a:hover {
   }
 }
 
-/* Top3 cards — stack on mobile */
+/* ── Mobile responsive (max-width: 768px) ───────────────────────────── */
 @media (max-width: 768px) {
+
+  /* TrustBar — horizontal scroll */
+  .trustbar-mobile {
+    display: flex !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 10px !important;
+    padding-bottom: 4px !important;
+    scroll-snap-type: x mandatory;
+  }
+  .trustbar-mobile::-webkit-scrollbar {
+    display: none;
+  }
+  .trustbar-mobile > * {
+    flex: 0 0 auto !important;
+    min-width: 160px !important;
+    max-width: 200px !important;
+    scroll-snap-align: start;
+  }
+
+  /* Top3 cards — horizontal scroll */
   .top3-cards {
-    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(42, 171, 226, 0.3) transparent;
+    scroll-snap-type: x mandatory;
+    padding-top: 18px !important;
+    padding-bottom: 12px !important;
     align-items: stretch !important;
+  }
+  .top3-cards::-webkit-scrollbar {
+    height: 6px;
+  }
+  .top3-cards::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .top3-cards::-webkit-scrollbar-thumb {
+    background: rgba(42, 171, 226, 0.3);
+    border-radius: 3px;
+  }
+  .top3-cards > * {
+    flex: 0 0 85vw !important;
+    max-width: 320px !important;
+    scroll-snap-align: center;
+  }
+
+  /* RankingTabs tablist — fit all tabs in one row */
+  [role="tablist"] {
+    -webkit-overflow-scrolling: touch;
+  }
+  [role="tablist"] > [role="tab"] {
+    flex: 1 1 0% !important;
+    padding: 0.6rem 0.4rem !important;
+    font-size: 13px !important;
+    white-space: nowrap;
+    text-align: center !important;
+  }
+
+  /* ServiceCards — reduce card padding on mobile */
+  article[aria-label] {
+    padding: 16px !important;
   }
 
   /* ServiceCards — card header stack */
   .service-card-header {
     flex-wrap: wrap !important;
-    gap: 12px !important;
+    gap: 10px !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* ServiceCards — star rating wrap gracefully */
+  .service-card-header [role="img"] {
+    flex-wrap: wrap !important;
   }
 
   /* ServiceCards — body columns stack */
   .service-card-body {
     flex-direction: column !important;
     gap: 16px !important;
+    margin-bottom: 16px !important;
   }
   .service-card-body > * {
     flex: 1 1 100% !important;
     min-width: 0 !important;
   }
+
 
   /* ServiceCards — logo smaller */
   .service-card-logo {
@@ -256,12 +326,17 @@ a:hover {
   .ranking-row-metric {
     flex: 1 1 100% !important;
     justify-content: flex-start !important;
-    padding-left: 50px !important;
+    padding-left: 0 !important;
   }
   .ranking-row-actions {
     flex: 1 1 100% !important;
-    justify-content: flex-start !important;
-    padding-left: 50px !important;
+    display: flex !important;
+    padding-left: 0 !important;
+  }
+  .ranking-row-actions > a {
+    flex: 1 !important;
+    text-align: center !important;
+    justify-content: center !important;
   }
 
   /* Footer — single column */
@@ -280,8 +355,8 @@ a:hover {
 
   /* Hero padding */
   .hero-container {
-    padding-top: calc(64px + 2rem) !important;
-    padding-bottom: 3rem !important;
+    padding-top: calc(56px + 1.5rem) !important;
+    padding-bottom: 2.5rem !important;
   }
 
   /* ServiceCards — CTA buttons stack */
@@ -293,13 +368,19 @@ a:hover {
     text-align: center !important;
     justify-content: center !important;
   }
+
+  /* Prevent overflow on all containers */
+  .section-bg-pale,
+  .section-bg-white {
+    overflow-x: hidden !important;
+  }
 }
 
 @media (max-width: 480px) {
-  .ranking-row-metric {
-    padding-left: 0 !important;
+  .top3-cards > * {
+    flex: 0 0 90vw !important;
   }
-  .ranking-row-actions {
-    padding-left: 0 !important;
+  .trustbar-mobile > * {
+    min-width: 140px !important;
   }
 }

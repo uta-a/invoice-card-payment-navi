@@ -69,11 +69,12 @@ function StatItem({ stat, index, inView }: { stat: TrustStat; index: number; inV
       initial={{ opacity: 0, y: 16 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, ease: EASE, delay: index * 0.1 }}
+      className="trustbar-item"
       style={{
         display: "flex",
         alignItems: "center",
-        gap: 14,
-        padding: "16px 20px",
+        gap: 10,
+        padding: "12px 14px",
         borderRadius: 14,
         background: "#fff",
         border: "1px solid #EEF1F6",
@@ -182,9 +183,9 @@ export default function TrustBar() {
           ))}
         </div>
 
-        {/* Mobile: 2×2 grid */}
+        {/* Mobile: horizontal scroll */}
         <div
-          className="grid md:hidden"
+          className="grid md:hidden trustbar-mobile"
           style={{ gridTemplateColumns: "1fr 1fr", gap: 10 }}
         >
           {stats.map((stat, i) => (
