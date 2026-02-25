@@ -1,24 +1,8 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-
-// ============================================================
-// Metadata
-// ============================================================
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  await params;
-  return {
-    title:
-      "請求書カード払いとは？仕組みと選び方を解説 | 請求書カード払いナビ",
-    description:
-      "請求書をクレジットカードで支払う仕組みや、サービス選びのポイントを専門家監修のもと解説します。",
-  };
-}
 
 // ============================================================
 // Static data (demo)
