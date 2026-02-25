@@ -130,6 +130,21 @@ function CheckIcon() {
   );
 }
 
+/** Star / review icon */
+function StarIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    </svg>
+  );
+}
+
 /** Editorial pick crown icon */
 function CrownIcon() {
   return (
@@ -412,6 +427,21 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
           label="審査"
           value={service.screeningLevel}
           iconColor="var(--color-gold)"
+        />
+        <div
+          style={{
+            width: "1px",
+            backgroundColor: "var(--color-border)",
+            alignSelf: "stretch",
+            margin: "0 4px",
+          }}
+          aria-hidden="true"
+        />
+        <MetricItem
+          icon={<StarIcon />}
+          label="口コミ"
+          value={service.rating.toFixed(1)}
+          iconColor="#F59E0B"
         />
       </div>
 

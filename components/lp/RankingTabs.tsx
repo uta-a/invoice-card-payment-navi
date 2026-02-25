@@ -375,21 +375,21 @@ function RankingRow({
             fontSize: 11,
             fontWeight: 700,
             color: "#fff",
-            background: "linear-gradient(135deg,#2AABE2,#1A8DC4)",
+            background: "linear-gradient(135deg,#3EBF8A,#2DA374)",
             borderRadius: 6,
             padding: "4px 10px",
             textDecoration: "none",
             whiteSpace: "nowrap",
-            boxShadow: "0 2px 8px rgba(42,171,226,0.3)",
+            boxShadow: "0 2px 8px rgba(62,191,138,0.3)",
             transition: "box-shadow 0.15s, transform 0.15s",
             display: "inline-block",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 14px rgba(42,171,226,0.45)";
+            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 14px rgba(62,191,138,0.45)";
             (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 2px 8px rgba(42,171,226,0.3)";
+            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 2px 8px rgba(62,191,138,0.3)";
             (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
           }}
         >
