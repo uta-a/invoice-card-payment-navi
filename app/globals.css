@@ -283,14 +283,14 @@ a:hover {
 
   /* ServiceCards — reduce card padding on mobile */
   article[aria-label] {
-    padding: 16px !important;
+    padding: 10px !important;
   }
 
   /* ServiceCards — card header stack */
   .service-card-header {
     flex-wrap: wrap !important;
-    gap: 10px !important;
-    margin-bottom: 16px !important;
+    gap: 8px !important;
+    margin-bottom: 8px !important;
   }
 
   /* ServiceCards — star rating wrap gracefully */
@@ -301,26 +301,25 @@ a:hover {
   /* ServiceCards — body columns stack */
   .service-card-body {
     flex-direction: column !important;
-    gap: 16px !important;
-    margin-bottom: 16px !important;
+    gap: 10px !important;
+    margin-bottom: 8px !important;
   }
   .service-card-body > * {
     flex: 1 1 100% !important;
     min-width: 0 !important;
   }
 
-
   /* ServiceCards — logo smaller */
   .service-card-logo {
-    width: 56px !important;
-    height: 56px !important;
-    border-radius: 12px !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 8px !important;
   }
 
   /* ServiceCards — rank badge smaller */
   .service-card-rank {
-    width: 42px !important;
-    height: 42px !important;
+    width: 30px !important;
+    height: 30px !important;
   }
 
   /* RankingTabs — row stack */
@@ -373,11 +372,14 @@ a:hover {
   /* ServiceCards — CTA buttons stack */
   .service-card-cta {
     flex-direction: column !important;
+    gap: 6px !important;
   }
   .service-card-cta > a {
     width: 100% !important;
     text-align: center !important;
     justify-content: center !important;
+    font-size: 12px !important;
+    padding: 0.4rem 0.75rem !important;
   }
 
   /* Prevent overflow on all containers */
