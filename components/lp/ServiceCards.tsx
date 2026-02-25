@@ -111,9 +111,9 @@ function LogoPlaceholder({
     <div
       className="service-card-logo"
       style={{
-        width: 80,
-        height: 80,
-        borderRadius: 16,
+        width: 56,
+        height: 56,
+        borderRadius: 12,
         background: gradient,
         display: "flex",
         alignItems: "center",
@@ -132,7 +132,7 @@ function LogoPlaceholder({
           textAlign: "center",
           lineHeight: 1.3,
           padding: "0 6px",
-          maxWidth: 70,
+          maxWidth: 48,
           overflow: "hidden",
           display: "-webkit-box",
           WebkitLineClamp: 2,
@@ -199,18 +199,18 @@ function InfoCell({
       style={{
         background: "#F8FAFD",
         border: "1px solid #DDE5F0",
-        borderRadius: 10,
-        padding: "8px 10px",
+        borderRadius: 8,
+        padding: "6px 8px",
       }}
     >
       <div
         style={{
-          fontSize: 10,
+          fontSize: 9,
           fontWeight: 700,
           color: "#6B7A99",
           letterSpacing: "0.06em",
           textTransform: "uppercase",
-          marginBottom: 4,
+          marginBottom: 2,
         }}
       >
         {label}
@@ -220,7 +220,7 @@ function InfoCell({
       ) : (
         <div
           style={{
-            fontSize: 14,
+            fontSize: 13,
             fontWeight: 700,
             color: "#1A2B4A",
             lineHeight: 1.3,
@@ -257,11 +257,11 @@ function ServiceCard({
           ? "linear-gradient(160deg, #FFFFFF 0%, #F0F9FF 60%, #EDFBF5 100%)"
           : "#fff",
         border: isTop ? "2px solid #2AABE2" : "1px solid #DDE5F0",
-        borderRadius: 20,
+        borderRadius: 16,
         boxShadow: isTop
           ? "0 8px 32px rgba(42,171,226,0.18), 0 2px 8px rgba(42,171,226,0.10)"
           : "0 4px 20px rgba(42,171,226,0.10)",
-        padding: 22,
+        padding: 18,
         position: "relative",
         overflow: "hidden",
       }}
@@ -277,7 +277,7 @@ function ServiceCard({
             right: 0,
             height: 4,
             background: "linear-gradient(90deg, #2AABE2 0%, #3EBF8A 100%)",
-            borderRadius: "20px 20px 0 0",
+            borderRadius: "16px 16px 0 0",
           }}
           aria-hidden="true"
         />
@@ -289,18 +289,18 @@ function ServiceCard({
         style={{
           display: "flex",
           alignItems: "flex-start",
-          gap: 18,
-          marginBottom: 18,
-          paddingTop: isTop ? 8 : 0,
+          gap: 12,
+          marginBottom: 12,
+          paddingTop: isTop ? 4 : 0,
         }}
       >
         {/* Rank badge */}
         <div
           className="service-card-rank"
           style={{
-            width: 52,
-            height: 52,
-            borderRadius: 14,
+            width: 40,
+            height: 40,
+            borderRadius: 10,
             background: rankStyle.bg,
             border: rankStyle.border,
             color: rankStyle.text,
@@ -315,7 +315,7 @@ function ServiceCard({
         >
           <span
             style={{
-              fontSize: 8,
+              fontSize: 7,
               fontWeight: 700,
               letterSpacing: "0.06em",
               opacity: 0.88,
@@ -326,7 +326,7 @@ function ServiceCard({
           </span>
           <span
             style={{
-              fontSize: 18,
+              fontSize: 15,
               fontWeight: 900,
               lineHeight: 1.1,
               letterSpacing: "-0.02em",
@@ -336,7 +336,7 @@ function ServiceCard({
           </span>
           <span
             style={{
-              fontSize: 9,
+              fontSize: 8,
               fontWeight: 700,
               lineHeight: 1,
               opacity: 0.88,
@@ -353,11 +353,11 @@ function ServiceCard({
         <div style={{ flex: 1, minWidth: 0 }}>
           <h3
             style={{
-              fontSize: "clamp(1.1rem, 2.5vw, 1.35rem)",
+              fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
               fontWeight: 800,
               color: "#1A2B4A",
               lineHeight: 1.25,
-              marginBottom: 4,
+              marginBottom: 3,
               letterSpacing: "-0.01em",
             }}
           >
@@ -365,17 +365,17 @@ function ServiceCard({
           </h3>
           <p
             style={{
-              fontSize: 14,
+              fontSize: 12,
               color: "#6B7A99",
-              lineHeight: 1.5,
-              marginBottom: 10,
+              lineHeight: 1.4,
+              marginBottom: 6,
             }}
           >
             {service.catchphrase}
           </p>
           <StarRating
             rating={service.rating}
-            size="lg"
+            size="md"
             showNumber
             reviewCount={service.reviewCount}
           />
@@ -387,10 +387,10 @@ function ServiceCard({
         className="service-card-body"
         style={{
           display: "flex",
-          gap: 24,
+          gap: 16,
           alignItems: "flex-start",
           flexWrap: "wrap",
-          marginBottom: 18,
+          marginBottom: 12,
         }}
       >
         {/* Left column: score bars */}
@@ -403,11 +403,11 @@ function ServiceCard({
         >
           <div
             style={{
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: 700,
               color: "#1A2B4A",
               letterSpacing: "0.04em",
-              marginBottom: 12,
+              marginBottom: 8,
               display: "flex",
               alignItems: "center",
               gap: 6,
@@ -416,7 +416,7 @@ function ServiceCard({
             <span
               style={{
                 width: 3,
-                height: 14,
+                height: 12,
                 background: "linear-gradient(180deg, #2AABE2 0%, #3EBF8A 100%)",
                 borderRadius: 9999,
                 display: "inline-block",
@@ -427,7 +427,7 @@ function ServiceCard({
             満足度内訳
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
             <motion.div variants={scoreBarItem}>
               <ScoreBar
                 label="手数料満足度"
@@ -466,8 +466,8 @@ function ServiceCard({
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
-              gap: 6,
-              marginBottom: 12,
+              gap: 5,
+              marginBottom: 8,
             }}
           >
             <InfoCell label="手数料" value={service.fee} />
@@ -514,37 +514,37 @@ function ServiceCard({
         style={{
           background: "#E8F6FD",
           border: "1px solid rgba(42,171,226,0.2)",
-          borderRadius: 12,
-          padding: "10px 14px",
-          marginBottom: 16,
+          borderRadius: 10,
+          padding: "8px 12px",
+          marginBottom: 10,
           display: "flex",
           alignItems: "flex-start",
-          gap: 10,
+          gap: 8,
         }}
       >
         <Lightbulb
-          size={18}
+          size={15}
           style={{ flexShrink: 0, marginTop: 1, color: "#F5A623" }}
           aria-hidden="true"
         />
         <div>
           <span
             style={{
-              fontSize: 11,
+              fontSize: 10,
               fontWeight: 700,
               color: "#1A8DC4",
               letterSpacing: "0.06em",
               display: "block",
-              marginBottom: 3,
+              marginBottom: 2,
             }}
           >
             こんな方におすすめ
           </span>
           <p
             style={{
-              fontSize: 14,
+              fontSize: 13,
               color: "#1A2B4A",
-              lineHeight: 1.6,
+              lineHeight: 1.5,
               margin: 0,
               fontWeight: 500,
             }}
@@ -555,14 +555,14 @@ function ServiceCard({
       </div>
 
       {/* ── Merits ──────────────────────────────────────────────────────── */}
-      <div style={{ marginBottom: 18 }}>
+      <div style={{ marginBottom: 12 }}>
         <div
           style={{
-            fontSize: 13,
+            fontSize: 12,
             fontWeight: 700,
             color: "#1A2B4A",
             letterSpacing: "0.04em",
-            marginBottom: 10,
+            marginBottom: 6,
             display: "flex",
             alignItems: "center",
             gap: 6,
@@ -571,7 +571,7 @@ function ServiceCard({
           <span
             style={{
               width: 3,
-              height: 14,
+              height: 12,
               background: "linear-gradient(180deg, #3EBF8A 0%, #2DA374 100%)",
               borderRadius: 9999,
               display: "inline-block",
@@ -588,7 +588,7 @@ function ServiceCard({
             margin: 0,
             display: "flex",
             flexDirection: "column",
-            gap: 5,
+            gap: 3,
           }}
         >
           {service.merits.map((m, i) => (
@@ -597,16 +597,16 @@ function ServiceCard({
               style={{
                 display: "flex",
                 alignItems: "flex-start",
-                gap: 9,
-                fontSize: 13,
+                gap: 7,
+                fontSize: 12,
                 color: "#1A2B4A",
-                lineHeight: 1.55,
+                lineHeight: 1.5,
               }}
             >
               <span
                 style={{
-                  width: 18,
-                  height: 18,
+                  width: 16,
+                  height: 16,
                   borderRadius: "50%",
                   background: "#E8F8F2",
                   color: "#3EBF8A",
@@ -618,7 +618,7 @@ function ServiceCard({
                 }}
                 aria-hidden="true"
               >
-                <Check size={12} strokeWidth={3} />
+                <Check size={10} strokeWidth={3} />
               </span>
               {m}
             </li>
@@ -630,17 +630,17 @@ function ServiceCard({
       <div
         style={{
           borderTop: "1px solid #DDE5F0",
-          paddingTop: 20,
+          paddingTop: 12,
         }}
       >
         <div
           className="service-card-cta"
           style={{
             display: "flex",
-            gap: 12,
+            gap: 10,
             flexWrap: "wrap",
             alignItems: "center",
-            marginBottom: 8,
+            marginBottom: 6,
           }}
         >
           {/* Resource request button — green */}
@@ -651,12 +651,12 @@ function ServiceCard({
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: 7,
+              gap: 6,
               background: "linear-gradient(135deg, #3EBF8A 0%, #2DA374 100%)",
               color: "#fff",
-              fontSize: 15,
+              fontSize: 14,
               fontWeight: 700,
-              padding: "0.75rem 1.5rem",
+              padding: "0.6rem 1.25rem",
               borderRadius: 9999,
               textDecoration: "none",
               boxShadow: "0 4px 16px rgba(62,191,138,0.32)",
@@ -705,12 +705,12 @@ function ServiceCard({
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: 7,
+              gap: 6,
               background: "linear-gradient(135deg, #2AABE2 0%, #1A8DC4 100%)",
               color: "#fff",
-              fontSize: 15,
+              fontSize: 14,
               fontWeight: 700,
-              padding: "0.75rem 1.5rem",
+              padding: "0.6rem 1.25rem",
               borderRadius: 9999,
               textDecoration: "none",
               boxShadow: "0 4px 16px rgba(42,171,226,0.30)",
@@ -847,7 +847,7 @@ export default function ServiceCards() {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: 24,
+            gap: 18,
           }}
         >
           {sorted.map((service, index) => (
