@@ -300,7 +300,8 @@ export default function Hero() {
               letterSpacing: "-0.01em",
               marginBottom: "1.25rem",
             }}>
-              請求書カード払い{" "}
+              請求書カード払い
+              <br />
               <span style={{
                 background: "linear-gradient(135deg, #2AABE2, #3EBF8A)",
                 WebkitBackgroundClip: "text",
