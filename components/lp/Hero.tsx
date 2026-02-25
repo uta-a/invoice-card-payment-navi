@@ -347,27 +347,8 @@ export default function Hero() {
 
           {/* CTA Buttons — vertical stack */}
           <motion.div variants={fadeUp} style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 360 }}>
-            {/* Green button with ribbon */}
-            <div style={{ position: "relative", overflow: "visible" }}>
-              {/* Ribbon */}
-              <span style={{
-                position: "absolute",
-                top: -14,
-                left: -8,
-                background: "linear-gradient(135deg, #F5A623, #D4930A)",
-                color: "#fff",
-                fontSize: 11,
-                fontWeight: 800,
-                padding: "3px 14px",
-                borderRadius: 6,
-                transform: "rotate(-8deg)",
-                boxShadow: "0 2px 8px rgba(245,166,35,0.40)",
-                letterSpacing: "0.04em",
-                whiteSpace: "nowrap",
-                zIndex: 2,
-              }}>
-                当サイトイチオシサービス!
-              </span>
+            {/* Green button */}
+            <div>
               <a
                 href="#services"
                 onClick={(e) => {

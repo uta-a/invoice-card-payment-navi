@@ -515,43 +515,31 @@ function ServiceCard({
           background: "#E8F6FD",
           border: "1px solid rgba(42,171,226,0.2)",
           borderRadius: 8,
-          padding: "6px 10px",
+          padding: "5px 10px",
           marginBottom: 6,
           display: "flex",
-          alignItems: "flex-start",
+          alignItems: "center",
           gap: 6,
         }}
       >
         <Lightbulb
-          size={13}
-          style={{ flexShrink: 0, marginTop: 1, color: "#F5A623" }}
+          size={12}
+          style={{ flexShrink: 0, color: "#F5A623" }}
           aria-hidden="true"
         />
-        <div>
-          <span
-            style={{
-              fontSize: 9,
-              fontWeight: 700,
-              color: "#1A8DC4",
-              letterSpacing: "0.06em",
-              display: "block",
-              marginBottom: 1,
-            }}
-          >
-            こんな方におすすめ
+        <span
+          style={{
+            fontSize: 11,
+            color: "#1A2B4A",
+            lineHeight: 1.3,
+            fontWeight: 600,
+          }}
+        >
+          <span style={{ color: "#1A8DC4", fontWeight: 700, marginRight: 4 }}>
+            おすすめ:
           </span>
-          <p
-            style={{
-              fontSize: 12,
-              color: "#1A2B4A",
-              lineHeight: 1.4,
-              margin: 0,
-              fontWeight: 500,
-            }}
-          >
-            {service.recommendFor}
-          </p>
-        </div>
+          {service.recommendFor}
+        </span>
       </div>
 
       {/* ── Merits ──────────────────────────────────────────────────────── */}
@@ -591,7 +579,7 @@ function ServiceCard({
             gap: 2,
           }}
         >
-          {service.merits.map((m, i) => (
+          {service.merits.slice(0, 2).map((m, i) => (
             <li
               key={i}
               style={{
@@ -794,36 +782,6 @@ export default function ServiceCards() {
           viewport={{ once: true, amount: 0.15 }}
           style={{ textAlign: "center", marginBottom: "3rem" }}
         >
-          {/* Label chip */}
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
-              background: "#E8F6FD",
-              color: "#2AABE2",
-              fontSize: 12,
-              fontWeight: 700,
-              letterSpacing: "0.08em",
-              padding: "5px 14px",
-              borderRadius: 9999,
-              border: "1px solid rgba(42,171,226,0.25)",
-              marginBottom: "1.25rem",
-            }}
-          >
-            <span
-              style={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "#2AABE2",
-                display: "inline-block",
-              }}
-              aria-hidden="true"
-            />
-            サービス詳細比較
-          </div>
-
           {/* H2 */}
           <h2
             style={{
