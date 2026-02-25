@@ -258,16 +258,27 @@ a:hover {
     scroll-snap-align: center;
   }
 
-  /* RankingTabs tablist — fit all tabs in one row */
-  [role="tablist"] {
+  /* RankingTabs pill tablist — horizontal scroll on mobile */
+  .ranking-tablist {
+    overflow-x: auto !important;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px !important;
   }
-  [role="tablist"] > [role="tab"] {
-    flex: 1 1 0% !important;
-    padding: 0.6rem 0.4rem !important;
+  .ranking-tablist::-webkit-scrollbar {
+    display: none;
+  }
+  .ranking-tablist > [role="tab"] {
+    flex: 0 0 auto !important;
+    padding: 0.5rem 1rem !important;
     font-size: 13px !important;
     white-space: nowrap;
-    text-align: center !important;
+  }
+
+  /* TrustBar — wider badges on mobile */
+  .trustbar-mobile > * {
+    min-width: 170px !important;
+    max-width: 220px !important;
   }
 
   /* ServiceCards — reduce card padding on mobile */
@@ -381,6 +392,7 @@ a:hover {
     flex: 0 0 90vw !important;
   }
   .trustbar-mobile > * {
-    min-width: 140px !important;
+    min-width: 150px !important;
+    max-width: 200px !important;
   }
 }

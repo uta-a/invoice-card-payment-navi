@@ -74,28 +74,29 @@ function StatItem({ stat, index, inView }: { stat: TrustStat; index: number; inV
         display: "flex",
         alignItems: "center",
         gap: 10,
-        padding: "12px 14px",
+        padding: "16px 18px",
         borderRadius: 14,
         background: "#fff",
-        border: "1px solid #EEF1F6",
+        border: `2px solid ${bgColor}`,
+        boxShadow: "0 2px 12px rgba(42,171,226,0.08)",
         flex: 1,
         minWidth: 0,
       }}
     >
       {/* Icon container */}
       <div style={{
-        width: 44, height: 44, borderRadius: 12, flexShrink: 0,
+        width: 52, height: 52, borderRadius: 14, flexShrink: 0,
         background: bgColor,
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
-        <Icon size={22} color={color} strokeWidth={1.75} />
+        <Icon size={24} color={color} strokeWidth={1.75} />
       </div>
 
       {/* Text */}
       <div style={{ minWidth: 0 }}>
         <div style={{
-          fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)",
-          fontWeight: 800,
+          fontSize: "clamp(1.25rem, 3vw, 1.75rem)",
+          fontWeight: 900,
           color,
           lineHeight: 1.1,
           whiteSpace: "nowrap",
@@ -160,7 +161,8 @@ export default function TrustBar() {
       className="section-bg-white"
       style={{
         borderBottom: "1px solid #DDE5F0",
-        boxShadow: "0 4px 24px rgba(42,171,226,0.07)",
+        background: "linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 100%)",
+        boxShadow: "0 4px 24px rgba(42,171,226,0.10)",
         padding: "1.25rem 0",
       }}
     >

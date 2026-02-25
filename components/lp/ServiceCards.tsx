@@ -200,7 +200,7 @@ function InfoCell({
         background: "#F8FAFD",
         border: "1px solid #DDE5F0",
         borderRadius: 10,
-        padding: "10px 12px",
+        padding: "8px 10px",
       }}
     >
       <div
@@ -261,7 +261,7 @@ function ServiceCard({
         boxShadow: isTop
           ? "0 8px 32px rgba(42,171,226,0.18), 0 2px 8px rgba(42,171,226,0.10)"
           : "0 4px 20px rgba(42,171,226,0.10)",
-        padding: 28,
+        padding: 22,
         position: "relative",
         overflow: "hidden",
       }}
@@ -290,7 +290,7 @@ function ServiceCard({
           display: "flex",
           alignItems: "flex-start",
           gap: 18,
-          marginBottom: 24,
+          marginBottom: 18,
           paddingTop: isTop ? 8 : 0,
         }}
       >
@@ -390,7 +390,7 @@ function ServiceCard({
           gap: 24,
           alignItems: "flex-start",
           flexWrap: "wrap",
-          marginBottom: 24,
+          marginBottom: 18,
         }}
       >
         {/* Left column: score bars */}
@@ -427,7 +427,7 @@ function ServiceCard({
             満足度内訳
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <motion.div variants={scoreBarItem}>
               <ScoreBar
                 label="手数料満足度"
@@ -466,7 +466,7 @@ function ServiceCard({
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
-              gap: 8,
+              gap: 6,
               marginBottom: 12,
             }}
           >
@@ -515,8 +515,8 @@ function ServiceCard({
           background: "#E8F6FD",
           border: "1px solid rgba(42,171,226,0.2)",
           borderRadius: 12,
-          padding: "12px 16px",
-          marginBottom: 20,
+          padding: "10px 14px",
+          marginBottom: 16,
           display: "flex",
           alignItems: "flex-start",
           gap: 10,
@@ -555,7 +555,7 @@ function ServiceCard({
       </div>
 
       {/* ── Merits ──────────────────────────────────────────────────────── */}
-      <div style={{ marginBottom: 24 }}>
+      <div style={{ marginBottom: 18 }}>
         <div
           style={{
             fontSize: 13,
@@ -588,7 +588,7 @@ function ServiceCard({
             margin: 0,
             display: "flex",
             flexDirection: "column",
-            gap: 7,
+            gap: 5,
           }}
         >
           {service.merits.map((m, i) => (
@@ -598,7 +598,7 @@ function ServiceCard({
                 display: "flex",
                 alignItems: "flex-start",
                 gap: 9,
-                fontSize: 14,
+                fontSize: 13,
                 color: "#1A2B4A",
                 lineHeight: 1.55,
               }}
@@ -768,7 +768,6 @@ export default function ServiceCards() {
   const sorted = [...services].sort(
     (a, b) => a.ranks.overall - b.ranks.overall
   );
-  const count = sorted.length;
 
   return (
     <section
@@ -822,7 +821,7 @@ export default function ServiceCards() {
               }}
               aria-hidden="true"
             />
-            サービス詳細
+            サービス詳細比較
           </div>
 
           {/* H2 */}
@@ -841,17 +840,6 @@ export default function ServiceCards() {
             詳細比較
           </h2>
 
-          {/* Subtitle */}
-          <p
-            style={{
-              fontSize: "clamp(0.875rem, 1.8vw, 1rem)",
-              color: "#6B7A99",
-              lineHeight: 1.7,
-              margin: 0,
-            }}
-          >
-            総合評価順に全{count}社の詳細情報をご紹介します
-          </p>
         </motion.div>
 
         {/* ── Service cards ────────────────────────────────────────────────── */}
