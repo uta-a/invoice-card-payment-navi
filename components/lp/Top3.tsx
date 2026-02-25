@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import StarRating from "@/components/ui/StarRating";
 import { Badge } from "@/components/ui/Badge";
-import { CTAButton } from "@/components/ui/CTAButton";
+
 import { getTop3Services, Service } from "@/data/services";
 import SectionDecorations from "@/components/ui/SectionDecorations";
 
@@ -130,6 +130,21 @@ function CheckIcon() {
   );
 }
 
+/** Star / review icon */
+function StarIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    </svg>
+  );
+}
+
 /** Editorial pick crown icon */
 function CrownIcon() {
   return (
@@ -183,8 +198,8 @@ function MetricItem({ icon, label, value, iconColor }: MetricItemProps) {
       </div>
       <div
         style={{
-          fontSize: "13px",
-          fontWeight: 700,
+          fontSize: "15px",
+          fontWeight: 800,
           color: "var(--color-dark)",
           textAlign: "center",
           lineHeight: 1.3,
@@ -244,14 +259,6 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
     background: isFirst
       ? "linear-gradient(160deg, #ffffff 70%, #e8f6fd 100%)"
       : "#ffffff",
-  };
-
-  const handleScrollToServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const target = document.getElementById("services");
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
   };
 
   return (
@@ -359,6 +366,12 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
           >
             {service.name}
           </h3>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <span style={{ fontSize: 28, fontWeight: 900, color: "#F59E0B", lineHeight: 1 }}>
+              {service.rating.toFixed(1)}
+            </span>
+            <span style={{ fontSize: 12, color: "#6B7A99", fontWeight: 600, marginTop: 4 }}>/ 5.0</span>
+          </div>
           <StarRating
             rating={service.rating}
             size="md"
@@ -367,21 +380,6 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
           />
         </div>
       </div>
-
-      {/* Catchphrase */}
-      <p
-        style={{
-          margin: 0,
-          fontSize: "13px",
-          color: "var(--color-mid)",
-          lineHeight: 1.6,
-          fontStyle: "italic",
-          borderLeft: "3px solid var(--color-primary)",
-          paddingLeft: "10px",
-        }}
-      >
-        {service.catchphrase}
-      </p>
 
       {/* 3-metric summary row */}
       <div
@@ -430,6 +428,21 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
           value={service.screeningLevel}
           iconColor="var(--color-gold)"
         />
+        <div
+          style={{
+            width: "1px",
+            backgroundColor: "var(--color-border)",
+            alignSelf: "stretch",
+            margin: "0 4px",
+          }}
+          aria-hidden="true"
+        />
+        <MetricItem
+          icon={<StarIcon />}
+          label="口コミ"
+          value={service.rating.toFixed(1)}
+          iconColor="#F59E0B"
+        />
       </div>
 
       {/* Badge list */}
@@ -457,6 +470,42 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
           paddingTop: "4px",
         }}
       >
+        {/* Green: 無料で資料請求する */}
+        <a
+          href={service.resourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "6px",
+            width: "100%",
+            padding: "10px 24px",
+            borderRadius: "999px",
+            background: "linear-gradient(135deg, #3EBF8A 0%, #2DA374 100%)",
+            color: "#ffffff",
+            fontSize: "15px",
+            fontWeight: 700,
+            textDecoration: "none",
+            cursor: "pointer",
+            boxShadow: "0 4px 16px rgba(62,191,138,0.32)",
+            transition: "transform 0.18s, box-shadow 0.18s",
+          }}
+          onMouseEnter={(e) => {
+            const el = e.currentTarget as HTMLAnchorElement;
+            el.style.transform = "translateY(-2px)";
+            el.style.boxShadow = "0 8px 24px rgba(62,191,138,0.44)";
+          }}
+          onMouseLeave={(e) => {
+            const el = e.currentTarget as HTMLAnchorElement;
+            el.style.transform = "translateY(0)";
+            el.style.boxShadow = "0 4px 16px rgba(62,191,138,0.32)";
+          }}
+        >
+          無料で資料請求する
+        </a>
+        {/* White: 公式サイトを見る */}
         <a
           href={service.officialUrl}
           target="_blank"
@@ -473,7 +522,7 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
             backgroundColor: "#ffffff",
             color: "#1A2B4A",
             fontSize: "15px",
-            fontWeight: 700,
+            fontWeight: 600,
             textDecoration: "none",
             cursor: "pointer",
             boxShadow: "0 2px 8px rgba(26,43,74,0.08)",
@@ -490,39 +539,7 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
             el.style.boxShadow = "0 2px 8px rgba(26,43,74,0.08)";
           }}
         >
-          公式サイトを見る →
-        </a>
-        {/* Smooth-scroll anchor rendered as plain <a> to avoid CTAButton href type constraints */}
-        <a
-          href="#services"
-          onClick={handleScrollToServices}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "6px",
-            width: "100%",
-            padding: "10px 24px",
-            borderRadius: "999px",
-            border: "1.5px solid var(--color-primary)",
-            backgroundColor: "transparent",
-            color: "var(--color-primary)",
-            fontSize: "15px",
-            fontWeight: 600,
-            textDecoration: "none",
-            cursor: "pointer",
-            transition: "background-color 0.2s ease, color 0.2s ease",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-              "var(--color-primary-light)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-              "transparent";
-          }}
-        >
-          詳細を見る
+          公式サイトを見る
         </a>
       </div>
     </motion.div>
@@ -574,40 +591,6 @@ export default function Top3() {
             gap: "14px",
           }}
         >
-          {/* Label chip */}
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              backgroundColor: "var(--color-primary-light)",
-              color: "var(--color-primary)",
-              fontSize: "12px",
-              fontWeight: 700,
-              padding: "5px 14px",
-              borderRadius: "999px",
-              letterSpacing: "0.06em",
-              border: "1px solid rgba(42,171,226,0.25)",
-            }}
-          >
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" y1="8" x2="12" y2="12" />
-              <line x1="12" y1="16" x2="12.01" y2="16" />
-            </svg>
-            まず見てほしい3社
-          </div>
-
           {/* H2 */}
           <h2
             style={{
@@ -619,22 +602,9 @@ export default function Top3() {
               letterSpacing: "-0.02em",
             }}
           >
-            おすすめ請求書カード払いサービス{" "}
-            <span style={{ color: "var(--color-primary)" }}>3選</span>
+            おすすめサービス<span style={{ color: "var(--color-primary)" }}>3選</span>
           </h2>
 
-          {/* Subtitle */}
-          <p
-            style={{
-              margin: 0,
-              fontSize: "15px",
-              color: "var(--color-gray)",
-              lineHeight: 1.7,
-              maxWidth: "540px",
-            }}
-          >
-            手数料・審査・入金速度を総合評価した上位3社をご紹介します
-          </p>
         </motion.div>
 
         {/* ── Cards ── */}
