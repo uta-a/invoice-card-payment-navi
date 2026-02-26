@@ -348,6 +348,9 @@ a:hover {
     text-align: center !important;
     justify-content: center !important;
   }
+  .ranking-row:nth-child(n+4) {
+    display: none !important;
+  }
 
   /* Footer — single column */
   .footer-grid {
