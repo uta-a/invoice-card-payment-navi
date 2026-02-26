@@ -256,6 +256,9 @@ a:hover {
     flex: 0 0 85vw !important;
     max-width: 320px !important;
     scroll-snap-align: center;
+    border-width: 1.5px !important;
+    border-color: #BCC8DA !important;
+    box-shadow: 0 3px 16px rgba(26,43,74,0.13), 0 1px 4px rgba(26,43,74,0.08) !important;
   }
 
   /* RankingTabs pill tablist — horizontal scroll on mobile */
@@ -281,9 +284,12 @@ a:hover {
     max-width: 220px !important;
   }
 
-  /* ServiceCards — reduce card padding on mobile */
+  /* ServiceCards — reduce card padding on mobile + stronger card visibility */
   article[aria-label] {
-    padding: 10px !important;
+    padding: 14px !important;
+    border-width: 1.5px !important;
+    border-color: #BCC8DA !important;
+    box-shadow: 0 3px 16px rgba(26,43,74,0.13), 0 1px 4px rgba(26,43,74,0.08) !important;
   }
 
   /* ServiceCards — card header stack */
@@ -320,6 +326,13 @@ a:hover {
   .service-card-rank {
     width: 30px !important;
     height: 30px !important;
+  }
+
+  /* RankingTabs — panel stronger border on mobile (applied via parent) */
+  [role="tabpanel"] > div {
+    border-width: 1.5px !important;
+    border-color: #BCC8DA !important;
+    box-shadow: 0 3px 16px rgba(26,43,74,0.13), 0 1px 4px rgba(26,43,74,0.08) !important;
   }
 
   /* RankingTabs — row stack */
