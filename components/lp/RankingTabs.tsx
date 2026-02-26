@@ -270,7 +270,7 @@ function RankingRow({
         padding: "1rem 1.25rem",
         borderBottom: isLast ? "none" : "1px solid #DDE5F0",
         background: hovered ? "#E8F6FD" : isFirst ? "rgba(42,171,226,0.04)" : "#fff",
-        borderLeft: isFirst ? "3px solid #2AABE2" : "3px solid transparent",
+        borderLeft: "3px solid transparent",
         transition: "background 0.18s ease",
         cursor: "default",
       }}
