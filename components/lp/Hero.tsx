@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { ArrowDown, CheckCircle2, Shield, RefreshCcw, Building2 } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -44,14 +44,6 @@ const rankColors = [
   { bg: "linear-gradient(135deg,#FFD700,#FFA500)", text: "#fff" },
   { bg: "linear-gradient(135deg,#C0C0C0,#A0A0A0)", text: "#fff" },
   { bg: "linear-gradient(135deg,#CD7F32,#A0522D)", text: "#fff" },
-];
-
-// ─── Trust chips ─────────────────────────────────────────────────────────────
-
-const trustPoints = [
-  { icon: Shield, label: "専門家監修済" },
-  { icon: Building2, label: "XXXX社掲載" },
-  { icon: RefreshCcw, label: "毎月情報更新" },
 ];
 
 // ─── Stars ────────────────────────────────────────────────────────────────────
@@ -265,8 +257,8 @@ export default function Hero() {
     <section
       className="relative overflow-hidden section-bg-hero hero-container"
       style={{
-        paddingTop: "calc(64px + 3rem)",
-        paddingBottom: "3.5rem",
+        paddingTop: "calc(64px + 4rem)",
+        paddingBottom: "4.5rem",
       }}
       aria-label="ヒーローセクション"
     >
@@ -290,17 +282,32 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
-          {/* Main copy (h1) */}
+          {/* Label chip */}
           <motion.div variants={fadeUp}>
-            <h1 style={{
-              fontSize: "clamp(1.75rem, 4.5vw, 2.75rem)",
-              fontWeight: 800,
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: 6,
+              background: "#E8F6FD", color: "#2AABE2",
+              fontSize: 12, fontWeight: 700, letterSpacing: "0.08em",
+              padding: "5px 14px", borderRadius: 9999,
+              border: "1px solid rgba(42,171,226,0.25)",
+              marginBottom: "1.25rem",
+            }}>
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#2AABE2", display: "inline-block" }} />
+              請求書カード払い 専門比較サイト
+            </span>
+          </motion.div>
+
+          {/* Main headline */}
+          <motion.h1 variants={fadeUp} style={{ marginBottom: "1.25rem" }}>
+            <span style={{
+              display: "block",
+              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+              fontWeight: 700,
               lineHeight: 1.3,
               color: "#1A2B4A",
               letterSpacing: "-0.01em",
-              marginBottom: "1.25rem",
             }}>
-              請求書カード払い
+              請求書の支払いを
               <br />
               <span style={{
                 background: "linear-gradient(135deg, #2AABE2, #3EBF8A)",
@@ -308,78 +315,27 @@ export default function Hero() {
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}>
-                専門比較サイト
+                クレジットカード
               </span>
-            </h1>
-          </motion.div>
+              に変える
+              <br />
+              最適なサービスが見つかる
+            </span>
+          </motion.h1>
 
           {/* Sub copy */}
           <motion.p variants={fadeUp} style={{
-            fontSize: "clamp(1rem, 2.2vw, 1.15rem)",
-            fontWeight: 500,
+            fontSize: "clamp(0.9rem, 2vw, 1.05rem)",
             color: "#3A4D6A",
             lineHeight: 1.8,
             marginBottom: "2rem",
             maxWidth: 520,
           }}>
-            手数料・審査難易度・入金速度をXXXX社以上で徹底比較します。
+            資金繰りの不安をなくし、支払いタイミングを自由にコントロール。
           </motion.p>
 
-          {/* Trust chips */}
-          <motion.div variants={fadeUp} style={{
-            display: "flex", flexWrap: "wrap", gap: 10, marginBottom: "2.25rem"
-          }}>
-            {trustPoints.map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                style={{
-                  display: "inline-flex", alignItems: "center", gap: 7,
-                  background: "#E8F6FD", backdropFilter: "blur(4px)",
-                  border: "1.5px solid rgba(42,171,226,0.35)",
-                  borderRadius: 9999, padding: "6px 14px",
-                  fontSize: 13, fontWeight: 600, color: "#1A2B4A",
-                }}
-              >
-                <CheckCircle2 size={15} color="#3EBF8A" strokeWidth={2.5} />
-                {label}
-              </div>
-            ))}
-          </motion.div>
-
-          {/* CTA Buttons — vertical stack */}
-          <motion.div variants={fadeUp} style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 360 }}>
-            {/* Green button */}
-            <div>
-              <a
-                href="#services"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                style={{
-                  display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-                  width: "100%",
-                  background: "linear-gradient(135deg, #3EBF8A, #2DA374)",
-                  color: "#fff", fontSize: "1rem", fontWeight: 700,
-                  padding: "0.875rem 1.75rem", borderRadius: 9999,
-                  boxShadow: "0 6px 24px rgba(62,191,138,0.32)",
-                  transition: "transform 0.2s, box-shadow 0.2s",
-                  textDecoration: "none",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 10px 32px rgba(62,191,138,0.42)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 24px rgba(62,191,138,0.32)";
-                }}
-              >
-                無料で資料請求する
-              </a>
-            </div>
-
-            {/* Blue button */}
+          {/* CTA Buttons */}
+          <motion.div variants={fadeUp} style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
             <a
               href="#ranking"
               onClick={(e) => {
@@ -387,8 +343,7 @@ export default function Hero() {
                 document.getElementById("ranking")?.scrollIntoView({ behavior: "smooth" });
               }}
               style={{
-                display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-                width: "100%",
+                display: "inline-flex", alignItems: "center", gap: 8,
                 background: "linear-gradient(135deg, #2AABE2, #1A8DC4)",
                 color: "#fff", fontSize: "1rem", fontWeight: 700,
                 padding: "0.875rem 1.75rem", borderRadius: 9999,
@@ -407,6 +362,33 @@ export default function Hero() {
             >
               おすすめサービスを今すぐ見る
               <ArrowDown size={16} strokeWidth={2.5} />
+            </a>
+
+            <a
+              href="#services"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                background: "linear-gradient(135deg, #3EBF8A, #2DA374)",
+                color: "#fff", fontSize: "1rem", fontWeight: 700,
+                padding: "0.875rem 1.75rem", borderRadius: 9999,
+                boxShadow: "0 6px 24px rgba(62,191,138,0.32)",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                textDecoration: "none",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 10px 32px rgba(62,191,138,0.42)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 24px rgba(62,191,138,0.32)";
+              }}
+            >
+              資料請求（無料）
             </a>
           </motion.div>
         </motion.div>

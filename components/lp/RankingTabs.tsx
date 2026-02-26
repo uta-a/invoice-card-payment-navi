@@ -25,7 +25,7 @@ const TABS: Tab[] = [
   { key: "screening", label: "審査のしやすさ" },
 ];
 
-const TOP_N = 3;
+const TOP_N = 5;
 
 // ─── Animation variants ───────────────────────────────────────────────────────
 
@@ -198,55 +198,39 @@ function TabMetric({ service, tab }: { service: Service; tab: TabKey }) {
       );
     case "fee":
       return (
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{
-            fontSize: 18,
-            fontWeight: 800,
-            color: "#2AABE2",
-            letterSpacing: "-0.02em",
-            lineHeight: 1,
-          }}>
-            {service.fee}
-          </span>
-          <span style={{ fontSize: 12, fontWeight: 700, color: "#F59E0B" }}>
-            {service.scores.fee.toFixed(1)}
-          </span>
-        </div>
+        <span style={{
+          fontSize: 18,
+          fontWeight: 800,
+          color: "#2AABE2",
+          letterSpacing: "-0.02em",
+          lineHeight: 1,
+        }}>
+          {service.fee}
+        </span>
       );
     case "payment":
       return (
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 4,
-            background: "#E8F8F2",
-            color: "#059669",
-            fontSize: 12,
-            fontWeight: 700,
-            padding: "4px 10px",
-            borderRadius: 9999,
-          }}>
-            <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#3EBF8A" strokeWidth={2.5} strokeLinecap="round">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 6v6l4 2" />
-            </svg>
-            {service.paymentSpeed}
-          </span>
-          <span style={{ fontSize: 12, fontWeight: 700, color: "#F59E0B" }}>
-            {service.scores.speed.toFixed(1)}
-          </span>
-        </div>
+        <span style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 4,
+          background: "#E8F8F2",
+          color: "#059669",
+          fontSize: 12,
+          fontWeight: 700,
+          padding: "4px 10px",
+          borderRadius: 9999,
+        }}>
+          {/* Clock icon */}
+          <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#3EBF8A" strokeWidth={2.5} strokeLinecap="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          {service.paymentSpeed}
+        </span>
       );
     case "screening":
-      return (
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <ScreeningIndicator level={service.screeningLevel} />
-          <span style={{ fontSize: 12, fontWeight: 700, color: "#F59E0B" }}>
-            {service.scores.support.toFixed(1)}
-          </span>
-        </div>
-      );
+      return <ScreeningIndicator level={service.screeningLevel} />;
     default:
       return null;
   }
@@ -375,21 +359,21 @@ function RankingRow({
             fontSize: 11,
             fontWeight: 700,
             color: "#fff",
-            background: "linear-gradient(135deg,#3EBF8A,#2DA374)",
+            background: "linear-gradient(135deg,#2AABE2,#1A8DC4)",
             borderRadius: 6,
             padding: "4px 10px",
             textDecoration: "none",
             whiteSpace: "nowrap",
-            boxShadow: "0 2px 8px rgba(62,191,138,0.3)",
+            boxShadow: "0 2px 8px rgba(42,171,226,0.3)",
             transition: "box-shadow 0.15s, transform 0.15s",
             display: "inline-block",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 14px rgba(62,191,138,0.45)";
+            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 14px rgba(42,171,226,0.45)";
             (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 2px 8px rgba(62,191,138,0.3)";
+            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 2px 8px rgba(42,171,226,0.3)";
             (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
           }}
         >
@@ -458,6 +442,32 @@ export default function RankingTabs() {
       >
         {/* ── Section header ────────────────────────────────────────────── */}
         <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
+          {/* Label chip */}
+          <div style={{ marginBottom: "0.875rem" }}>
+            <span style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              background: "#E8F6FD",
+              color: "#2AABE2",
+              fontSize: 12,
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              padding: "5px 14px",
+              borderRadius: 9999,
+              border: "1px solid rgba(42,171,226,0.25)",
+            }}>
+              <span style={{
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                background: "#2AABE2",
+                display: "inline-block",
+              }} />
+              ポイント別ランキング
+            </span>
+          </div>
+
           {/* H2 */}
           <h2 style={{
             fontSize: "clamp(1.4rem, 3.5vw, 1.875rem)",
@@ -467,23 +477,33 @@ export default function RankingTabs() {
             lineHeight: 1.3,
             marginBottom: "0.75rem",
           }}>
-            ポイント別ランキング
+            あなたの重視するポイントで比較
           </h2>
 
+          {/* Subtitle */}
+          <p style={{
+            fontSize: "clamp(0.85rem, 2vw, 0.95rem)",
+            color: "#6B7A99",
+            lineHeight: 1.7,
+            maxWidth: 540,
+            margin: "0 auto",
+          }}>
+            手数料・入金速度・審査のしやすさ、それぞれのランキングをご確認ください
+          </p>
         </div>
 
         {/* ── Tab navigation ────────────────────────────────────────────── */}
         <div
           role="tablist"
           aria-label="ランキングカテゴリ"
-          className="ranking-tablist"
           style={{
             display: "flex",
+            borderBottom: "2px solid #DDE5F0",
             marginBottom: "1.5rem",
             overflowX: "auto",
             scrollbarWidth: "none",
             msOverflowStyle: "none",
-            gap: 8,
+            gap: 0,
           }}
         >
           {TABS.map((tab) => {
@@ -496,31 +516,28 @@ export default function RankingTabs() {
                 aria-controls={`tabpanel-${tab.key}`}
                 onClick={() => setActiveTab(tab.key)}
                 style={{
+                  position: "relative",
                   flexShrink: 0,
-                  padding: "0.6rem 1.25rem",
+                  padding: "0.75rem 1.25rem",
                   fontSize: "clamp(12px, 2vw, 14px)",
                   fontWeight: isActive ? 700 : 500,
-                  color: isActive ? "#fff" : "#6B7A99",
-                  background: isActive
-                    ? "linear-gradient(135deg, #2AABE2, #1A8DC4)"
-                    : "#F8FAFD",
-                  border: isActive ? "none" : "1px solid #DDE5F0",
-                  borderRadius: 9999,
+                  color: isActive ? "#2AABE2" : "#6B7A99",
+                  background: isActive ? "#fff" : "transparent",
+                  border: "none",
+                  borderBottom: isActive ? "2px solid #2AABE2" : "2px solid transparent",
+                  marginBottom: "-2px",
                   cursor: "pointer",
-                  transition: "all 0.18s ease",
+                  transition: "color 0.18s ease, font-weight 0.18s ease",
                   whiteSpace: "nowrap",
                   outline: "none",
-                  boxShadow: isActive ? "0 2px 8px rgba(42,171,226,0.30)" : "none",
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) {
-                    (e.currentTarget as HTMLButtonElement).style.background = "#EEF1F6";
                     (e.currentTarget as HTMLButtonElement).style.color = "#1A8DC4";
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!isActive) {
-                    (e.currentTarget as HTMLButtonElement).style.background = "#F8FAFD";
                     (e.currentTarget as HTMLButtonElement).style.color = "#6B7A99";
                   }
                 }}
@@ -555,28 +572,30 @@ export default function RankingTabs() {
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
-              border: "1.5px solid #DDE5F0",
-              color: "#1A2B4A",
+              border: "2px solid #2AABE2",
+              color: "#2AABE2",
               background: "#fff",
               fontSize: "0.9375rem",
               fontWeight: 700,
               padding: "0.75rem 2rem",
               borderRadius: 9999,
               textDecoration: "none",
-              transition: "background 0.18s, box-shadow 0.18s",
+              transition: "background 0.18s, color 0.18s, box-shadow 0.18s",
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLAnchorElement;
-              el.style.background = "#F8FAFD";
-              el.style.boxShadow = "0 2px 8px rgba(26,43,74,0.08)";
+              el.style.background = "#2AABE2";
+              el.style.color = "#fff";
+              el.style.boxShadow = "0 6px 20px rgba(42,171,226,0.3)";
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLAnchorElement;
               el.style.background = "#fff";
+              el.style.color = "#2AABE2";
               el.style.boxShadow = "none";
             }}
           >
-            もっと見る
+            サービス詳細を全て見る ↓
           </a>
         </div>
       </div>

@@ -130,21 +130,6 @@ function CheckIcon() {
   );
 }
 
-/** Star / review icon */
-function StarIcon() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-    </svg>
-  );
-}
-
 /** Editorial pick crown icon */
 function CrownIcon() {
   return (
@@ -366,12 +351,6 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
           >
             {service.name}
           </h3>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ fontSize: 28, fontWeight: 900, color: "#F59E0B", lineHeight: 1 }}>
-              {service.rating.toFixed(1)}
-            </span>
-            <span style={{ fontSize: 12, color: "#6B7A99", fontWeight: 600, marginTop: 4 }}>/ 5.0</span>
-          </div>
           <StarRating
             rating={service.rating}
             size="md"
@@ -427,21 +406,6 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
           label="審査"
           value={service.screeningLevel}
           iconColor="var(--color-gold)"
-        />
-        <div
-          style={{
-            width: "1px",
-            backgroundColor: "var(--color-border)",
-            alignSelf: "stretch",
-            margin: "0 4px",
-          }}
-          aria-hidden="true"
-        />
-        <MetricItem
-          icon={<StarIcon />}
-          label="口コミ"
-          value={service.rating.toFixed(1)}
-          iconColor="#F59E0B"
         />
       </div>
 
@@ -503,7 +467,7 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
             el.style.boxShadow = "0 4px 16px rgba(62,191,138,0.32)";
           }}
         >
-          無料で資料請求する
+          資料請求（無料）
         </a>
         {/* White: 公式サイトを見る */}
         <a
@@ -591,6 +555,40 @@ export default function Top3() {
             gap: "14px",
           }}
         >
+          {/* Label chip */}
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+              backgroundColor: "var(--color-primary-light)",
+              color: "var(--color-primary)",
+              fontSize: "12px",
+              fontWeight: 700,
+              padding: "5px 14px",
+              borderRadius: "999px",
+              letterSpacing: "0.06em",
+              border: "1px solid rgba(42,171,226,0.25)",
+            }}
+          >
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            まず見てほしい3社
+          </div>
+
           {/* H2 */}
           <h2
             style={{
@@ -602,9 +600,22 @@ export default function Top3() {
               letterSpacing: "-0.02em",
             }}
           >
-            おすすめサービス<span style={{ color: "var(--color-primary)" }}>3選</span>
+            おすすめ請求書カード払いサービス{" "}
+            <span style={{ color: "var(--color-primary)" }}>3選</span>
           </h2>
 
+          {/* Subtitle */}
+          <p
+            style={{
+              margin: 0,
+              fontSize: "15px",
+              color: "var(--color-gray)",
+              lineHeight: 1.7,
+              maxWidth: "540px",
+            }}
+          >
+            手数料・審査・入金速度を総合評価した上位3社をご紹介します
+          </p>
         </motion.div>
 
         {/* ── Cards ── */}
