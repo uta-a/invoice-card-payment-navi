@@ -399,8 +399,8 @@ function TabPanel({ tab }: { tab: TabKey }) {
       style={{
         background: "#fff",
         borderRadius: 16,
-        border: "1px solid #DDE5F0",
-        boxShadow: "0 2px 12px rgba(26,43,74,0.07)",
+        border: "1.5px solid #CDD8E8",
+        boxShadow: "0 4px 20px rgba(26,43,74,0.12), 0 1px 6px rgba(26,43,74,0.06)",
         overflow: "hidden",
       }}
     >
@@ -426,7 +426,7 @@ export default function RankingTabs() {
   return (
     <section
       id="ranking"
-      className="section-bg-white"
+      className="section-bg-pale"
       style={{
         position: "relative",
         overflow: "hidden",
@@ -442,32 +442,6 @@ export default function RankingTabs() {
       >
         {/* ── Section header ────────────────────────────────────────────── */}
         <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-          {/* Label chip */}
-          <div style={{ marginBottom: "0.875rem" }}>
-            <span style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
-              background: "#E8F6FD",
-              color: "#2AABE2",
-              fontSize: 12,
-              fontWeight: 700,
-              letterSpacing: "0.08em",
-              padding: "5px 14px",
-              borderRadius: 9999,
-              border: "1px solid rgba(42,171,226,0.25)",
-            }}>
-              <span style={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "#2AABE2",
-                display: "inline-block",
-              }} />
-              ポイント別ランキング
-            </span>
-          </div>
-
           {/* H2 */}
           <h2 style={{
             fontSize: "clamp(1.4rem, 3.5vw, 1.875rem)",

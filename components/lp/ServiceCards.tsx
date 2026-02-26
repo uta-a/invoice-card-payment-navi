@@ -256,11 +256,11 @@ function ServiceCard({
         background: isTop
           ? "linear-gradient(160deg, #FFFFFF 0%, #F0F9FF 60%, #EDFBF5 100%)"
           : "#fff",
-        border: isTop ? "2px solid #2AABE2" : "1px solid #DDE5F0",
+        border: isTop ? "2px solid rgba(42,171,226,0.45)" : "1.5px solid #CDD8E8",
         borderRadius: 20,
         boxShadow: isTop
-          ? "0 8px 32px rgba(42,171,226,0.18), 0 2px 8px rgba(42,171,226,0.10)"
-          : "0 4px 20px rgba(42,171,226,0.10)",
+          ? "0 8px 32px rgba(42,171,226,0.24), 0 2px 10px rgba(42,171,226,0.14)"
+          : "0 4px 20px rgba(26,43,74,0.10), 0 1px 6px rgba(26,43,74,0.06)",
         padding: 28,
         position: "relative",
         overflow: "hidden",

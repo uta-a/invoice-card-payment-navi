@@ -217,8 +217,8 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
     flex: isFirst ? "1.04" : "1",
     backgroundColor: "#ffffff",
     border: isFirst
-      ? "2px solid rgba(42, 171, 226, 0.35)"
-      : "1px solid var(--color-border)",
+      ? "2px solid rgba(42, 171, 226, 0.45)"
+      : "1.5px solid #CDD8E8",
     borderRadius: "16px",
     padding: "24px",
     display: "flex",
@@ -228,11 +228,11 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
     transition: "box-shadow 0.25s ease, transform 0.25s ease",
     boxShadow: hovered
       ? isFirst
-        ? "0 12px 40px rgba(42,171,226,0.22), 0 4px 16px rgba(42,171,226,0.14)"
-        : "0 8px 28px rgba(42,171,226,0.16), 0 2px 10px rgba(42,171,226,0.10)"
+        ? "0 12px 40px rgba(42,171,226,0.28), 0 4px 16px rgba(42,171,226,0.18)"
+        : "0 8px 28px rgba(42,171,226,0.22), 0 2px 10px rgba(42,171,226,0.14)"
       : isFirst
-      ? "0 4px 20px rgba(42,171,226,0.16), 0 2px 8px rgba(42,171,226,0.08)"
-      : "0 2px 12px rgba(42,171,226,0.10)",
+      ? "0 6px 28px rgba(42,171,226,0.22), 0 2px 10px rgba(42,171,226,0.12)"
+      : "0 4px 20px rgba(26,43,74,0.10), 0 1px 6px rgba(26,43,74,0.06)",
     transform: hovered
       ? isFirst
         ? "scale(1.02) translateY(-4px)"
@@ -555,40 +555,6 @@ export default function Top3() {
             gap: "14px",
           }}
         >
-          {/* Label chip */}
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              backgroundColor: "var(--color-primary-light)",
-              color: "var(--color-primary)",
-              fontSize: "12px",
-              fontWeight: 700,
-              padding: "5px 14px",
-              borderRadius: "999px",
-              letterSpacing: "0.06em",
-              border: "1px solid rgba(42,171,226,0.25)",
-            }}
-          >
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" y1="8" x2="12" y2="12" />
-              <line x1="12" y1="16" x2="12.01" y2="16" />
-            </svg>
-            まず見てほしい3社
-          </div>
-
           {/* H2 */}
           <h2
             style={{
