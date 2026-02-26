@@ -328,18 +328,31 @@ a:hover {
     height: 30px !important;
   }
 
-  /* RankingTabs — panel stronger border on mobile (applied via parent) */
+  /* RankingTabs — panel stronger border on mobile */
   [role="tabpanel"] > div {
     border-width: 1.5px !important;
     border-color: #BCC8DA !important;
-    box-shadow: 0 3px 16px rgba(26,43,74,0.13), 0 1px 4px rgba(26,43,74,0.08) !important;
+    box-shadow: 0 4px 20px rgba(26,43,74,0.15), 0 1px 6px rgba(26,43,74,0.08) !important;
+    border-radius: 14px !important;
   }
 
   /* RankingTabs — row stack */
   .ranking-row {
     flex-wrap: wrap !important;
     gap: 8px !important;
-    padding: 12px !important;
+    padding: 14px 12px !important;
+    border-bottom-width: 1.5px !important;
+    border-bottom-color: #CDD8E8 !important;
+  }
+  .ranking-row:nth-child(odd) {
+    background: #FAFCFF !important;
+  }
+  .ranking-row:nth-child(even) {
+    background: #FFFFFF !important;
+  }
+  .ranking-row:first-child {
+    background: rgba(42,171,226,0.06) !important;
+    border-left-color: #2AABE2 !important;
   }
   .ranking-row-name {
     flex: 1 1 auto !important;
