@@ -63,11 +63,7 @@ html {
 }
 
 body {
-  background-color: #d6eef9;
-  /* 全体に水色ドットグリッドパターン */
-  background-image:
-    radial-gradient(circle, rgba(42, 171, 226, 0.70) 2.5px, transparent 2.5px);
-  background-size: 26px 26px;
+  background-color: #F0F9FF;
   color: var(--color-dark);
   font-family: var(--font-sans);
   font-size: 16px;
@@ -78,7 +74,6 @@ body {
 
 /* ============================================================
    セクション背景ユーティリティ
-   body のドットグリッドパターンを透過させる半透明背景
    ============================================================ */
 
 /* 白系セクション（TrustBar, RankingTabs） */
@@ -121,7 +116,7 @@ a:hover {
 }
 
 /* ============================================================
-   Utility classes
+   Section titles
    ============================================================ */
 .section-title {
   font-size: clamp(1.5rem, 3vw, 2rem);
@@ -151,7 +146,122 @@ a:hover {
   margin-bottom: 0.75rem;
 }
 
-/* Score bar animation */
+/* ============================================================
+   Button system
+   ============================================================ */
+
+/* Base button */
+.btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Variants */
+.btn-primary {
+  background: linear-gradient(135deg, #2AABE2, #1A8DC4);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(42, 171, 226, 0.30);
+}
+.btn-primary:hover {
+  box-shadow: 0 8px 24px rgba(42, 171, 226, 0.42);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #3EBF8A, #2DA374);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(62, 191, 138, 0.30);
+}
+.btn-secondary:hover {
+  box-shadow: 0 8px 24px rgba(62, 191, 138, 0.42);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #2AABE2;
+  border: 2px solid #2AABE2;
+}
+.btn-outline:hover {
+  background: #2AABE2;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(42, 171, 226, 0.30);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #2AABE2;
+  border: none;
+}
+.btn-ghost:hover {
+  color: #1A8DC4;
+  background: rgba(42, 171, 226, 0.06);
+}
+
+/* Shapes */
+.btn-pill {
+  border-radius: 9999px;
+}
+
+.btn-rounded {
+  border-radius: 12px;
+}
+
+/* Sizes */
+.btn-xs {
+  font-size: 11px;
+  padding: 4px 10px;
+  gap: 4px;
+}
+
+.btn-sm {
+  font-size: 13px;
+  padding: 8px 16px;
+  gap: 6px;
+}
+
+.btn-md {
+  font-size: 15px;
+  padding: 12px 24px;
+  gap: 8px;
+}
+
+.btn-lg {
+  font-size: 16px;
+  padding: 14px 28px;
+  gap: 8px;
+}
+
+/* ============================================================
+   Hover utilities
+   ============================================================ */
+.hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.hover-glow {
+  transition: box-shadow 0.25s ease;
+}
+.hover-glow:hover {
+  box-shadow: 0 0 24px rgba(42, 171, 226, 0.20);
+}
+
+/* ============================================================
+   Score bar animation
+   ============================================================ */
 @keyframes scoreBarFill {
   from { width: 0%; }
   to   { width: var(--target-width); }
@@ -161,12 +271,16 @@ a:hover {
   animation: scoreBarFill 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Rank badge */
+/* ============================================================
+   Rank badges
+   ============================================================ */
 .rank-badge-1 { background: linear-gradient(135deg, #FFD700, #FFA500); }
 .rank-badge-2 { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); }
 .rank-badge-3 { background: linear-gradient(135deg, #CD7F32, #A0522D); }
 
-/* Card hover effect */
+/* ============================================================
+   Card hover effect
+   ============================================================ */
 .card-hover {
   transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
@@ -175,7 +289,80 @@ a:hover {
   transform: translateY(-3px);
 }
 
-/* Gradient backgrounds */
+/* ============================================================
+   Ranking row — rank-specific styles
+   ============================================================ */
+.ranking-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: background 0.18s ease;
+  cursor: default;
+}
+.ranking-row:hover {
+  background: #E8F6FD;
+}
+
+.ranking-row-rank1 {
+  padding: 1.25rem 1.5rem;
+  background: rgba(42, 171, 226, 0.04);
+  border-left: 4px solid #2AABE2;
+}
+.ranking-row-rank1:hover {
+  background: #E8F6FD;
+}
+.ranking-row-rank1 .ranking-row-name p {
+  font-size: 15px;
+}
+
+.ranking-row-rank2-3 {
+  padding: 1rem 1.25rem;
+  border-left: 4px solid transparent;
+}
+
+.ranking-row-rank4-5 {
+  padding: 0.75rem 1.25rem;
+  border-left: 4px solid transparent;
+}
+.ranking-row-rank4-5 .ranking-row-name p {
+  font-size: 13px;
+}
+
+/* ============================================================
+   Ranking row action buttons
+   ============================================================ */
+.ranking-action-link {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #2AABE2, #1A8DC4);
+  border-radius: 6px;
+  padding: 4px 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(42, 171, 226, 0.3);
+  transition: box-shadow 0.15s, transform 0.15s;
+  display: inline-block;
+}
+.ranking-action-link:hover {
+  box-shadow: 0 4px 14px rgba(42, 171, 226, 0.45);
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+/* ============================================================
+   Card zone divider (for ServiceCards)
+   ============================================================ */
+.card-zone {
+  padding: 20px 0;
+}
+.card-zone + .card-zone {
+  border-top: 1px solid #EEF1F6;
+}
+
+/* ============================================================
+   Gradient backgrounds
+   ============================================================ */
 .bg-hero-gradient {
   background: linear-gradient(160deg, #E8F6FD 0%, #EDFBF5 50%, #F0F9FF 100%);
 }
@@ -184,10 +371,181 @@ a:hover {
   background: var(--color-bg-white);
 }
 
-/* Article card hover (used in Server Components) */
+/* Article card hover */
 .article-card:hover {
-  box-shadow: 0 12px 36px rgba(42, 171, 226, 0.18) !important;
+  box-shadow: 0 12px 36px rgba(42, 171, 226, 0.18);
   transform: translateY(-4px);
+}
+
+/* ============================================================
+   Nav link hover (Header/Footer)
+   ============================================================ */
+.nav-link-hover {
+  transition: color 0.2s ease;
+}
+.nav-link-hover:hover {
+  color: #2AABE2;
+}
+
+/* Footer link */
+.footer-link {
+  color: #B8C4D8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer-link:hover {
+  color: #2AABE2;
+}
+
+/* Mobile menu item */
+.mobile-menu-item {
+  transition: background 0.15s ease;
+}
+.mobile-menu-item:hover {
+  background: #F0F9FF;
+}
+
+/* Popup minimize button */
+.popup-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #F1F5F9;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #6B7A99;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+.popup-close-btn:hover {
+  background: #DDE5F0;
+  color: #1A2B4A;
+}
+
+/* Popup CTA buttons */
+.popup-cta-primary {
+  width: 100%;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #3EBF8A, #2DA374);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1.4;
+  transition: opacity 0.15s;
+  box-shadow: 0 3px 10px rgba(62, 191, 138, 0.30);
+}
+.popup-cta-primary:hover {
+  opacity: 0.88;
+}
+
+.popup-cta-secondary {
+  width: 100%;
+  padding: 11px 16px;
+  background-color: transparent;
+  color: #2AABE2;
+  border: 1.5px solid #2AABE2;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1.4;
+  transition: background-color 0.15s, color 0.15s;
+}
+.popup-cta-secondary:hover {
+  background-color: #2AABE2;
+  color: #fff;
+}
+
+/* ServiceCards CTA link hover */
+.service-cta-link {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.service-cta-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(42, 171, 226, 0.42);
+}
+
+.service-cta-link-green {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.service-cta-link-green:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(62, 191, 138, 0.44);
+}
+
+/* Top3 card official link */
+.top3-official-link {
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.top3-official-link:hover {
+  background-color: #F0F9FF;
+  box-shadow: 0 4px 16px rgba(42, 171, 226, 0.15);
+}
+
+/* Tab button hover */
+.tab-btn {
+  transition: color 0.18s ease, font-weight 0.18s ease;
+}
+.tab-btn:hover {
+  color: #1A8DC4;
+}
+
+/* Hero CTA hover */
+.hero-cta-primary {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hero-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(42, 171, 226, 0.46);
+}
+
+.hero-cta-secondary {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hero-cta-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(62, 191, 138, 0.42);
+}
+
+/* Header desktop nav button */
+.header-nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #1A2B4A;
+  padding: 0.25rem 0;
+  transition: color 0.2s;
+}
+.header-nav-btn:hover {
+  color: #2AABE2;
+}
+
+/* Header CTA button */
+.header-cta-btn {
+  background: #3EBF8A;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.5rem 1.375rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(62, 191, 138, 0.30);
+}
+.header-cta-btn:hover {
+  background: #2DA374;
+  transform: translateY(-1px);
 }
 
 /* ============================================================
@@ -197,12 +555,12 @@ a:hover {
 /* Header — hide desktop nav on mobile, hide hamburger on desktop */
 @media (max-width: 767px) {
   .desktop-nav {
-    display: none !important;
+    display: none;
   }
 }
 @media (min-width: 768px) {
   .mobile-hamburger {
-    display: none !important;
+    display: none;
   }
 }
 
@@ -211,36 +569,45 @@ a:hover {
 
   /* TrustBar — horizontal scroll */
   .trustbar-mobile {
-    display: flex !important;
-    overflow-x: auto !important;
+    display: flex;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    gap: 10px !important;
-    padding-bottom: 4px !important;
+    gap: 10px;
+    padding-bottom: 4px;
     scroll-snap-type: x mandatory;
   }
   .trustbar-mobile::-webkit-scrollbar {
     display: none;
   }
   .trustbar-mobile > * {
-    flex: 0 0 auto !important;
-    min-width: 160px !important;
-    max-width: 200px !important;
+    flex: 0 0 auto;
+    min-width: 160px;
+    max-width: 200px;
     scroll-snap-align: start;
   }
 
-  /* Top3 cards — horizontal scroll */
+  /* Top3 cards */
+  .top3-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .top3-card-first {
+    grid-column: 1;
+  }
+
+  /* Legacy top3-cards horizontal scroll */
   .top3-cards {
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    justify-content: flex-start !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: rgba(42, 171, 226, 0.3) transparent;
     scroll-snap-type: x mandatory;
-    padding-top: 18px !important;
-    padding-bottom: 12px !important;
-    align-items: stretch !important;
+    padding-top: 18px;
+    padding-bottom: 12px;
+    align-items: stretch;
   }
   .top3-cards::-webkit-scrollbar {
     height: 6px;
@@ -253,8 +620,8 @@ a:hover {
     border-radius: 3px;
   }
   .top3-cards > * {
-    flex: 0 0 85vw !important;
-    max-width: 320px !important;
+    flex: 0 0 85vw;
+    max-width: 320px;
     scroll-snap-align: center;
   }
 
@@ -263,124 +630,126 @@ a:hover {
     -webkit-overflow-scrolling: touch;
   }
   [role="tablist"] > [role="tab"] {
-    flex: 1 1 0% !important;
-    padding: 0.6rem 0.4rem !important;
-    font-size: 13px !important;
+    flex: 1 1 0%;
+    padding: 0.6rem 0.4rem;
+    font-size: 13px;
     white-space: nowrap;
-    text-align: center !important;
+    text-align: center;
   }
 
   /* ServiceCards — reduce card padding on mobile */
   article[aria-label] {
-    padding: 16px !important;
+    padding: 16px;
   }
 
   /* ServiceCards — card header stack */
   .service-card-header {
-    flex-wrap: wrap !important;
-    gap: 10px !important;
-    margin-bottom: 16px !important;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
   }
 
   /* ServiceCards — star rating wrap gracefully */
   .service-card-header [role="img"] {
-    flex-wrap: wrap !important;
+    flex-wrap: wrap;
   }
 
   /* ServiceCards — body columns stack */
   .service-card-body {
-    flex-direction: column !important;
-    gap: 16px !important;
-    margin-bottom: 16px !important;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
   }
   .service-card-body > * {
-    flex: 1 1 100% !important;
-    min-width: 0 !important;
+    flex: 1 1 100%;
+    min-width: 0;
   }
-
 
   /* ServiceCards — logo smaller */
   .service-card-logo {
-    width: 56px !important;
-    height: 56px !important;
-    border-radius: 12px !important;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
   }
 
   /* ServiceCards — rank badge smaller */
   .service-card-rank {
-    width: 42px !important;
-    height: 42px !important;
+    width: 42px;
+    height: 42px;
   }
 
   /* RankingTabs — row stack */
   .ranking-row {
-    flex-wrap: wrap !important;
-    gap: 8px !important;
-    padding: 12px !important;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+  }
+  .ranking-row-rank1 {
+    padding: 14px;
   }
   .ranking-row-name {
-    flex: 1 1 auto !important;
-    max-width: none !important;
-    min-width: 0 !important;
+    flex: 1 1 auto;
+    max-width: none;
+    min-width: 0;
   }
   .ranking-row-metric {
-    flex: 1 1 100% !important;
-    justify-content: flex-start !important;
-    padding-left: 0 !important;
+    flex: 1 1 100%;
+    justify-content: flex-start;
+    padding-left: 0;
   }
   .ranking-row-actions {
-    flex: 1 1 100% !important;
-    display: flex !important;
-    padding-left: 0 !important;
+    flex: 1 1 100%;
+    display: flex;
+    padding-left: 0;
   }
   .ranking-row-actions > a {
-    flex: 1 !important;
-    text-align: center !important;
-    justify-content: center !important;
+    flex: 1;
+    text-align: center;
+    justify-content: center;
   }
 
   /* Footer — single column */
   .footer-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   /* ConversionPopup — full-width on mobile */
   .popup-expanded {
-    left: 16px !important;
-    right: 16px !important;
-    bottom: 16px !important;
-    width: auto !important;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    width: auto;
   }
 
   /* Hero padding */
   .hero-container {
-    padding-top: calc(56px + 1.5rem) !important;
-    padding-bottom: 2.5rem !important;
+    padding-top: calc(56px + 1.5rem);
+    padding-bottom: 2.5rem;
   }
 
   /* ServiceCards — CTA buttons stack */
   .service-card-cta {
-    flex-direction: column !important;
+    flex-direction: column;
   }
   .service-card-cta > a {
-    width: 100% !important;
-    text-align: center !important;
-    justify-content: center !important;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 
   /* Prevent overflow on all containers */
   .section-bg-pale,
   .section-bg-white {
-    overflow-x: hidden !important;
+    overflow-x: hidden;
   }
 }
 
 @media (max-width: 480px) {
   .top3-cards > * {
-    flex: 0 0 90vw !important;
+    flex: 0 0 90vw;
   }
   .trustbar-mobile > * {
-    min-width: 140px !important;
+    min-width: 140px;
   }
 }

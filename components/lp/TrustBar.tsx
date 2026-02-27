@@ -10,9 +10,9 @@ import { Building2, Users, BarChart2, CalendarCheck } from "lucide-react";
 
 interface TrustStat {
   icon: React.ElementType;
-  value: string;         // Display string (may contain non-numeric parts like "万件以上")
-  numericPart: string;   // The animated number part e.g. "XX"
-  suffix: string;        // Static suffix e.g. "万件以上"
+  value: string;
+  numericPart: string;
+  suffix: string;
   label: string;
   color: string;
   bgColor: string;
@@ -69,70 +69,35 @@ function StatItem({ stat, index, inView }: { stat: TrustStat; index: number; inV
       initial={{ opacity: 0, y: 16 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, ease: EASE, delay: index * 0.1 }}
-      className="trustbar-item"
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 10,
-        padding: "12px 14px",
-        borderRadius: 14,
-        background: "#fff",
-        border: "1px solid #EEF1F6",
-        flex: 1,
-        minWidth: 0,
-      }}
+      className="trustbar-item flex items-center gap-2.5 py-3 px-3.5 rounded-[14px] bg-white border border-[#EEF1F6] flex-1 min-w-0"
     >
       {/* Icon container */}
-      <div style={{
-        width: 44, height: 44, borderRadius: 12, flexShrink: 0,
-        background: bgColor,
-        display: "flex", alignItems: "center", justifyContent: "center",
-      }}>
+      <div
+        className="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center"
+        style={{ background: bgColor }}
+      >
         <Icon size={22} color={color} strokeWidth={1.75} />
       </div>
 
       {/* Text */}
-      <div style={{ minWidth: 0 }}>
-        <div style={{
-          fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)",
-          fontWeight: 800,
-          color,
-          lineHeight: 1.1,
-          whiteSpace: "nowrap",
-          marginBottom: 3,
-        }}>
+      <div className="min-w-0">
+        <div
+          className="font-extrabold leading-none whitespace-nowrap mb-0.5"
+          style={{
+            fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)",
+            color,
+          }}
+        >
           {numericPart}
-          <span style={{ fontSize: "0.65em", fontWeight: 700, color: "#3A4D6A", marginLeft: 1 }}>
+          <span className="text-[0.65em] font-bold text-[#3A4D6A] ml-px">
             {suffix}
           </span>
         </div>
-        <div style={{
-          fontSize: 11,
-          color: "#6B7A99",
-          fontWeight: 600,
-          letterSpacing: "0.03em",
-          whiteSpace: "nowrap",
-        }}>
+        <div className="text-[11px] text-[#6B7A99] font-semibold tracking-wide whitespace-nowrap">
           {label}
         </div>
       </div>
     </motion.div>
-  );
-}
-
-// ─── Divider ─────────────────────────────────────────────────────────────────
-
-function Divider() {
-  return (
-    <div
-      aria-hidden="true"
-      style={{
-        width: 1, height: 40, background: "#DDE5F0",
-        flexShrink: 0,
-        display: "none",
-      }}
-      className="lg:block"
-    />
   );
 }
 
@@ -159,35 +124,26 @@ export default function TrustBar() {
       aria-label="サイト実績"
       className="section-bg-white"
       style={{
-        borderBottom: "1px solid #DDE5F0",
+        background: "linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 100%)",
         boxShadow: "0 4px 24px rgba(42,171,226,0.07)",
         padding: "1.25rem 0",
       }}
     >
-      <div
-        className="mx-auto px-4 sm:px-6"
-        style={{ maxWidth: 1160 }}
-      >
+      <div className="mx-auto px-4 sm:px-6" style={{ maxWidth: 1160 }}>
         {/* Desktop: single row with dividers */}
-        <div
-          className="hidden md:flex"
-          style={{ alignItems: "center", gap: 12 }}
-        >
+        <div className="hidden md:flex items-center gap-3">
           {stats.map((stat, i) => (
             <div key={stat.label} style={{ display: "contents" }}>
               <StatItem stat={stat} index={i} inView={inView} />
               {i < stats.length - 1 && (
-                <div style={{ width: 1, height: 48, background: "#DDE5F0", flexShrink: 0 }} aria-hidden="true" />
+                <div className="w-px h-12 bg-[#DDE5F0] flex-shrink-0" aria-hidden="true" />
               )}
             </div>
           ))}
         </div>
 
-        {/* Mobile: horizontal scroll */}
-        <div
-          className="grid md:hidden trustbar-mobile"
-          style={{ gridTemplateColumns: "1fr 1fr", gap: 10 }}
-        >
+        {/* Mobile: 2x2 grid with horizontal scroll */}
+        <div className="grid md:hidden trustbar-mobile" style={{ gridTemplateColumns: "1fr 1fr", gap: 10 }}>
           {stats.map((stat, i) => (
             <StatItem key={stat.label} stat={stat} index={i} inView={inView} />
           ))}

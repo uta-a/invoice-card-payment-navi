@@ -10,8 +10,6 @@ import {
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-// ─── メニュー定義 ─────────────────────────────────────────────────────────────
-
 const NAV_SECTIONS = [
   {
     label: "ランキング・比較",
@@ -41,7 +39,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // body スクロールロック
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -57,66 +54,48 @@ export default function Header() {
   return (
     <>
       <header
+        className="sticky top-0 z-50 transition-all duration-300"
         style={{
-          position: "sticky", top: 0, zIndex: 50,
           background: scrolled || mobileMenuOpen ? "#ffffff" : "rgba(255,255,255,0.72)",
           boxShadow: scrolled ? "0 2px 12px rgba(42,171,226,0.10)" : "none",
-          transition: "background 0.3s, box-shadow 0.3s",
         }}
       >
-        {/* ── Main bar ─────────────────────────────────────────────────────── */}
-        <div style={{
-          maxWidth: 1200, margin: "0 auto", padding: "0 1.5rem",
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          height: 64,
-        }}>
+        <div className="flex items-center justify-between mx-auto max-w-[1200px] h-16 px-6">
           {/* Logo */}
-          <Link href="/" style={{ textDecoration: "none", flexShrink: 0 }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
-              <span style={{ fontSize: "1.125rem", fontWeight: 700, color: "#2AABE2", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
+          <Link href="/" className="no-underline flex-shrink-0">
+            <div className="flex flex-col gap-px">
+              <span className="text-lg font-bold text-[#2AABE2] leading-tight tracking-tight">
                 請求書カード払いナビ
               </span>
-              <span style={{ fontSize: "0.6875rem", color: "#6B7A99", lineHeight: 1, letterSpacing: "0.05em" }}>
+              <span className="text-[0.6875rem] text-[#6B7A99] leading-none tracking-wider">
                 専門比較サイト
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+          <nav className="desktop-nav flex items-center gap-8">
             {[
               { label: "おすすめランキング", action: "ranking" },
               { label: "サービス比較",       action: "services" },
             ].map(({ label, action }) => (
-              <button key={label} onClick={() => scrollTo(action)} style={{
-                background: "none", border: "none", cursor: "pointer",
-                fontSize: "0.9375rem", fontWeight: 500, color: "#1A2B4A",
-                padding: "0.25rem 0", transition: "color 0.2s",
-              }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#2AABE2")}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#1A2B4A")}
+              <button
+                key={label}
+                onClick={() => scrollTo(action)}
+                className="header-nav-btn"
               >
                 {label}
               </button>
             ))}
-            <Link href="/articles" style={{
-              fontSize: "0.9375rem", fontWeight: 500, color: "#1A2B4A",
-              textDecoration: "none", padding: "0.25rem 0", transition: "color 0.2s",
-            }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#2AABE2")}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#1A2B4A")}
+            <Link
+              href="/articles"
+              className="header-nav-btn no-underline"
             >
               記事
             </Link>
-            <button onClick={() => scrollTo("services")} style={{
-              background: "#3EBF8A", color: "#fff", border: "none",
-              borderRadius: 9999, padding: "0.5rem 1.375rem",
-              fontSize: "0.9375rem", fontWeight: 700, cursor: "pointer",
-              whiteSpace: "nowrap", transition: "background 0.2s, transform 0.15s",
-              boxShadow: "0 2px 8px rgba(62,191,138,0.30)",
-            }}
-              onMouseEnter={(e) => { const b = e.currentTarget as HTMLElement; b.style.background = "#2DA374"; b.style.transform = "translateY(-1px)"; }}
-              onMouseLeave={(e) => { const b = e.currentTarget as HTMLElement; b.style.background = "#3EBF8A"; b.style.transform = "translateY(0)"; }}
+            <button
+              onClick={() => scrollTo("services")}
+              className="header-cta-btn"
             >
               無料で比較する
             </button>
@@ -124,17 +103,14 @@ export default function Header() {
 
           {/* Hamburger button */}
           <button
-            className="mobile-hamburger"
+            className="mobile-hamburger flex items-center justify-center rounded-[10px] cursor-pointer p-1.5 transition-colors duration-200"
             onClick={() => setMobileMenuOpen((v) => !v)}
             aria-label={mobileMenuOpen ? "メニューを閉じる" : "メニューを開く"}
             aria-expanded={mobileMenuOpen}
             style={{
               background: mobileMenuOpen ? "#F0F9FF" : "none",
               border: mobileMenuOpen ? "1px solid #DDE5F0" : "none",
-              borderRadius: 10, cursor: "pointer",
-              color: "#1A2B4A", padding: "6px",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              transition: "background 0.2s",
+              color: "#1A2B4A",
             }}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -144,7 +120,7 @@ export default function Header() {
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.18 }}
-                style={{ display: "flex" }}
+                className="flex"
               >
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </motion.span>
@@ -153,7 +129,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* ── Mobile Drawer overlay ──────────────────────────────────────────── */}
+      {/* Mobile Drawer overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
@@ -165,12 +141,11 @@ export default function Header() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
               onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 z-[48] md:hidden"
               style={{
-                position: "fixed", inset: 0, zIndex: 48,
                 background: "rgba(26,43,74,0.35)",
                 backdropFilter: "blur(2px)",
               }}
-              className="md:hidden"
             />
 
             {/* Drawer panel */}
@@ -181,33 +156,22 @@ export default function Header() {
               exit={{ x: "100%" }}
               transition={{ duration: 0.32, ease: EASE }}
               aria-label="モバイルナビゲーション"
+              className="fixed top-0 right-0 bottom-0 z-[49] flex flex-col overflow-y-auto md:hidden"
               style={{
-                position: "fixed", top: 0, right: 0, bottom: 0,
-                width: "min(320px, 88vw)", zIndex: 49,
+                width: "min(320px, 88vw)",
                 background: "#fff",
                 boxShadow: "-8px 0 40px rgba(26,43,74,0.15)",
-                display: "flex", flexDirection: "column",
-                overflowY: "auto",
               }}
-              className="md:hidden"
             >
               {/* Drawer header */}
-              <div style={{
-                display: "flex", alignItems: "center", justifyContent: "space-between",
-                padding: "0 20px", height: 64, flexShrink: 0,
-                borderBottom: "1px solid #DDE5F0",
-              }}>
-                <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#6B7A99", letterSpacing: "0.06em" }}>
+              <div className="flex items-center justify-between px-5 h-16 flex-shrink-0 border-b border-[#DDE5F0]">
+                <span className="text-sm font-bold text-[#6B7A99] tracking-wider">
                   MENU
                 </span>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  style={{
-                    background: "#F1F5F9", border: "none", borderRadius: 8,
-                    width: 32, height: 32, cursor: "pointer",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "#6B7A99",
-                  }}
+                  className="flex items-center justify-center w-8 h-8 rounded-lg cursor-pointer border-none"
+                  style={{ background: "#F1F5F9", color: "#6B7A99" }}
                   aria-label="メニューを閉じる"
                 >
                   <X size={18} />
@@ -215,45 +179,28 @@ export default function Header() {
               </div>
 
               {/* Sections */}
-              <div style={{ flex: 1, padding: "12px 0 20px" }}>
+              <div className="flex-1 py-3 pb-5">
                 {NAV_SECTIONS.map((section, si) => (
-                  <div key={si} style={{ marginBottom: 8 }}>
-                    {/* Section label */}
-                    <div style={{
-                      fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
-                      color: "#B8C4D8", padding: "10px 20px 6px",
-                      textTransform: "uppercase",
-                    }}>
+                  <div key={si} className="mb-2">
+                    <div className="text-[10px] font-bold tracking-widest text-[#B8C4D8] px-5 pt-2.5 pb-1.5 uppercase">
                       {section.label}
                     </div>
 
-                    {/* Items */}
                     {section.items.map((item, ii) => {
                       const Icon = item.icon;
                       const inner = (
-                        <div style={{
-                          display: "flex", alignItems: "center", gap: 12,
-                          padding: "11px 20px",
-                          cursor: "pointer",
-                          transition: "background 0.15s",
-                        }}
-                          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "#F0F9FF")}
-                          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "transparent")}
-                        >
-                          {/* Icon bg */}
-                          <div style={{
-                            width: 38, height: 38, borderRadius: 10, flexShrink: 0,
-                            background: "#E8F6FD",
-                            display: "flex", alignItems: "center", justifyContent: "center",
-                          }}>
+                        <div className="flex items-center gap-3 py-[11px] px-5 cursor-pointer mobile-menu-item">
+                          <div
+                            className="w-[38px] h-[38px] rounded-[10px] flex-shrink-0 flex items-center justify-center"
+                            style={{ background: "#E8F6FD" }}
+                          >
                             <Icon size={18} color="#2AABE2" strokeWidth={1.75} />
                           </div>
-                          {/* Text */}
-                          <div style={{ flex: 1, minWidth: 0 }}>
-                            <div style={{ fontSize: 14, fontWeight: 700, color: "#1A2B4A", lineHeight: 1.3 }}>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm font-bold text-[#1A2B4A] leading-tight">
                               {item.label}
                             </div>
-                            <div style={{ fontSize: 11, color: "#6B7A99", marginTop: 1 }}>
+                            <div className="text-[11px] text-[#6B7A99] mt-px">
                               {item.sub}
                             </div>
                           </div>
@@ -267,7 +214,7 @@ export default function Header() {
                             key={ii}
                             href={item.href}
                             onClick={() => setMobileMenuOpen(false)}
-                            style={{ display: "block", textDecoration: "none" }}
+                            className="block no-underline"
                           >
                             {inner}
                           </Link>
@@ -281,37 +228,28 @@ export default function Header() {
                     })}
 
                     {si < NAV_SECTIONS.length - 1 && (
-                      <div style={{ height: 1, background: "#F1F5F9", margin: "8px 20px 0" }} />
+                      <div className="h-px mx-5 mt-2" style={{ background: "#F1F5F9" }} />
                     )}
                   </div>
                 ))}
               </div>
 
               {/* CTA at bottom */}
-              <div style={{
-                padding: "16px 20px 32px", flexShrink: 0,
-                borderTop: "1px solid #DDE5F0",
-              }}>
+              <div className="px-5 pt-4 pb-8 flex-shrink-0 border-t border-[#DDE5F0]">
                 <button
                   onClick={() => scrollTo("services")}
+                  className="w-full py-3.5 flex items-center justify-center gap-1.5 border-none rounded-[14px] text-[15px] font-extrabold cursor-pointer text-white"
                   style={{
-                    width: "100%", padding: "14px",
                     background: "linear-gradient(135deg, #3EBF8A, #2DA374)",
-                    color: "#fff", border: "none", borderRadius: 14,
-                    fontSize: 15, fontWeight: 800, cursor: "pointer",
                     boxShadow: "0 4px 16px rgba(62,191,138,0.35)",
-                    display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
                   }}
                 >
                   無料でサービスを比較する
                   <ChevronRight size={16} strokeWidth={2.5} />
                 </button>
-                <div style={{
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  gap: 4, marginTop: 10,
-                }}>
+                <div className="flex items-center justify-center gap-1 mt-2.5">
                   <PhoneCall size={12} color="#6B7A99" />
-                  <span style={{ fontSize: 11, color: "#6B7A99" }}>完全無料・最短3分</span>
+                  <span className="text-[11px] text-[#6B7A99]">完全無料・最短3分</span>
                 </div>
               </div>
             </motion.nav>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { getServicesByRank, Service } from "@/data/services";
 import SectionDecorations from "@/components/ui/SectionDecorations";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -35,7 +36,6 @@ const panelVariants: Variants = {
   exit:    { opacity: 0, y: -8,  transition: { duration: 0.2,  ease: "easeIn" } },
 };
 
-// listItemVariants uses custom prop — defined as plain object to avoid Variants type conflict
 const listItemVariants = {
   initial: { opacity: 0, x: -10 },
   animate: (i: number) => ({
@@ -48,33 +48,29 @@ const listItemVariants = {
 // ─── Rank badge ───────────────────────────────────────────────────────────────
 
 function RankBadge({ rank }: { rank: number }) {
-  const styles: Record<number, { background: string; color: string; border?: string }> = {
+  const styles: Record<number, { background: string; color: string }> = {
     1: { background: "linear-gradient(135deg,#F59E0B,#D97706)", color: "#fff" },
     2: { background: "linear-gradient(135deg,#C0C0C0,#9CA3AF)", color: "#fff" },
     3: { background: "linear-gradient(135deg,#CD7F32,#A0522D)", color: "#fff" },
   };
-  const defaultStyle = { background: "#F1F5F9", color: "#6B7A99", border: "1px solid #DDE5F0" };
+  const defaultStyle = { background: "#F1F5F9", color: "#6B7A99" };
   const style = styles[rank] ?? defaultStyle;
 
   return (
     <div
       aria-label={`${rank}位`}
+      className="flex items-center justify-center flex-shrink-0 rounded-full font-extrabold"
       style={{
         width: 36,
         height: 36,
-        borderRadius: "50%",
-        flexShrink: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
         fontSize: rank <= 3 ? 13 : 12,
-        fontWeight: 800,
         letterSpacing: "-0.02em",
         ...style,
+        ...(rank > 3 ? { border: "1px solid #DDE5F0" } : {}),
       }}
     >
       {rank}
-      <span style={{ fontSize: 9, fontWeight: 700, marginLeft: 0.5 }}>位</span>
+      <span className="text-[9px] font-bold ml-px">位</span>
     </div>
   );
 }
@@ -91,20 +87,8 @@ function LogoPlaceholder({ name, index }: { name: string; index: number }) {
   const initial = name.charAt(0).toUpperCase();
   return (
     <div
-      style={{
-        width: 40,
-        height: 40,
-        borderRadius: 10,
-        flexShrink: 0,
-        background: bg,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "#fff",
-        fontSize: 16,
-        fontWeight: 800,
-        letterSpacing: "-0.01em",
-      }}
+      className="w-10 h-10 rounded-[10px] flex-shrink-0 flex items-center justify-center text-white text-base font-extrabold"
+      style={{ background: bg, letterSpacing: "-0.01em" }}
       aria-hidden="true"
     >
       {initial}
@@ -116,8 +100,8 @@ function LogoPlaceholder({ name, index }: { name: string; index: number }) {
 
 function StarRating({ rating, reviewCount }: { rating: number; reviewCount: number }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+    <div className="flex items-center gap-1">
+      <div className="flex items-center gap-px">
         {Array.from({ length: 5 }).map((_, i) => {
           const filled = i < Math.floor(rating);
           const partial = !filled && i < rating;
@@ -146,12 +130,8 @@ function StarRating({ rating, reviewCount }: { rating: number; reviewCount: numb
           );
         })}
       </div>
-      <span style={{ fontSize: 13, fontWeight: 700, color: "#F59E0B" }}>
-        {rating.toFixed(1)}
-      </span>
-      <span style={{ fontSize: 11, color: "#6B7A99" }}>
-        ({reviewCount.toLocaleString()}件)
-      </span>
+      <span className="text-[13px] font-bold text-[#F59E0B]">{rating.toFixed(1)}</span>
+      <span className="text-[11px] text-[#6B7A99]">({reviewCount.toLocaleString()}件)</span>
     </div>
   );
 }
@@ -166,25 +146,11 @@ function ScreeningIndicator({ level }: { level: string }) {
   };
   const cfg = config[level] ?? config["普通"];
   return (
-    <div style={{
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 5,
-      background: cfg.bg,
-      color: cfg.color,
-      fontSize: 12,
-      fontWeight: 700,
-      padding: "3px 10px",
-      borderRadius: 9999,
-    }}>
-      <span style={{
-        width: 7,
-        height: 7,
-        borderRadius: "50%",
-        background: cfg.dot,
-        flexShrink: 0,
-        display: "inline-block",
-      }} />
+    <div
+      className="inline-flex items-center gap-1.5 rounded-full text-xs font-bold px-2.5 py-0.5"
+      style={{ background: cfg.bg, color: cfg.color }}
+    >
+      <span className="w-[7px] h-[7px] rounded-full flex-shrink-0 inline-block" style={{ background: cfg.dot }} />
       {level}
     </div>
   );
@@ -193,35 +159,16 @@ function ScreeningIndicator({ level }: { level: string }) {
 function TabMetric({ service, tab }: { service: Service; tab: TabKey }) {
   switch (tab) {
     case "overall":
-      return (
-        <StarRating rating={service.rating} reviewCount={service.reviewCount} />
-      );
+      return <StarRating rating={service.rating} reviewCount={service.reviewCount} />;
     case "fee":
       return (
-        <span style={{
-          fontSize: 18,
-          fontWeight: 800,
-          color: "#2AABE2",
-          letterSpacing: "-0.02em",
-          lineHeight: 1,
-        }}>
+        <span className="text-lg font-extrabold text-[#2AABE2] leading-none tracking-tight">
           {service.fee}
         </span>
       );
     case "payment":
       return (
-        <span style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 4,
-          background: "#E8F8F2",
-          color: "#059669",
-          fontSize: 12,
-          fontWeight: 700,
-          padding: "4px 10px",
-          borderRadius: 9999,
-        }}>
-          {/* Clock icon */}
+        <span className="inline-flex items-center gap-1 bg-[#E8F8F2] text-[#059669] text-xs font-bold px-2.5 py-1 rounded-full">
           <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#3EBF8A" strokeWidth={2.5} strokeLinecap="round">
             <circle cx="12" cy="12" r="10" />
             <path d="M12 6v6l4 2" />
@@ -251,8 +198,8 @@ function RankingRow({
   isLast: boolean;
   activeTab: TabKey;
 }) {
-  const [hovered, setHovered] = useState(false);
-  const isFirst = rank === 1;
+  // Rank-specific CSS class
+  const rankClass = rank === 1 ? "ranking-row-rank1" : rank <= 3 ? "ranking-row-rank2-3" : "ranking-row-rank4-5";
 
   return (
     <motion.div
@@ -260,19 +207,9 @@ function RankingRow({
       variants={listItemVariants}
       initial="initial"
       animate="animate"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="ranking-row"
+      className={`ranking-row ${rankClass}`}
       style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 14,
-        padding: "1rem 1.25rem",
         borderBottom: isLast ? "none" : "1px solid #DDE5F0",
-        background: hovered ? "#E8F6FD" : isFirst ? "rgba(42,171,226,0.04)" : "#fff",
-        borderLeft: isFirst ? "3px solid #2AABE2" : "3px solid transparent",
-        transition: "background 0.18s ease",
-        cursor: "default",
       }}
     >
       {/* Rank badge */}
@@ -283,101 +220,30 @@ function RankingRow({
 
       {/* Name */}
       <div className="ranking-row-name" style={{ flex: "0 0 auto", minWidth: 0, maxWidth: 160 }}>
-        <p style={{
-          fontSize: 14,
-          fontWeight: 700,
-          color: "#1A2B4A",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          marginBottom: 2,
-        }}>
+        <p className="text-sm font-bold text-[#1A2B4A] whitespace-nowrap overflow-hidden text-ellipsis mb-0.5">
           {service.name}
         </p>
         {service.badges.length > 0 && (
-          <span style={{
-            display: "inline-block",
-            fontSize: 10,
-            fontWeight: 600,
-            color: "#2AABE2",
-            background: "#E8F6FD",
-            padding: "1px 6px",
-            borderRadius: 9999,
-            whiteSpace: "nowrap",
-          }}>
+          <span className="inline-block text-[10px] font-semibold text-[#2AABE2] bg-[#E8F6FD] px-1.5 py-px rounded-full whitespace-nowrap">
             {service.badges[0]}
           </span>
         )}
       </div>
 
       {/* Highlighted metric */}
-      <div className="ranking-row-metric" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div className="ranking-row-metric flex-1 flex items-center justify-center">
         <TabMetric service={service} tab={activeTab} />
       </div>
 
-      {/* Action buttons */}
-      <div className="ranking-row-actions" style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 8,
-        flexShrink: 0,
-      }}>
-        <a
-          href="#services"
-          onClick={(e) => {
-            e.preventDefault();
-            document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
-          }}
-          style={{
-            fontSize: 11,
-            fontWeight: 600,
-            color: "#2AABE2",
-            border: "1.5px solid #2AABE2",
-            borderRadius: 6,
-            padding: "4px 10px",
-            textDecoration: "none",
-            whiteSpace: "nowrap",
-            background: "transparent",
-            transition: "background 0.15s, color 0.15s",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.background = "#2AABE2";
-            (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
-            (e.currentTarget as HTMLAnchorElement).style.color = "#2AABE2";
-          }}
-        >
-          詳細を見る
-        </a>
+      {/* Action button — single CTA */}
+      <div className="ranking-row-actions flex items-center gap-2 flex-shrink-0">
         <a
           href={service.officialUrl}
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            fontSize: 11,
-            fontWeight: 700,
-            color: "#fff",
-            background: "linear-gradient(135deg,#2AABE2,#1A8DC4)",
-            borderRadius: 6,
-            padding: "4px 10px",
-            textDecoration: "none",
-            whiteSpace: "nowrap",
-            boxShadow: "0 2px 8px rgba(42,171,226,0.3)",
-            transition: "box-shadow 0.15s, transform 0.15s",
-            display: "inline-block",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 14px rgba(42,171,226,0.45)";
-            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 2px 8px rgba(42,171,226,0.3)";
-            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
-          }}
+          className="ranking-action-link"
         >
-          公式サイト →
+          公式サイト
         </a>
       </div>
     </motion.div>
@@ -396,13 +262,8 @@ function TabPanel({ tab }: { tab: TabKey }) {
       initial="initial"
       animate="animate"
       exit="exit"
-      style={{
-        background: "#fff",
-        borderRadius: 16,
-        border: "1px solid #DDE5F0",
-        boxShadow: "0 2px 12px rgba(26,43,74,0.07)",
-        overflow: "hidden",
-      }}
+      className="bg-white rounded-2xl border border-[#DDE5F0] overflow-hidden"
+      style={{ boxShadow: "0 2px 12px rgba(26,43,74,0.07)" }}
     >
       {services.map((service, i) => (
         <RankingRow
@@ -426,84 +287,29 @@ export default function RankingTabs() {
   return (
     <section
       id="ranking"
-      className="section-bg-white"
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        paddingTop: "5rem",
-        paddingBottom: "5rem",
-      }}
+      className="section-bg-white relative overflow-hidden"
+      style={{ paddingTop: "5rem", paddingBottom: "5rem" }}
       aria-label="ポイント別ランキング"
     >
       <SectionDecorations variant="b" />
-      <div
-        className="mx-auto px-4 sm:px-6"
-        style={{ maxWidth: 900, position: "relative", zIndex: 1 }}
-      >
-        {/* ── Section header ────────────────────────────────────────────── */}
-        <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-          {/* Label chip */}
-          <div style={{ marginBottom: "0.875rem" }}>
-            <span style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
-              background: "#E8F6FD",
-              color: "#2AABE2",
-              fontSize: 12,
-              fontWeight: 700,
-              letterSpacing: "0.08em",
-              padding: "5px 14px",
-              borderRadius: 9999,
-              border: "1px solid rgba(42,171,226,0.25)",
-            }}>
-              <span style={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "#2AABE2",
-                display: "inline-block",
-              }} />
-              ポイント別ランキング
-            </span>
-          </div>
+      <div className="mx-auto px-4 sm:px-6 relative z-[1]" style={{ maxWidth: 900 }}>
+        {/* Section header — accent-line variant */}
+        <SectionHeader
+          variant="accent-line"
+          chipLabel="ポイント別ランキング"
+          title="あなたの重視するポイントで比較"
+          subtitle="手数料・入金速度・審査のしやすさ、それぞれのランキングをご確認ください"
+        />
 
-          {/* H2 */}
-          <h2 style={{
-            fontSize: "clamp(1.4rem, 3.5vw, 1.875rem)",
-            fontWeight: 800,
-            color: "#1A2B4A",
-            letterSpacing: "-0.02em",
-            lineHeight: 1.3,
-            marginBottom: "0.75rem",
-          }}>
-            あなたの重視するポイントで比較
-          </h2>
-
-          {/* Subtitle */}
-          <p style={{
-            fontSize: "clamp(0.85rem, 2vw, 0.95rem)",
-            color: "#6B7A99",
-            lineHeight: 1.7,
-            maxWidth: 540,
-            margin: "0 auto",
-          }}>
-            手数料・入金速度・審査のしやすさ、それぞれのランキングをご確認ください
-          </p>
-        </div>
-
-        {/* ── Tab navigation ────────────────────────────────────────────── */}
+        {/* Tab navigation */}
         <div
           role="tablist"
           aria-label="ランキングカテゴリ"
+          className="flex mb-6 overflow-x-auto"
           style={{
-            display: "flex",
             borderBottom: "2px solid #DDE5F0",
-            marginBottom: "1.5rem",
-            overflowX: "auto",
             scrollbarWidth: "none",
             msOverflowStyle: "none",
-            gap: 0,
           }}
         >
           {TABS.map((tab) => {
@@ -515,9 +321,8 @@ export default function RankingTabs() {
                 aria-selected={isActive}
                 aria-controls={`tabpanel-${tab.key}`}
                 onClick={() => setActiveTab(tab.key)}
+                className="tab-btn relative flex-shrink-0 outline-none whitespace-nowrap"
                 style={{
-                  position: "relative",
-                  flexShrink: 0,
                   padding: "0.75rem 1.25rem",
                   fontSize: "clamp(12px, 2vw, 14px)",
                   fontWeight: isActive ? 700 : 500,
@@ -527,19 +332,6 @@ export default function RankingTabs() {
                   borderBottom: isActive ? "2px solid #2AABE2" : "2px solid transparent",
                   marginBottom: "-2px",
                   cursor: "pointer",
-                  transition: "color 0.18s ease, font-weight 0.18s ease",
-                  whiteSpace: "nowrap",
-                  outline: "none",
-                }}
-                onMouseEnter={(e) => {
-                  if (!isActive) {
-                    (e.currentTarget as HTMLButtonElement).style.color = "#1A8DC4";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!isActive) {
-                    (e.currentTarget as HTMLButtonElement).style.color = "#6B7A99";
-                  }
                 }}
               >
                 {tab.label}
@@ -548,7 +340,7 @@ export default function RankingTabs() {
           })}
         </div>
 
-        {/* ── Tab panels with AnimatePresence ───────────────────────────── */}
+        {/* Tab panels */}
         <div
           id={`tabpanel-${activeTab}`}
           role="tabpanel"
@@ -560,42 +352,17 @@ export default function RankingTabs() {
           </AnimatePresence>
         </div>
 
-        {/* ── "全件見る" button ─────────────────────────────────────────── */}
-        <div style={{ textAlign: "center", marginTop: "2rem" }}>
+        {/* "全件見る" button */}
+        <div className="text-center mt-8">
           <a
             href="#services"
             onClick={(e) => {
               e.preventDefault();
               document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
             }}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              border: "2px solid #2AABE2",
-              color: "#2AABE2",
-              background: "#fff",
-              fontSize: "0.9375rem",
-              fontWeight: 700,
-              padding: "0.75rem 2rem",
-              borderRadius: 9999,
-              textDecoration: "none",
-              transition: "background 0.18s, color 0.18s, box-shadow 0.18s",
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLAnchorElement;
-              el.style.background = "#2AABE2";
-              el.style.color = "#fff";
-              el.style.boxShadow = "0 6px 20px rgba(42,171,226,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLAnchorElement;
-              el.style.background = "#fff";
-              el.style.color = "#2AABE2";
-              el.style.boxShadow = "none";
-            }}
+            className="btn-base btn-outline btn-md btn-pill"
           >
-            サービス詳細を全て見る ↓
+            サービス詳細を全て見る
           </a>
         </div>
       </div>

@@ -19,11 +19,6 @@ const fadeUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
 };
 
-const fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.55, ease: "easeOut" } },
-};
-
 const cardVariants: Variants = {
   hidden: { opacity: 0, x: 40, scale: 0.95 },
   visible: {
@@ -64,69 +59,36 @@ function MiniStars({ rating }: { rating: number }) {
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
         </svg>
       ))}
-      <span style={{ color: "#F59E0B", fontSize: 12, fontWeight: 700, marginLeft: 2 }}>{rating.toFixed(1)}</span>
+      <span className="text-[#F59E0B] text-xs font-bold ml-0.5">{rating.toFixed(1)}</span>
     </span>
   );
 }
 
-// ─── Decorative blob ─────────────────────────────────────────────────────────
+// ─── Decorative blobs (simplified) ───────────────────────────────────────────
 
 function DecorativeBlobs() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
       {/* Large primary blob - top right */}
       <div
+        className="absolute"
         style={{
-          position: "absolute", top: "-10%", right: "-8%",
+          top: "-10%", right: "-8%",
           width: "45vw", height: "45vw", maxWidth: 520, maxHeight: 520,
           borderRadius: "60% 40% 70% 30% / 40% 60% 40% 60%",
-          background: "radial-gradient(ellipse at 40% 40%, rgba(42,171,226,0.18) 0%, rgba(42,171,226,0.04) 70%)",
-          filter: "blur(2px)",
+          background: "radial-gradient(ellipse at 40% 40%, rgba(42,171,226,0.14) 0%, rgba(42,171,226,0.02) 70%)",
         }}
       />
       {/* Secondary blob - bottom left */}
       <div
+        className="absolute"
         style={{
-          position: "absolute", bottom: "-5%", left: "2%",
+          bottom: "-5%", left: "2%",
           width: "30vw", height: "30vw", maxWidth: 360, maxHeight: 360,
           borderRadius: "40% 60% 30% 70% / 60% 30% 70% 40%",
-          background: "radial-gradient(ellipse at 60% 60%, rgba(62,191,138,0.16) 0%, rgba(62,191,138,0.03) 70%)",
-          filter: "blur(1px)",
+          background: "radial-gradient(ellipse at 60% 60%, rgba(62,191,138,0.12) 0%, rgba(62,191,138,0.02) 70%)",
         }}
       />
-      {/* Dot grid pattern */}
-      <svg
-        style={{ position: "absolute", top: "15%", right: "10%", opacity: 0.22 }}
-        width="180" height="180" viewBox="0 0 180 180"
-      >
-        {Array.from({ length: 6 }).map((_, row) =>
-          Array.from({ length: 6 }).map((_, col) => (
-            <circle
-              key={`${row}-${col}`}
-              cx={col * 30 + 15} cy={row * 30 + 15} r={2.5}
-              fill="#2AABE2"
-            />
-          ))
-        )}
-      </svg>
-      {/* Small accent circles */}
-      <div style={{
-        position: "absolute", top: "20%", left: "5%",
-        width: 12, height: 12, borderRadius: "50%",
-        background: "#3EBF8A", opacity: 0.45
-      }} />
-      <div style={{
-        position: "absolute", top: "45%", left: "12%",
-        width: 8, height: 8, borderRadius: "50%",
-        background: "#2AABE2", opacity: 0.35
-      }} />
-      {/* 下端フェードアウト — 次セクションへなめらかに繋げる */}
-      <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0,
-        height: "35%",
-        background: "linear-gradient(to bottom, transparent 0%, rgba(240,249,255,0.90) 100%)",
-        pointerEvents: "none",
-      }} />
     </div>
   );
 }
@@ -141,82 +103,72 @@ function PreviewCard() {
       style={{ flex: "0 0 auto", marginTop: 8 }}
     >
       {/* Floating glow */}
-      <div style={{
-        position: "absolute", inset: "-16px",
-        borderRadius: 28,
-        background: "radial-gradient(ellipse at 50% 50%, rgba(42,171,226,0.16) 0%, transparent 70%)",
-        pointerEvents: "none"
-      }} />
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          inset: "-16px",
+          borderRadius: 28,
+          background: "radial-gradient(ellipse at 50% 50%, rgba(42,171,226,0.12) 0%, transparent 70%)",
+        }}
+      />
 
       {/* Card container */}
-      <div style={{
-        background: "#fff",
-        borderRadius: 24,
-        boxShadow: "0 16px 64px rgba(42,171,226,0.16), 0 4px 16px rgba(26,43,74,0.08)",
-        padding: "26px 28px",
-        width: 390,
-        position: "relative",
-      }}>
+      <div
+        className="relative bg-white"
+        style={{
+          borderRadius: 24,
+          boxShadow: "0 16px 64px rgba(42,171,226,0.16), 0 4px 16px rgba(26,43,74,0.08)",
+          padding: "26px 28px",
+          width: 390,
+        }}
+      >
         {/* Header */}
-        <div style={{
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          marginBottom: 18, paddingBottom: 14,
-          borderBottom: "1px solid #DDE5F0"
-        }}>
-          <span style={{ fontSize: 15, fontWeight: 700, color: "#2AABE2", letterSpacing: "0.06em" }}>
+        <div className="flex items-center justify-between mb-[18px] pb-3.5 border-b border-[#DDE5F0]">
+          <span className="text-[15px] font-bold text-[#2AABE2] tracking-wider">
             総合ランキング
           </span>
-          <span style={{
-            fontSize: 12, background: "#E8F8F2", color: "#3EBF8A",
-            padding: "3px 10px", borderRadius: 9999, fontWeight: 700
-          }}>
+          <span className="text-xs bg-[#E8F8F2] text-[#3EBF8A] px-2.5 py-0.5 rounded-full font-bold">
             XXXX年XXXX月版
           </span>
         </div>
 
         {/* Service rows */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div className="flex flex-col gap-3">
           {previewServices.map((svc, i) => (
             <div
               key={i}
+              className="flex items-center gap-3 rounded-[14px]"
               style={{
-                display: "flex", alignItems: "center", gap: 12,
                 padding: "13px 15px",
                 background: i === 0 ? "linear-gradient(135deg,#F0F9FF,#EDFBF5)" : "#FAFBFD",
-                borderRadius: 14,
                 border: i === 0 ? "1.5px solid #DDE5F0" : "1px solid #EEF1F6",
               }}
             >
               {/* Rank badge */}
-              <div style={{
-                width: 32, height: 32, borderRadius: 9, flexShrink: 0,
-                background: rankColors[i].bg, color: rankColors[i].text,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 13, fontWeight: 800,
-              }}>
+              <div
+                className="flex items-center justify-center flex-shrink-0 text-[13px] font-extrabold"
+                style={{
+                  width: 32, height: 32, borderRadius: 9,
+                  background: rankColors[i].bg, color: rankColors[i].text,
+                }}
+              >
                 {svc.rank}
               </div>
 
               {/* Info */}
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3 }}>
-                  <span style={{ fontSize: 14, fontWeight: 700, color: "#1A2B4A" }}>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-1.5 mb-0.5">
+                  <span className="text-sm font-bold text-[#1A2B4A]">
                     {svc.name}
                   </span>
-                  <span style={{
-                    fontSize: 10, background: "#E8F6FD", color: "#2AABE2",
-                    padding: "2px 7px", borderRadius: 9999, fontWeight: 700, flexShrink: 0,
-                  }}>
+                  <span className="text-[10px] bg-[#E8F6FD] text-[#2AABE2] px-[7px] py-0.5 rounded-full font-bold flex-shrink-0">
                     {svc.badge}
                   </span>
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <div className="flex items-center gap-2">
                   <MiniStars rating={svc.rating} />
-                  <span style={{ fontSize: 11, color: "#6B7A99" }}>手数料 {svc.fee}</span>
-                  <span style={{
-                    fontSize: 10, background: "#E8F8F2", color: "#3EBF8A",
-                    padding: "2px 7px", borderRadius: 9999, fontWeight: 600,
-                  }}>
+                  <span className="text-[11px] text-[#6B7A99]">手数料 {svc.fee}</span>
+                  <span className="text-[10px] bg-[#E8F8F2] text-[#3EBF8A] px-[7px] py-0.5 rounded-full font-semibold">
                     {svc.speed}
                   </span>
                 </div>
@@ -226,15 +178,8 @@ function PreviewCard() {
         </div>
 
         {/* CTA footer */}
-        <div style={{
-          marginTop: 18, paddingTop: 14,
-          borderTop: "1px solid #DDE5F0",
-          textAlign: "center"
-        }}>
-          <div style={{
-            fontSize: 13, color: "#2AABE2", fontWeight: 700, cursor: "pointer",
-            display: "flex", alignItems: "center", justifyContent: "center", gap: 5
-          }}>
+        <div className="mt-[18px] pt-3.5 border-t border-[#DDE5F0] text-center">
+          <div className="text-[13px] text-[#2AABE2] font-bold cursor-pointer flex items-center justify-center gap-1.5">
             全XXXX社のランキングを見る
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#2AABE2" strokeWidth={2.5}>
               <path d="M9 18l6-6-6-6" />
@@ -244,15 +189,17 @@ function PreviewCard() {
       </div>
 
       {/* Floating accent tag */}
-      <div style={{
-        position: "absolute", top: -18, left: 24,
-        background: "linear-gradient(135deg,#2AABE2,#1A8DC4)",
-        color: "#fff", fontSize: 14, fontWeight: 800,
-        padding: "8px 20px", borderRadius: 9999,
-        boxShadow: "0 4px 18px rgba(42,171,226,0.50)",
-        letterSpacing: "0.04em",
-      }}>
-        ✦ 無料で比較できます
+      <div
+        className="absolute text-white text-sm font-extrabold rounded-full"
+        style={{
+          top: -18, left: 24,
+          background: "linear-gradient(135deg,#2AABE2,#1A8DC4)",
+          padding: "8px 20px",
+          boxShadow: "0 4px 18px rgba(42,171,226,0.50)",
+          letterSpacing: "0.04em",
+        }}
+      >
+        無料で比較できます
       </div>
     </motion.div>
   );
@@ -273,56 +220,33 @@ export default function Hero() {
       <DecorativeBlobs />
 
       <div
-        className="relative mx-auto px-4 sm:px-6"
-        style={{
-          maxWidth: 1160,
-          display: "flex",
-          alignItems: "center",
-          gap: "3rem",
-          justifyContent: "space-between",
-        }}
+        className="relative mx-auto px-4 sm:px-6 flex items-center gap-12 justify-between"
+        style={{ maxWidth: 1160 }}
       >
-        {/* ── Left: Copy ─────────────────────────────────────────────────── */}
+        {/* Left: Copy */}
         <motion.div
-          className="flex-1"
-          style={{ maxWidth: 600 }}
+          className="flex-1 max-w-[600px]"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {/* Label chip */}
           <motion.div variants={fadeUp}>
-            <span style={{
-              display: "inline-flex", alignItems: "center", gap: 6,
-              background: "#E8F6FD", color: "#2AABE2",
-              fontSize: 12, fontWeight: 700, letterSpacing: "0.08em",
-              padding: "5px 14px", borderRadius: 9999,
-              border: "1px solid rgba(42,171,226,0.25)",
-              marginBottom: "1.25rem",
-            }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#2AABE2", display: "inline-block" }} />
+            <span className="inline-flex items-center gap-1.5 bg-[#E8F6FD] text-[#2AABE2] text-xs font-bold tracking-wider py-[5px] px-3.5 rounded-full border border-[rgba(42,171,226,0.25)] mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2AABE2] inline-block" />
               請求書カード払い 専門比較サイト
             </span>
           </motion.div>
 
           {/* Main headline */}
-          <motion.h1 variants={fadeUp} style={{ marginBottom: "1.25rem" }}>
-            <span style={{
-              display: "block",
-              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              fontWeight: 700,
-              lineHeight: 1.3,
-              color: "#1A2B4A",
-              letterSpacing: "-0.01em",
-            }}>
+          <motion.h1 variants={fadeUp} className="mb-5">
+            <span
+              className="block font-bold leading-[1.3] text-[#1A2B4A] tracking-tight"
+              style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)" }}
+            >
               請求書の支払いを
               <br />
-              <span style={{
-                background: "linear-gradient(135deg, #2AABE2, #3EBF8A)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>
+              <span className="bg-gradient-to-r from-[#2AABE2] to-[#3EBF8A] bg-clip-text text-transparent">
                 クレジットカード
               </span>
               に変える
@@ -332,32 +256,26 @@ export default function Hero() {
           </motion.h1>
 
           {/* Sub copy */}
-          <motion.p variants={fadeUp} style={{
-            fontSize: "clamp(0.9rem, 2vw, 1.05rem)",
-            color: "#3A4D6A",
-            lineHeight: 1.8,
-            marginBottom: "2rem",
-            maxWidth: 520,
-          }}>
+          <motion.p
+            variants={fadeUp}
+            className="text-[#3A4D6A] mb-8 max-w-[520px]"
+            style={{
+              fontSize: "clamp(0.9rem, 2vw, 1.05rem)",
+              lineHeight: 1.8,
+            }}
+          >
             資金繰りの不安をなくし、支払いタイミングを自由にコントロール。
             <br />
             手数料・審査難易度・入金速度をXXXX社以上で徹底比較します。
           </motion.p>
 
           {/* Trust chips */}
-          <motion.div variants={fadeUp} style={{
-            display: "flex", flexWrap: "wrap", gap: 8, marginBottom: "2.25rem"
-          }}>
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mb-9">
             {trustPoints.map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                style={{
-                  display: "inline-flex", alignItems: "center", gap: 6,
-                  background: "rgba(255,255,255,0.85)", backdropFilter: "blur(4px)",
-                  border: "1px solid rgba(42,171,226,0.2)",
-                  borderRadius: 9999, padding: "5px 12px",
-                  fontSize: 12, fontWeight: 600, color: "#1A2B4A",
-                }}
+                className="inline-flex items-center gap-1.5 rounded-full py-[5px] px-3 text-xs font-semibold text-[#1A2B4A] border border-[rgba(42,171,226,0.2)]"
+                style={{ background: "rgba(255,255,255,0.85)", backdropFilter: "blur(4px)" }}
               >
                 <CheckCircle2 size={13} color="#3EBF8A" strokeWidth={2.5} />
                 {label}
@@ -365,30 +283,18 @@ export default function Hero() {
             ))}
           </motion.div>
 
-          {/* CTA Buttons */}
-          <motion.div variants={fadeUp} style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+          {/* CTA Buttons — pill primary + outline rounded secondary */}
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
             <a
               href="#ranking"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById("ranking")?.scrollIntoView({ behavior: "smooth" });
               }}
+              className="hero-cta-primary inline-flex items-center gap-2 text-white text-base font-bold py-3.5 px-7 rounded-full no-underline"
               style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
                 background: "linear-gradient(135deg, #2AABE2, #1A8DC4)",
-                color: "#fff", fontSize: "1rem", fontWeight: 700,
-                padding: "0.875rem 1.75rem", borderRadius: 9999,
                 boxShadow: "0 6px 24px rgba(42,171,226,0.38)",
-                transition: "transform 0.2s, box-shadow 0.2s",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 10px 32px rgba(42,171,226,0.46)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 24px rgba(42,171,226,0.38)";
               }}
             >
               おすすめサービスを今すぐ見る
@@ -401,30 +307,14 @@ export default function Hero() {
                 e.preventDefault();
                 document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
               }}
-              style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                background: "linear-gradient(135deg, #3EBF8A, #2DA374)",
-                color: "#fff", fontSize: "1rem", fontWeight: 700,
-                padding: "0.875rem 1.75rem", borderRadius: 9999,
-                boxShadow: "0 6px 24px rgba(62,191,138,0.32)",
-                transition: "transform 0.2s, box-shadow 0.2s",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 10px 32px rgba(62,191,138,0.42)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 24px rgba(62,191,138,0.32)";
-              }}
+              className="btn-base btn-outline btn-md btn-rounded no-underline"
             >
               無料で資料請求する
             </a>
           </motion.div>
         </motion.div>
 
-        {/* ── Right: Preview Card ─────────────────────────────────────────── */}
+        {/* Right: Preview Card */}
         <motion.div
           variants={cardVariants}
           initial="hidden"

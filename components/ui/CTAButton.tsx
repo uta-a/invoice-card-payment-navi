@@ -6,12 +6,15 @@ import React from "react";
 
 export type CTAButtonVariant = "primary" | "secondary" | "outline" | "ghost";
 export type CTAButtonSize = "sm" | "md" | "lg";
+export type CTAButtonShape = "pill" | "rounded";
 
 interface CTAButtonBase {
   /** Visual style */
   variant?: CTAButtonVariant;
   /** Size */
   size?: CTAButtonSize;
+  /** Button shape */
+  shape?: CTAButtonShape;
   /** Stretch to fill parent width */
   fullWidth?: boolean;
   /** Optional icon rendered to the right of the label (overrides default arrow) */
@@ -158,6 +161,7 @@ export const CTAButton = React.forwardRef<
   const {
     variant = "primary",
     size = "md",
+    shape = "pill",
     fullWidth = false,
     icon,
     loading = false,
@@ -180,7 +184,8 @@ export const CTAButton = React.forwardRef<
 
   const composedClass = [
     // Base
-    "inline-flex items-center justify-center font-semibold rounded-full",
+    "inline-flex items-center justify-center font-semibold",
+    shape === "pill" ? "rounded-full" : "rounded-xl",
     "transition-all duration-200 ease-in-out",
     "cursor-pointer outline-none select-none",
     // Variant

@@ -4,9 +4,9 @@ import React, { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import StarRating from "@/components/ui/StarRating";
 import { Badge } from "@/components/ui/Badge";
-import { CTAButton } from "@/components/ui/CTAButton";
 import { getTop3Services, Service } from "@/data/services";
 import SectionDecorations from "@/components/ui/SectionDecorations";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -31,7 +31,6 @@ const RANK_META = [
   },
 ] as const;
 
-// Logo placeholder gradient palettes per rank
 const LOGO_GRADIENTS = [
   "linear-gradient(135deg, #2AABE2 0%, #1A8DC4 100%)",
   "linear-gradient(135deg, #3EBF8A 0%, #2DA374 100%)",
@@ -40,15 +39,12 @@ const LOGO_GRADIENTS = [
 
 // ─── Animation Variants ──────────────────────────────────────────────────────
 
-// Cubic-bezier cast to satisfy Framer Motion's Easing type
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 const containerVariants: Variants = {
   hidden: {},
   visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
@@ -72,74 +68,34 @@ const headerVariants: Variants = {
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
 
-/** Yen / fee icon */
 function FeeIcon() {
   return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <line x1="12" y1="1" x2="12" y2="23" />
       <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
     </svg>
   );
 }
 
-/** Lightning / speed icon */
 function LightningIcon() {
   return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
     </svg>
   );
 }
 
-/** Check / screening icon */
 function CheckIcon() {
   return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M20 6L9 17l-5-5" />
     </svg>
   );
 }
 
-/** Editorial pick crown icon */
 function CrownIcon() {
   return (
-    <svg
-      width="13"
-      height="13"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M2 19h20v2H2zM2 6l5 7 5-9 5 9 5-7-2 11H4z" />
     </svg>
   );
@@ -156,155 +112,155 @@ interface MetricItemProps {
 
 function MetricItem({ icon, label, value, iconColor }: MetricItemProps) {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "4px",
-        flex: 1,
-        minWidth: 0,
-      }}
-    >
+    <div className="flex flex-col items-center gap-1 flex-1 min-w-0">
       <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "4px",
-          color: iconColor,
-          fontSize: "11px",
-          fontWeight: 600,
-          letterSpacing: "0.02em",
-          whiteSpace: "nowrap",
-        }}
+        className="flex items-center gap-1 whitespace-nowrap"
+        style={{ color: iconColor, fontSize: 11, fontWeight: 600, letterSpacing: "0.02em" }}
       >
         {icon}
         <span>{label}</span>
       </div>
-      <div
-        style={{
-          fontSize: "13px",
-          fontWeight: 700,
-          color: "var(--color-dark)",
-          textAlign: "center",
-          lineHeight: 1.3,
-        }}
-      >
+      <div className="text-[13px] font-bold text-[var(--color-dark)] text-center leading-tight">
         {value}
       </div>
     </div>
   );
 }
 
-// ─── Service Card ─────────────────────────────────────────────────────────────
+// ─── First Place Card (横長) ────────────────────────────────────────────────
 
-interface ServiceCardProps {
-  service: Service;
-  rank: number;
-  index: number;
-}
-
-function ServiceCard({ service, rank, index }: ServiceCardProps) {
-  const meta = RANK_META[index];
-  const logoGradient = LOGO_GRADIENTS[index];
-  const isFirst = index === 0;
-
-  const [hovered, setHovered] = React.useState(false);
-
-  // Card base styles
-  const cardStyle: React.CSSProperties = {
-    position: "relative",
-    flex: isFirst ? "1.04" : "1",
-    backgroundColor: "#ffffff",
-    border: isFirst
-      ? "2px solid rgba(42, 171, 226, 0.35)"
-      : "1px solid var(--color-border)",
-    borderRadius: "16px",
-    padding: "24px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "16px",
-    cursor: "default",
-    transition: "box-shadow 0.25s ease, transform 0.25s ease",
-    boxShadow: hovered
-      ? isFirst
-        ? "0 12px 40px rgba(42,171,226,0.22), 0 4px 16px rgba(42,171,226,0.14)"
-        : "0 8px 28px rgba(42,171,226,0.16), 0 2px 10px rgba(42,171,226,0.10)"
-      : isFirst
-      ? "0 4px 20px rgba(42,171,226,0.16), 0 2px 8px rgba(42,171,226,0.08)"
-      : "0 2px 12px rgba(42,171,226,0.10)",
-    transform: hovered
-      ? isFirst
-        ? "scale(1.02) translateY(-4px)"
-        : "translateY(-4px)"
-      : isFirst
-      ? "scale(1.02)"
-      : "scale(1)",
-    // Subtle gradient bg for 1st card
-    background: isFirst
-      ? "linear-gradient(160deg, #ffffff 70%, #e8f6fd 100%)"
-      : "#ffffff",
-  };
-
-  const handleScrollToServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const target = document.getElementById("services");
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+function FirstPlaceCard({ service, index }: { service: Service; index: number }) {
+  const meta = RANK_META[0];
+  const logoGradient = LOGO_GRADIENTS[0];
 
   return (
     <motion.div
       variants={cardVariants}
-      style={cardStyle}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className="top3-card-first relative bg-white rounded-[20px] card-hover overflow-hidden"
+      style={{
+        border: "2px solid rgba(42, 171, 226, 0.35)",
+        boxShadow: "0 8px 32px rgba(42,171,226,0.18), 0 2px 10px rgba(42,171,226,0.10)",
+        background: "linear-gradient(160deg, #ffffff 60%, #F0F9FF 85%, #EDFBF5 100%)",
+      }}
     >
-      {/* Editorial badge — 1位 only */}
-      {isFirst && (
-        <div
-          style={{
-            position: "absolute",
-            top: "-13px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            background: "linear-gradient(135deg, #F59E0B, #D97706)",
-            color: "#ffffff",
-            fontSize: "11px",
-            fontWeight: 700,
-            padding: "4px 14px",
-            borderRadius: "999px",
-            whiteSpace: "nowrap",
-            display: "flex",
-            alignItems: "center",
-            gap: "5px",
-            boxShadow: "0 2px 8px rgba(245,158,11,0.40)",
-            letterSpacing: "0.04em",
-          }}
-        >
-          <CrownIcon />
-          編集部のイチオシ
-        </div>
-      )}
+      {/* Gold top border */}
+      <div
+        className="absolute top-0 left-0 right-0 h-1 rounded-t-[20px]"
+        style={{ background: "linear-gradient(90deg, #FFD700, #FFA500)" }}
+        aria-hidden="true"
+      />
 
+      {/* Editorial badge */}
+      <div
+        className="absolute top-[-13px] left-1/2 -translate-x-1/2 flex items-center gap-1.5 text-white text-[11px] font-bold px-3.5 py-1 rounded-full whitespace-nowrap z-10"
+        style={{
+          background: "linear-gradient(135deg, #F59E0B, #D97706)",
+          boxShadow: "0 2px 8px rgba(245,158,11,0.40)",
+          letterSpacing: "0.04em",
+        }}
+      >
+        <CrownIcon />
+        編集部のイチオシ
+      </div>
+
+      {/* Content — Desktop: horizontal layout */}
+      <div className="p-7 pt-8 flex flex-col md:flex-row md:items-center gap-6">
+        {/* Left: Rank + Logo */}
+        <div className="flex items-center gap-4 flex-shrink-0">
+          <div
+            className="w-12 h-12 rounded-xl flex items-center justify-center text-[13px] font-extrabold text-white flex-shrink-0"
+            style={{
+              background: meta.gradient,
+              boxShadow: `0 3px 10px ${meta.shadowColor}`,
+              letterSpacing: "-0.02em",
+            }}
+            aria-label={`総合${meta.label}`}
+          >
+            {meta.label}
+          </div>
+
+          <div
+            className="w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 text-white text-[11px] font-bold text-center leading-tight overflow-hidden"
+            style={{
+              background: logoGradient,
+              boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+              letterSpacing: "0.02em",
+            }}
+            aria-label={`${service.name} ロゴ`}
+          >
+            {service.shortName}
+          </div>
+        </div>
+
+        {/* Center: Name + Rating + Catchphrase + Metrics */}
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-col gap-1.5 mb-3">
+            <h3 className="text-[17px] font-extrabold text-[var(--color-dark)] leading-tight m-0">
+              {service.name}
+            </h3>
+            <StarRating rating={service.rating} size="md" showNumber reviewCount={service.reviewCount} />
+          </div>
+
+          <p className="text-[13px] text-[var(--color-mid)] leading-relaxed italic border-l-[3px] border-[var(--color-primary)] pl-2.5 mb-4 m-0">
+            {service.catchphrase}
+          </p>
+
+          {/* 3-metric summary */}
+          <div className="flex items-stretch bg-[var(--color-bg)] rounded-[10px] py-3 px-2">
+            <MetricItem icon={<FeeIcon />} label="手数料" value={service.fee} iconColor="var(--color-primary)" />
+            <div className="w-px bg-[var(--color-border)] self-stretch mx-1" aria-hidden="true" />
+            <MetricItem icon={<LightningIcon />} label="入金速度" value={service.paymentSpeed} iconColor="var(--color-secondary)" />
+            <div className="w-px bg-[var(--color-border)] self-stretch mx-1" aria-hidden="true" />
+            <MetricItem icon={<CheckIcon />} label="審査" value={service.screeningLevel} iconColor="var(--color-gold)" />
+          </div>
+        </div>
+
+        {/* Right: Badges + CTA */}
+        <div className="flex flex-col items-stretch gap-3 md:min-w-[180px]">
+          <div className="flex flex-wrap gap-1.5">
+            {service.badges.map((badge, i) => (
+              <Badge key={badge} variant={i === 0 ? "secondary" : "primary"} size="sm">
+                {badge}
+              </Badge>
+            ))}
+          </div>
+
+          <a
+            href={service.officialUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-base btn-primary btn-md btn-pill w-full text-center"
+          >
+            公式サイトを見る
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── 2nd/3rd Place Card ──────────────────────────────────────────────────────
+
+function SubCard({ service, index }: { service: Service; index: number }) {
+  const meta = RANK_META[index];
+  const logoGradient = LOGO_GRADIENTS[index];
+
+  return (
+    <motion.div
+      variants={cardVariants}
+      className="relative bg-white rounded-[16px] card-hover flex flex-col gap-4 p-6"
+      style={{
+        border: "1px solid var(--color-border)",
+        boxShadow: "0 2px 12px rgba(42,171,226,0.10)",
+      }}
+    >
       {/* Card top: rank badge + logo + name + rating */}
-      <div style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
-        {/* Rank badge */}
+      <div className="flex items-start gap-3.5">
         <div
+          className="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center text-[13px] font-extrabold text-white"
           style={{
-            flexShrink: 0,
-            width: "44px",
-            height: "44px",
-            borderRadius: "12px",
             background: meta.gradient,
             boxShadow: `0 3px 10px ${meta.shadowColor}`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#ffffff",
-            fontSize: "13px",
-            fontWeight: 800,
             letterSpacing: "-0.02em",
           }}
           aria-label={`総合${meta.label}`}
@@ -312,134 +268,42 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
           {meta.label}
         </div>
 
-        {/* Logo placeholder */}
         <div
+          className="w-[60px] h-[60px] rounded-xl flex-shrink-0 flex items-center justify-center text-white text-[11px] font-bold text-center leading-tight overflow-hidden"
           style={{
-            flexShrink: 0,
-            width: "60px",
-            height: "60px",
-            borderRadius: "12px",
             background: logoGradient,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#ffffff",
-            fontSize: "11px",
-            fontWeight: 700,
-            textAlign: "center",
-            lineHeight: 1.3,
-            letterSpacing: "0.02em",
             boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
-            overflow: "hidden",
+            letterSpacing: "0.02em",
           }}
           aria-label={`${service.name} ロゴ`}
         >
           {service.shortName}
         </div>
 
-        {/* Name + rating */}
-        <div
-          style={{
-            flex: 1,
-            minWidth: 0,
-            display: "flex",
-            flexDirection: "column",
-            gap: "6px",
-          }}
-        >
-          <h3
-            style={{
-              margin: 0,
-              fontSize: isFirst ? "17px" : "16px",
-              fontWeight: 800,
-              color: "var(--color-dark)",
-              lineHeight: 1.3,
-              wordBreak: "break-word",
-            }}
-          >
+        <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+          <h3 className="text-base font-extrabold text-[var(--color-dark)] leading-tight m-0 break-words">
             {service.name}
           </h3>
-          <StarRating
-            rating={service.rating}
-            size="md"
-            showNumber
-            reviewCount={service.reviewCount}
-          />
+          <StarRating rating={service.rating} size="md" showNumber reviewCount={service.reviewCount} />
         </div>
       </div>
 
       {/* Catchphrase */}
-      <p
-        style={{
-          margin: 0,
-          fontSize: "13px",
-          color: "var(--color-mid)",
-          lineHeight: 1.6,
-          fontStyle: "italic",
-          borderLeft: "3px solid var(--color-primary)",
-          paddingLeft: "10px",
-        }}
-      >
+      <p className="text-[13px] text-[var(--color-mid)] leading-relaxed italic border-l-[3px] border-[var(--color-primary)] pl-2.5 m-0">
         {service.catchphrase}
       </p>
 
-      {/* 3-metric summary row */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "stretch",
-          backgroundColor: "var(--color-bg)",
-          borderRadius: "10px",
-          padding: "12px 8px",
-          gap: "0",
-        }}
-      >
-        <MetricItem
-          icon={<FeeIcon />}
-          label="手数料"
-          value={service.fee}
-          iconColor="var(--color-primary)"
-        />
-        <div
-          style={{
-            width: "1px",
-            backgroundColor: "var(--color-border)",
-            alignSelf: "stretch",
-            margin: "0 4px",
-          }}
-          aria-hidden="true"
-        />
-        <MetricItem
-          icon={<LightningIcon />}
-          label="入金速度"
-          value={service.paymentSpeed}
-          iconColor="var(--color-secondary)"
-        />
-        <div
-          style={{
-            width: "1px",
-            backgroundColor: "var(--color-border)",
-            alignSelf: "stretch",
-            margin: "0 4px",
-          }}
-          aria-hidden="true"
-        />
-        <MetricItem
-          icon={<CheckIcon />}
-          label="審査"
-          value={service.screeningLevel}
-          iconColor="var(--color-gold)"
-        />
+      {/* 3-metric summary */}
+      <div className="flex items-stretch bg-[var(--color-bg)] rounded-[10px] py-3 px-2">
+        <MetricItem icon={<FeeIcon />} label="手数料" value={service.fee} iconColor="var(--color-primary)" />
+        <div className="w-px bg-[var(--color-border)] self-stretch mx-1" aria-hidden="true" />
+        <MetricItem icon={<LightningIcon />} label="入金速度" value={service.paymentSpeed} iconColor="var(--color-secondary)" />
+        <div className="w-px bg-[var(--color-border)] self-stretch mx-1" aria-hidden="true" />
+        <MetricItem icon={<CheckIcon />} label="審査" value={service.screeningLevel} iconColor="var(--color-gold)" />
       </div>
 
       {/* Badge list */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "6px",
-        }}
-      >
+      <div className="flex flex-wrap gap-1.5">
         {service.badges.map((badge, i) => (
           <Badge key={badge} variant={i === 0 ? "secondary" : "primary"} size="sm">
             {badge}
@@ -447,82 +311,19 @@ function ServiceCard({ service, rank, index }: ServiceCardProps) {
         ))}
       </div>
 
-      {/* CTA buttons */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "8px",
-          marginTop: "auto",
-          paddingTop: "4px",
-        }}
-      >
+      {/* CTA — single button */}
+      <div className="mt-auto pt-1">
         <a
           href={service.officialUrl}
           target="_blank"
           rel="noopener noreferrer"
+          className="top3-official-link flex items-center justify-center gap-1.5 w-full py-2.5 px-6 rounded-full text-[15px] font-bold no-underline text-[#1A2B4A] bg-white"
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "6px",
-            width: "100%",
-            padding: "10px 24px",
-            borderRadius: "999px",
             border: "1.5px solid #DDE5F0",
-            backgroundColor: "#ffffff",
-            color: "#1A2B4A",
-            fontSize: "15px",
-            fontWeight: 700,
-            textDecoration: "none",
-            cursor: "pointer",
             boxShadow: "0 2px 8px rgba(26,43,74,0.08)",
-            transition: "background-color 0.2s ease, box-shadow 0.2s ease",
-          }}
-          onMouseEnter={(e) => {
-            const el = e.currentTarget as HTMLAnchorElement;
-            el.style.backgroundColor = "#F0F9FF";
-            el.style.boxShadow = "0 4px 16px rgba(42,171,226,0.15)";
-          }}
-          onMouseLeave={(e) => {
-            const el = e.currentTarget as HTMLAnchorElement;
-            el.style.backgroundColor = "#ffffff";
-            el.style.boxShadow = "0 2px 8px rgba(26,43,74,0.08)";
           }}
         >
-          公式サイトを見る →
-        </a>
-        {/* Smooth-scroll anchor rendered as plain <a> to avoid CTAButton href type constraints */}
-        <a
-          href="#services"
-          onClick={handleScrollToServices}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "6px",
-            width: "100%",
-            padding: "10px 24px",
-            borderRadius: "999px",
-            border: "1.5px solid var(--color-primary)",
-            backgroundColor: "transparent",
-            color: "var(--color-primary)",
-            fontSize: "15px",
-            fontWeight: 600,
-            textDecoration: "none",
-            cursor: "pointer",
-            transition: "background-color 0.2s ease, color 0.2s ease",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-              "var(--color-primary-light)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-              "transparent";
-          }}
-        >
-          詳細を見る
+          公式サイトを見る
         </a>
       </div>
     </motion.div>
@@ -541,145 +342,59 @@ export default function Top3() {
     <section
       ref={sectionRef}
       id="top3"
-      className="section-bg-pale"
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        paddingTop: "80px",
-        paddingBottom: "80px",
-      }}
+      className="section-bg-pale relative overflow-hidden"
+      style={{ paddingTop: 80, paddingBottom: 80 }}
     >
       <SectionDecorations variant="a" />
-      <div
-        style={{
-          maxWidth: "1160px",
-          margin: "0 auto",
-          paddingLeft: "20px",
-          paddingRight: "20px",
-          position: "relative",
-          zIndex: 1,
-        }}
-      >
-        {/* ── Section Header ── */}
+      <div className="relative z-[1] mx-auto px-5" style={{ maxWidth: 1160 }}>
+        {/* Section Header — chip variant */}
         <motion.div
           variants={headerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          style={{
-            textAlign: "center",
-            marginBottom: "52px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "14px",
-          }}
+          className="mb-[52px]"
         >
-          {/* Label chip */}
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              backgroundColor: "var(--color-primary-light)",
-              color: "var(--color-primary)",
-              fontSize: "12px",
-              fontWeight: 700,
-              padding: "5px 14px",
-              borderRadius: "999px",
-              letterSpacing: "0.06em",
-              border: "1px solid rgba(42,171,226,0.25)",
-            }}
-          >
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" y1="8" x2="12" y2="12" />
-              <line x1="12" y1="16" x2="12.01" y2="16" />
-            </svg>
-            まず見てほしい3社
-          </div>
-
-          {/* H2 */}
-          <h2
-            style={{
-              margin: 0,
-              fontSize: "clamp(22px, 4vw, 32px)",
-              fontWeight: 800,
-              color: "var(--color-dark)",
-              lineHeight: 1.3,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            おすすめ請求書カード払いサービス{" "}
-            <span style={{ color: "var(--color-primary)" }}>3選</span>
-          </h2>
-
-          {/* Subtitle */}
-          <p
-            style={{
-              margin: 0,
-              fontSize: "15px",
-              color: "var(--color-gray)",
-              lineHeight: 1.7,
-              maxWidth: "540px",
-            }}
-          >
-            手数料・審査・入金速度を総合評価した上位3社をご紹介します
-          </p>
+          <SectionHeader
+            variant="chip"
+            chipLabel="まず見てほしい3社"
+            title={
+              <>
+                おすすめ請求書カード払いサービス{" "}
+                <span className="text-[var(--color-primary)]">3選</span>
+              </>
+            }
+            subtitle="手数料・審査・入金速度を総合評価した上位3社をご紹介します"
+          />
         </motion.div>
 
-        {/* ── Cards ── */}
+        {/* Cards — 1st: full width, 2nd-3rd: 2-column */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="top3-cards"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "20px",
-            alignItems: "flex-start",
-            justifyContent: "center",
-          }}
+          className="flex flex-col gap-5"
         >
-          {top3.map((service: Service, index: number) => (
-            <ServiceCard
-              key={service.id}
-              service={service}
-              rank={index + 1}
-              index={index}
-            />
-          ))}
+          {/* 1st place — full width horizontal */}
+          <FirstPlaceCard service={top3[0]} index={0} />
+
+          {/* 2nd & 3rd — 2-column grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <SubCard service={top3[1]} index={1} />
+            <SubCard service={top3[2]} index={2} />
+          </div>
         </motion.div>
 
-        {/* ── Footer note ── */}
+        {/* Footer note */}
         <motion.p
           variants={headerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           transition={{ delay: 0.6 }}
-          style={{
-            textAlign: "center",
-            marginTop: "32px",
-            fontSize: "12px",
-            color: "var(--color-gray)",
-            lineHeight: 1.7,
-          }}
+          className="text-center mt-8 text-xs text-[var(--color-gray)] leading-relaxed"
         >
           ※ 掲載情報は調査時点のものです。最新情報は各公式サイトにてご確認ください。
         </motion.p>
       </div>
-
-      {/* Responsive styles now handled by .top3-cards in globals.css */}
     </section>
   );
 }

@@ -4,11 +4,10 @@ import { useEffect, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Lightbulb, Check } from "lucide-react";
 
-const SCROLL_THRESHOLD = 30; // スクロール率(%)でも表示
-const DELAY_MS = 4000;       // ページ読み込み後4秒で自動表示
+const SCROLL_THRESHOLD = 30;
+const DELAY_MS = 4000;
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-// ポップアップの3状態
 type PopupState = "hidden" | "expanded" | "minimized";
 
 export default function ConversionPopup() {
@@ -21,13 +20,11 @@ export default function ConversionPopup() {
     setState("expanded");
   }, [hasTriggered]);
 
-  // タイマートリガー（4秒後）
   useEffect(() => {
     const timer = setTimeout(show, DELAY_MS);
     return () => clearTimeout(timer);
   }, [show]);
 
-  // スクロールトリガー（30%以上）
   const handleScroll = useCallback(() => {
     if (hasTriggered) return;
     const scrollY = window.scrollY;
@@ -41,12 +38,10 @@ export default function ConversionPopup() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  // バツ → ミニタブへ
   const handleMinimize = useCallback(() => {
     setState("minimized");
   }, []);
 
-  // タブクリック → 再展開
   const handleExpand = useCallback(() => {
     setState("expanded");
   }, []);
@@ -58,7 +53,7 @@ export default function ConversionPopup() {
 
   return (
     <>
-      {/* ── フル展開ポップアップ ──────────────────────────────────────────── */}
+      {/* フル展開ポップアップ */}
       <AnimatePresence>
         {state === "expanded" && (
           <motion.div
@@ -67,55 +62,36 @@ export default function ConversionPopup() {
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: 40, scale: 0.95 }}
             transition={{ duration: 0.32, ease: EASE }}
-            className="popup-expanded"
+            className="popup-expanded fixed bottom-6 right-6 z-40 bg-white border border-[#DDE5F0] rounded-[20px] overflow-hidden"
             style={{
-              position: "fixed", bottom: 24, right: 24,
-              width: 360, zIndex: 40,
-              backgroundColor: "#fff",
-              border: "1px solid #DDE5F0",
-              borderRadius: 20,
+              width: 360,
               boxShadow: "0 8px 40px rgba(26,43,74,0.18)",
-              overflow: "hidden",
             }}
             role="dialog"
             aria-modal="true"
             aria-label="資金繰りサポートのご案内"
           >
             {/* アクセントストライプ */}
-            <div style={{
-              height: 4,
-              background: "linear-gradient(to right, #2AABE2, #3EBF8A)",
-            }} />
+            <div
+              className="h-1"
+              style={{ background: "linear-gradient(to right, #2AABE2, #3EBF8A)" }}
+            />
 
-            <div style={{ padding: "18px 20px 20px" }}>
+            <div className="p-5 pt-[18px]">
               {/* ヘッダー行 */}
-              <div style={{
-                display: "flex", alignItems: "flex-start",
-                justifyContent: "space-between",
-                marginBottom: 8, gap: 8,
-              }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 6, flex: 1, minWidth: 0 }}>
-                  <Lightbulb size={18} style={{ flexShrink: 0, color: "#F5A623" }} aria-hidden="true" />
-                  <span style={{ fontSize: 15, fontWeight: 700, color: "#1A2B4A", lineHeight: 1.4 }}>
+              <div className="flex items-start justify-between mb-2 gap-2">
+                <div className="flex items-center gap-1.5 flex-1 min-w-0">
+                  <Lightbulb size={18} className="flex-shrink-0 text-[#F5A623]" aria-hidden="true" />
+                  <span className="text-[15px] font-bold text-[#1A2B4A] leading-snug">
                     資金繰りでお困りですか？
                   </span>
                 </div>
 
-                {/* バツボタン（→ミニタブへ） */}
                 <button
                   onClick={handleMinimize}
                   title="最小化"
-                  style={{
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    width: 22, height: 22,
-                    background: "#F1F5F9", border: "none",
-                    borderRadius: 6, cursor: "pointer",
-                    color: "#6B7A99", padding: 0, flexShrink: 0,
-                    transition: "background 0.15s, color 0.15s",
-                  }}
+                  className="popup-close-btn"
                   aria-label="最小化"
-                  onMouseEnter={(e) => { const b = e.currentTarget as HTMLElement; b.style.background = "#DDE5F0"; b.style.color = "#1A2B4A"; }}
-                  onMouseLeave={(e) => { const b = e.currentTarget as HTMLElement; b.style.background = "#F1F5F9"; b.style.color = "#6B7A99"; }}
                 >
                   <svg width="10" height="10" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                     <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -124,56 +100,37 @@ export default function ConversionPopup() {
               </div>
 
               {/* 本文 */}
-              <p style={{ fontSize: 13, color: "#6B7A99", lineHeight: 1.7, margin: "0 0 14px 0" }}>
+              <p className="text-[13px] text-[#6B7A99] leading-relaxed mb-3.5">
                 請求書をカード払いに変えて支払いを後ろ倒しに。今すぐ最適なサービスを見つけましょう。
               </p>
 
               {/* CTAボタン群 */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <div className="flex flex-col gap-2">
                 <button
                   onClick={handleScrollToServices}
-                  style={{
-                    width: "100%", padding: "12px 16px",
-                    background: "linear-gradient(135deg, #3EBF8A, #2DA374)",
-                    color: "#fff", border: "none", borderRadius: 10,
-                    fontSize: 14, fontWeight: 700, cursor: "pointer",
-                    lineHeight: 1.4,
-                    transition: "opacity 0.15s",
-                    boxShadow: "0 3px 10px rgba(62,191,138,0.30)",
-                  }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.88")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+                  className="popup-cta-primary"
                 >
                   おすすめサービスを比較する
                 </button>
 
                 <button
                   onClick={handleScrollToServices}
-                  style={{
-                    width: "100%", padding: "11px 16px",
-                    backgroundColor: "transparent",
-                    color: "#2AABE2", border: "1.5px solid #2AABE2",
-                    borderRadius: 10, fontSize: 13, fontWeight: 600,
-                    cursor: "pointer", lineHeight: 1.4,
-                    transition: "background-color 0.15s, color 0.15s",
-                  }}
-                  onMouseEnter={(e) => { const b = e.currentTarget as HTMLElement; b.style.backgroundColor = "#2AABE2"; b.style.color = "#fff"; }}
-                  onMouseLeave={(e) => { const b = e.currentTarget as HTMLElement; b.style.backgroundColor = "transparent"; b.style.color = "#2AABE2"; }}
+                  className="popup-cta-secondary"
                 >
                   無料で資料請求する
                 </button>
               </div>
 
               {/* 信頼テキスト */}
-              <p style={{ fontSize: 11, color: "#6B7A99", textAlign: "center", margin: "12px 0 0", lineHeight: 1.5 }}>
-                <Check size={12} strokeWidth={3} style={{ display: "inline", verticalAlign: "middle" }} /> 完全無料 <Check size={12} strokeWidth={3} style={{ display: "inline", verticalAlign: "middle" }} /> 最短3分で完了
+              <p className="text-[11px] text-[#6B7A99] text-center mt-3 leading-normal">
+                <Check size={12} strokeWidth={3} className="inline align-middle" /> 完全無料 <Check size={12} strokeWidth={3} className="inline align-middle" /> 最短3分で完了
               </p>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* ── ミニタブ（右端に常時表示）────────────────────────────────────── */}
+      {/* ミニタブ */}
       <AnimatePresence>
         {state === "minimized" && (
           <motion.button
@@ -185,41 +142,25 @@ export default function ConversionPopup() {
             onClick={handleExpand}
             aria-label="比較ツールを開く"
             title="もう一度比較する"
+            className="fixed right-0 bottom-20 z-40 cursor-pointer border-none py-3.5 flex flex-col items-center justify-center gap-1.5 text-white"
             style={{
-              position: "fixed",
-              right: 0,
-              bottom: 80,
-              zIndex: 40,
-              cursor: "pointer",
-              border: "none",
-              padding: "14px 0",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 6,
               width: 38,
               borderRadius: "12px 0 0 12px",
               background: "linear-gradient(180deg, #2AABE2 0%, #3EBF8A 100%)",
               boxShadow: "-4px 4px 20px rgba(42,171,226,0.30)",
-              color: "#fff",
             }}
             whileHover={{ width: 46 }}
             whileTap={{ scale: 0.96 }}
           >
-            {/* アイコン */}
-            <Lightbulb size={16} style={{ color: "#fff" }} aria-hidden="true" />
-
-            {/* 縦書きテキスト */}
-            <span style={{
-              fontSize: 10,
-              fontWeight: 700,
-              color: "#fff",
-              writingMode: "vertical-rl",
-              textOrientation: "mixed",
-              letterSpacing: "0.08em",
-              lineHeight: 1,
-            }}>
+            <Lightbulb size={16} className="text-white" aria-hidden="true" />
+            <span
+              className="text-[10px] font-bold text-white leading-none"
+              style={{
+                writingMode: "vertical-rl",
+                textOrientation: "mixed",
+                letterSpacing: "0.08em",
+              }}
+            >
               比較する
             </span>
           </motion.button>

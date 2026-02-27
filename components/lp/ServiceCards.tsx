@@ -6,6 +6,7 @@ import ScoreBar from "@/components/ui/ScoreBar";
 import Badge from "@/components/ui/Badge";
 import { services, Service } from "@/data/services";
 import SectionDecorations from "@/components/ui/SectionDecorations";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { Lightbulb, Check } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -99,46 +100,18 @@ const logoGradients = [
   "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)",
 ];
 
-function LogoPlaceholder({
-  shortName,
-  index,
-}: {
-  shortName: string;
-  index: number;
-}) {
+function LogoPlaceholder({ shortName, index }: { shortName: string; index: number }) {
   const gradient = logoGradients[index % logoGradients.length];
   return (
     <div
-      className="service-card-logo"
+      className="service-card-logo w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0"
       style={{
-        width: 80,
-        height: 80,
-        borderRadius: 16,
         background: gradient,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexShrink: 0,
         boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
       }}
       aria-hidden="true"
     >
-      <span
-        style={{
-          color: "#fff",
-          fontSize: 13,
-          fontWeight: 800,
-          letterSpacing: "0.04em",
-          textAlign: "center",
-          lineHeight: 1.3,
-          padding: "0 6px",
-          maxWidth: 70,
-          overflow: "hidden",
-          display: "-webkit-box",
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: "vertical",
-        }}
-      >
+      <span className="text-white text-[13px] font-extrabold tracking-wider text-center leading-tight px-1.5 max-w-[70px] overflow-hidden line-clamp-2">
         {shortName}
       </span>
     </div>
@@ -156,28 +129,10 @@ function ScreeningIndicator({ level }: { level: Service["screeningLevel"] }) {
   const { color, bg } = config[level];
   return (
     <span
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 4,
-        background: bg,
-        color,
-        fontSize: 12,
-        fontWeight: 700,
-        padding: "2px 8px",
-        borderRadius: 9999,
-      }}
+      className="inline-flex items-center gap-1 rounded-full text-xs font-bold px-2 py-0.5"
+      style={{ background: bg, color }}
     >
-      <span
-        style={{
-          width: 6,
-          height: 6,
-          borderRadius: "50%",
-          background: color,
-          display: "inline-block",
-          flexShrink: 0,
-        }}
-      />
+      <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 inline-block" style={{ background: color }} />
       {level}
     </span>
   );
@@ -185,47 +140,16 @@ function ScreeningIndicator({ level }: { level: Service["screeningLevel"] }) {
 
 // ─── Info grid cell ───────────────────────────────────────────────────────────
 
-function InfoCell({
-  label,
-  value,
-  children,
-}: {
-  label: string;
-  value?: string;
-  children?: React.ReactNode;
-}) {
+function InfoCell({ label, value, children }: { label: string; value?: string; children?: React.ReactNode }) {
   return (
-    <div
-      style={{
-        background: "#F8FAFD",
-        border: "1px solid #DDE5F0",
-        borderRadius: 10,
-        padding: "10px 12px",
-      }}
-    >
-      <div
-        style={{
-          fontSize: 10,
-          fontWeight: 700,
-          color: "#6B7A99",
-          letterSpacing: "0.06em",
-          textTransform: "uppercase",
-          marginBottom: 4,
-        }}
-      >
+    <div className="bg-[#F8FAFD] border border-[#DDE5F0] rounded-[10px] py-2.5 px-3">
+      <div className="text-[10px] font-bold text-[#6B7A99] tracking-wider uppercase mb-1">
         {label}
       </div>
       {children ? (
         children
       ) : (
-        <div
-          style={{
-            fontSize: 14,
-            fontWeight: 700,
-            color: "#1A2B4A",
-            lineHeight: 1.3,
-          }}
-        >
+        <div className="text-sm font-bold text-[#1A2B4A] leading-tight">
           {value}
         </div>
       )}
@@ -235,13 +159,7 @@ function InfoCell({
 
 // ─── Service Card ─────────────────────────────────────────────────────────────
 
-function ServiceCard({
-  service,
-  index,
-}: {
-  service: Service;
-  index: number;
-}) {
+function ServiceCard({ service, index }: { service: Service; index: number }) {
   const rank = service.ranks.overall;
   const rankStyle = getRankStyle(rank);
   const isTop = rank === 1;
@@ -252,511 +170,201 @@ function ServiceCard({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.08 }}
+      className="relative overflow-hidden rounded-[20px]"
       style={{
         background: isTop
           ? "linear-gradient(160deg, #FFFFFF 0%, #F0F9FF 60%, #EDFBF5 100%)"
           : "#fff",
         border: isTop ? "2px solid #2AABE2" : "1px solid #DDE5F0",
-        borderRadius: 20,
         boxShadow: isTop
           ? "0 8px 32px rgba(42,171,226,0.18), 0 2px 8px rgba(42,171,226,0.10)"
           : "0 4px 20px rgba(42,171,226,0.10)",
-        padding: 28,
-        position: "relative",
-        overflow: "hidden",
+        padding: 32,
       }}
       aria-label={`${service.name} — 総合${rank}位`}
     >
       {/* Top-1 accent stripe */}
       {isTop && (
         <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 4,
-            background: "linear-gradient(90deg, #2AABE2 0%, #3EBF8A 100%)",
-            borderRadius: "20px 20px 0 0",
-          }}
+          className="absolute top-0 left-0 right-0 h-1 rounded-t-[20px]"
+          style={{ background: "linear-gradient(90deg, #2AABE2 0%, #3EBF8A 100%)" }}
           aria-hidden="true"
         />
       )}
 
-      {/* ── Card Header ─────────────────────────────────────────────────── */}
-      <div
-        className="service-card-header"
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-          gap: 18,
-          marginBottom: 24,
-          paddingTop: isTop ? 8 : 0,
-        }}
-      >
-        {/* Rank badge */}
+      {/* ── Zone 1: Header — Rank + Logo + Name + Catchphrase + Stars ── */}
+      <div className="card-zone pt-0">
         <div
-          className="service-card-rank"
-          style={{
-            width: 52,
-            height: 52,
-            borderRadius: 14,
-            background: rankStyle.bg,
-            border: rankStyle.border,
-            color: rankStyle.text,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.14)",
-          }}
-          aria-label={`総合${rankStyle.label}`}
+          className="service-card-header flex items-start gap-[18px] mb-6"
+          style={{ paddingTop: isTop ? 8 : 0 }}
         >
-          <span
+          {/* Rank badge */}
+          <div
+            className="service-card-rank w-[52px] h-[52px] rounded-[14px] flex flex-col items-center justify-center flex-shrink-0"
             style={{
-              fontSize: 8,
-              fontWeight: 700,
-              letterSpacing: "0.06em",
-              opacity: 0.88,
-              lineHeight: 1,
+              background: rankStyle.bg,
+              border: rankStyle.border,
+              color: rankStyle.text,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.14)",
             }}
+            aria-label={`総合${rankStyle.label}`}
           >
-            総合
-          </span>
-          <span
-            style={{
-              fontSize: 18,
-              fontWeight: 900,
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            {rank}
-          </span>
-          <span
-            style={{
-              fontSize: 9,
-              fontWeight: 700,
-              lineHeight: 1,
-              opacity: 0.88,
-            }}
-          >
-            位
-          </span>
-        </div>
+            <span className="text-[8px] font-bold tracking-wider opacity-[0.88] leading-none">
+              総合
+            </span>
+            <span className="text-lg font-black leading-tight tracking-tight">
+              {rank}
+            </span>
+            <span className="text-[9px] font-bold leading-none opacity-[0.88]">
+              位
+            </span>
+          </div>
 
-        {/* Logo */}
-        <LogoPlaceholder shortName={service.shortName} index={index} />
+          {/* Logo */}
+          <LogoPlaceholder shortName={service.shortName} index={index} />
 
-        {/* Name + catchphrase + stars */}
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <h3
-            style={{
-              fontSize: "clamp(1.1rem, 2.5vw, 1.35rem)",
-              fontWeight: 800,
-              color: "#1A2B4A",
-              lineHeight: 1.25,
-              marginBottom: 4,
-              letterSpacing: "-0.01em",
-            }}
-          >
-            {service.name}
-          </h3>
-          <p
-            style={{
-              fontSize: 14,
-              color: "#6B7A99",
-              lineHeight: 1.5,
-              marginBottom: 10,
-            }}
-          >
-            {service.catchphrase}
-          </p>
-          <StarRating
-            rating={service.rating}
-            size="lg"
-            showNumber
-            reviewCount={service.reviewCount}
-          />
+          {/* Name + catchphrase + stars */}
+          <div className="flex-1 min-w-0">
+            <h3
+              className="font-extrabold text-[#1A2B4A] leading-[1.25] mb-1 tracking-tight"
+              style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.35rem)" }}
+            >
+              {service.name}
+            </h3>
+            <p className="text-sm text-[#6B7A99] leading-normal mb-2.5">
+              {service.catchphrase}
+            </p>
+            <StarRating rating={service.rating} size="lg" showNumber reviewCount={service.reviewCount} />
+          </div>
         </div>
       </div>
 
-      {/* ── Card Body — two columns ──────────────────────────────────────── */}
-      <div
-        className="service-card-body"
-        style={{
-          display: "flex",
-          gap: 24,
-          alignItems: "flex-start",
-          flexWrap: "wrap",
-          marginBottom: 24,
-        }}
-      >
-        {/* Left column: score bars */}
-        <motion.div
-          style={{ flex: "1 1 280px", minWidth: 240 }}
-          variants={scoreBarsContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <div
-            style={{
-              fontSize: 13,
-              fontWeight: 700,
-              color: "#1A2B4A",
-              letterSpacing: "0.04em",
-              marginBottom: 12,
-              display: "flex",
-              alignItems: "center",
-              gap: 6,
-            }}
+      {/* ── Zone 2: Specs — InfoCells + ScoreBars ── */}
+      <div className="card-zone">
+        <div className="service-card-body flex gap-6 items-start flex-wrap mb-0">
+          {/* Left column: score bars */}
+          <motion.div
+            className="flex-[1_1_280px] min-w-[240px]"
+            variants={scoreBarsContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
+            <div className="flex items-center gap-1.5 text-[13px] font-bold text-[#1A2B4A] tracking-wider mb-3">
+              <span
+                className="w-[3px] h-3.5 rounded-full flex-shrink-0 inline-block"
+                style={{ background: "linear-gradient(180deg, #2AABE2 0%, #3EBF8A 100%)" }}
+                aria-hidden="true"
+              />
+              満足度内訳
+            </div>
+
+            <div className="flex flex-col gap-2.5">
+              <motion.div variants={scoreBarItem}>
+                <ScoreBar label="手数料満足度" score={service.scores.fee} animate />
+              </motion.div>
+              <motion.div variants={scoreBarItem}>
+                <ScoreBar label="審査スピード" score={service.scores.speed} animate />
+              </motion.div>
+              <motion.div variants={scoreBarItem}>
+                <ScoreBar label="サポート対応" score={service.scores.support} animate />
+              </motion.div>
+              <motion.div variants={scoreBarItem}>
+                <ScoreBar label="使いやすさ" score={service.scores.usability} animate />
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Right column: service info + badges */}
+          <div className="flex-[0_0_240px] min-w-[220px]">
+            {/* 2x2 info grid */}
+            <div className="grid grid-cols-2 gap-2 mb-3">
+              <InfoCell label="手数料" value={service.fee} />
+              <InfoCell label="入金速度" value={service.paymentSpeed} />
+              <InfoCell label="最小金額" value={service.minAmount} />
+              <InfoCell label="審査難易度">
+                <ScreeningIndicator level={service.screeningLevel} />
+              </InfoCell>
+            </div>
+
+            {/* Feature badges */}
+            {service.badges.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mb-2">
+                {service.badges.map((b) => (
+                  <Badge key={b} variant="secondary" size="sm">{b}</Badge>
+                ))}
+              </div>
+            )}
+
+            {/* Target tags */}
+            {service.targetTags.length > 0 && (
+              <div className="flex flex-wrap gap-1.5">
+                {service.targetTags.map((t) => (
+                  <Badge key={t} variant="primary" size="sm">{t}</Badge>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Zone 3: Details — Recommend + Points + CTA ── */}
+      <div className="card-zone">
+        {/* こんな方におすすめ */}
+        <div className="bg-[#E8F6FD] border border-[rgba(42,171,226,0.2)] rounded-xl py-3 px-4 mb-5 flex items-start gap-2.5">
+          <Lightbulb size={18} className="flex-shrink-0 mt-px text-[#F5A623]" aria-hidden="true" />
+          <div>
+            <span className="text-[11px] font-bold text-[#1A8DC4] tracking-wider block mb-0.5">
+              こんな方におすすめ
+            </span>
+            <p className="text-sm text-[#1A2B4A] leading-relaxed m-0 font-medium">
+              {service.recommendFor}
+            </p>
+          </div>
+        </div>
+
+        {/* このサービスのポイント */}
+        <div className="mb-6">
+          <div className="flex items-center gap-1.5 text-[13px] font-bold text-[#1A2B4A] tracking-wider mb-2.5">
             <span
-              style={{
-                width: 3,
-                height: 14,
-                background: "linear-gradient(180deg, #2AABE2 0%, #3EBF8A 100%)",
-                borderRadius: 9999,
-                display: "inline-block",
-                flexShrink: 0,
-              }}
+              className="w-[3px] h-3.5 rounded-full flex-shrink-0 inline-block"
+              style={{ background: "linear-gradient(180deg, #3EBF8A 0%, #2DA374 100%)" }}
               aria-hidden="true"
             />
-            満足度内訳
+            このサービスのポイント
           </div>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <motion.div variants={scoreBarItem}>
-              <ScoreBar
-                label="手数料満足度"
-                score={service.scores.fee}
-                animate
-              />
-            </motion.div>
-            <motion.div variants={scoreBarItem}>
-              <ScoreBar
-                label="審査スピード"
-                score={service.scores.speed}
-                animate
-              />
-            </motion.div>
-            <motion.div variants={scoreBarItem}>
-              <ScoreBar
-                label="サポート対応"
-                score={service.scores.support}
-                animate
-              />
-            </motion.div>
-            <motion.div variants={scoreBarItem}>
-              <ScoreBar
-                label="使いやすさ"
-                score={service.scores.usability}
-                animate
-              />
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Right column: service info + badges */}
-        <div style={{ flex: "0 0 240px", minWidth: 220 }}>
-          {/* 2×2 info grid */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 8,
-              marginBottom: 12,
-            }}
-          >
-            <InfoCell label="手数料" value={service.fee} />
-            <InfoCell label="入金速度" value={service.paymentSpeed} />
-            <InfoCell label="最小金額" value={service.minAmount} />
-            <InfoCell label="審査難易度">
-              <ScreeningIndicator level={service.screeningLevel} />
-            </InfoCell>
-          </div>
-
-          {/* Feature badges */}
-          {service.badges.length > 0 && (
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 6,
-                marginBottom: 8,
-              }}
-            >
-              {service.badges.map((b) => (
-                <Badge key={b} variant="secondary" size="sm">
-                  {b}
-                </Badge>
-              ))}
-            </div>
-          )}
-
-          {/* Target tags */}
-          {service.targetTags.length > 0 && (
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-              {service.targetTags.map((t) => (
-                <Badge key={t} variant="primary" size="sm">
-                  {t}
-                </Badge>
-              ))}
-            </div>
-          )}
+          <ul className="list-none p-0 m-0 flex flex-col gap-[7px]">
+            {service.merits.map((m, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-[#1A2B4A] leading-[1.55]">
+                <span className="w-[18px] h-[18px] rounded-full bg-[#E8F8F2] text-[#3EBF8A] inline-flex items-center justify-center flex-shrink-0 mt-0.5" aria-hidden="true">
+                  <Check size={12} strokeWidth={3} />
+                </span>
+                {m}
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
 
-      {/* ── こんな方におすすめ ────────────────────────────────────────────── */}
-      <div
-        style={{
-          background: "#E8F6FD",
-          border: "1px solid rgba(42,171,226,0.2)",
-          borderRadius: 12,
-          padding: "12px 16px",
-          marginBottom: 20,
-          display: "flex",
-          alignItems: "flex-start",
-          gap: 10,
-        }}
-      >
-        <Lightbulb
-          size={18}
-          style={{ flexShrink: 0, marginTop: 1, color: "#F5A623" }}
-          aria-hidden="true"
-        />
-        <div>
-          <span
-            style={{
-              fontSize: 11,
-              fontWeight: 700,
-              color: "#1A8DC4",
-              letterSpacing: "0.06em",
-              display: "block",
-              marginBottom: 3,
-            }}
-          >
-            こんな方におすすめ
-          </span>
-          <p
-            style={{
-              fontSize: 14,
-              color: "#1A2B4A",
-              lineHeight: 1.6,
-              margin: 0,
-              fontWeight: 500,
-            }}
-          >
-            {service.recommendFor}
+        {/* CTA Footer — single primary button */}
+        <div className="border-t border-[#DDE5F0] pt-5">
+          <div className="service-card-cta flex gap-3 flex-wrap items-center mb-2">
+            <a
+              href={service.officialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-base btn-primary btn-md btn-pill service-cta-link"
+            >
+              公式サイトを見る
+              <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+          </div>
+          <p className="text-[11px] text-[#6B7A99] m-0">
+            ※外部サイトに遷移します
           </p>
         </div>
-      </div>
-
-      {/* ── Merits ──────────────────────────────────────────────────────── */}
-      <div style={{ marginBottom: 24 }}>
-        <div
-          style={{
-            fontSize: 13,
-            fontWeight: 700,
-            color: "#1A2B4A",
-            letterSpacing: "0.04em",
-            marginBottom: 10,
-            display: "flex",
-            alignItems: "center",
-            gap: 6,
-          }}
-        >
-          <span
-            style={{
-              width: 3,
-              height: 14,
-              background: "linear-gradient(180deg, #3EBF8A 0%, #2DA374 100%)",
-              borderRadius: 9999,
-              display: "inline-block",
-              flexShrink: 0,
-            }}
-            aria-hidden="true"
-          />
-          このサービスのポイント
-        </div>
-        <ul
-          style={{
-            listStyle: "none",
-            padding: 0,
-            margin: 0,
-            display: "flex",
-            flexDirection: "column",
-            gap: 7,
-          }}
-        >
-          {service.merits.map((m, i) => (
-            <li
-              key={i}
-              style={{
-                display: "flex",
-                alignItems: "flex-start",
-                gap: 9,
-                fontSize: 14,
-                color: "#1A2B4A",
-                lineHeight: 1.55,
-              }}
-            >
-              <span
-                style={{
-                  width: 18,
-                  height: 18,
-                  borderRadius: "50%",
-                  background: "#E8F8F2",
-                  color: "#3EBF8A",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                  marginTop: 2,
-                }}
-                aria-hidden="true"
-              >
-                <Check size={12} strokeWidth={3} />
-              </span>
-              {m}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* ── CTA Footer ──────────────────────────────────────────────────── */}
-      <div
-        style={{
-          borderTop: "1px solid #DDE5F0",
-          paddingTop: 20,
-        }}
-      >
-        <div
-          className="service-card-cta"
-          style={{
-            display: "flex",
-            gap: 12,
-            flexWrap: "wrap",
-            alignItems: "center",
-            marginBottom: 8,
-          }}
-        >
-          {/* Resource request button — green */}
-          <a
-            href={service.resourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 7,
-              background: "linear-gradient(135deg, #3EBF8A 0%, #2DA374 100%)",
-              color: "#fff",
-              fontSize: 15,
-              fontWeight: 700,
-              padding: "0.75rem 1.5rem",
-              borderRadius: 9999,
-              textDecoration: "none",
-              boxShadow: "0 4px 16px rgba(62,191,138,0.32)",
-              transition: "transform 0.18s, box-shadow 0.18s",
-              whiteSpace: "nowrap",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "translateY(-2px)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 8px 24px rgba(62,191,138,0.44)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "translateY(0)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 4px 16px rgba(62,191,138,0.32)";
-            }}
-          >
-            {/* Document icon */}
-            <svg
-              width={16}
-              height={16}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2.2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-              <polyline points="10 9 9 9 8 9" />
-            </svg>
-            資料請求（無料）
-          </a>
-
-          {/* Official site button — blue */}
-          <a
-            href={service.officialUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 7,
-              background: "linear-gradient(135deg, #2AABE2 0%, #1A8DC4 100%)",
-              color: "#fff",
-              fontSize: 15,
-              fontWeight: 700,
-              padding: "0.75rem 1.5rem",
-              borderRadius: 9999,
-              textDecoration: "none",
-              boxShadow: "0 4px 16px rgba(42,171,226,0.30)",
-              transition: "transform 0.18s, box-shadow 0.18s",
-              whiteSpace: "nowrap",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "translateY(-2px)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 8px 24px rgba(42,171,226,0.42)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "translateY(0)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 4px 16px rgba(42,171,226,0.30)";
-            }}
-          >
-            公式サイトを見る
-            <svg
-              width={15}
-              height={15}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2.5}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </a>
-        </div>
-
-        <p
-          style={{
-            fontSize: 11,
-            color: "#6B7A99",
-            margin: 0,
-          }}
-        >
-          ※外部サイトに遷移します
-        </p>
       </div>
     </motion.article>
   );
@@ -773,120 +381,43 @@ export default function ServiceCards() {
   return (
     <section
       id="services"
-      className="section-bg-pale"
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        paddingTop: "5rem",
-        paddingBottom: "5rem",
-      }}
+      className="section-bg-pale relative overflow-hidden"
+      style={{ paddingTop: "5rem", paddingBottom: "5rem" }}
       aria-label="おすすめサービス詳細"
     >
       <SectionDecorations variant="c" />
-      <div
-        className="mx-auto px-4 sm:px-6"
-        style={{ maxWidth: 1160, position: "relative", zIndex: 1 }}
-      >
-        {/* ── Section header ──────────────────────────────────────────────── */}
+      <div className="mx-auto px-4 sm:px-6 relative z-[1]" style={{ maxWidth: 1160 }}>
+        {/* Section header — icon-badge variant */}
         <motion.div
           variants={sectionFadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
-          style={{ textAlign: "center", marginBottom: "3rem" }}
         >
-          {/* Label chip */}
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
-              background: "#E8F6FD",
-              color: "#2AABE2",
-              fontSize: 12,
-              fontWeight: 700,
-              letterSpacing: "0.08em",
-              padding: "5px 14px",
-              borderRadius: 9999,
-              border: "1px solid rgba(42,171,226,0.25)",
-              marginBottom: "1.25rem",
-            }}
-          >
-            <span
-              style={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "#2AABE2",
-                display: "inline-block",
-              }}
-              aria-hidden="true"
-            />
-            サービス詳細
-          </div>
-
-          {/* H2 */}
-          <h2
-            style={{
-              fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
-              fontWeight: 800,
-              color: "#1A2B4A",
-              lineHeight: 1.3,
-              letterSpacing: "-0.01em",
-              margin: "0 0 0.75rem",
-            }}
-          >
-            おすすめ請求書カード払いサービス
-            <br />
-            詳細比較
-          </h2>
-
-          {/* Subtitle */}
-          <p
-            style={{
-              fontSize: "clamp(0.875rem, 1.8vw, 1rem)",
-              color: "#6B7A99",
-              lineHeight: 1.7,
-              margin: 0,
-            }}
-          >
-            総合評価順に全{count}社の詳細情報をご紹介します
-          </p>
+          <SectionHeader
+            variant="icon-badge"
+            chipLabel="サービス詳細"
+            title={
+              <>
+                おすすめ請求書カード払いサービス
+                <br />
+                詳細比較
+              </>
+            }
+            subtitle={`総合評価順に全${count}社の詳細情報をご紹介します`}
+          />
         </motion.div>
 
-        {/* ── Service cards ────────────────────────────────────────────────── */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 24,
-          }}
-        >
+        {/* Service cards */}
+        <div className="flex flex-col gap-6">
           {sorted.map((service, index) => (
             <ServiceCard key={service.id} service={service} index={index} />
           ))}
         </div>
 
-        {/* ── Affiliate disclosure ─────────────────────────────────────────── */}
-        <div
-          style={{
-            borderTop: "1px solid #DDE5F0",
-            marginTop: "3rem",
-            paddingTop: "1.5rem",
-            textAlign: "center",
-          }}
-        >
-          <p
-            style={{
-              fontSize: 12,
-              color: "#6B7A99",
-              lineHeight: 1.7,
-              margin: 0,
-              maxWidth: 640,
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
+        {/* Affiliate disclosure */}
+        <div className="border-t border-[#DDE5F0] mt-12 pt-6 text-center">
+          <p className="text-xs text-[#6B7A99] leading-relaxed m-0 max-w-[640px] mx-auto">
             ※当サイトのリンクにはアフィリエイト広告が含まれる場合があります。掲載内容は編集部の独自調査に基づいています。
           </p>
         </div>
