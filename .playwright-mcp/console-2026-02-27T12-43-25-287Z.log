@@ -1,0 +1,737 @@
+[ 2161520ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2161661ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2161720ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2161768ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2161833ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2161897ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2161958ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162020ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162068ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162115ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162177ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162239ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162302ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162364ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162426ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162488ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162550ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162612ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162674ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162737ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162799ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162860ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162923ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2162986ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163048ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163110ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163173ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163236ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163284ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163346ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163408ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163472ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163536ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163598ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163661ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163721ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163783ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163845ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163907ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2163969ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164017ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164079ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164141ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164203ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164264ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164327ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164390ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164437ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164499ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164561ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164622ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164684ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164746ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164808ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164871ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164933ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2164981ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2165044ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2165106ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2165168ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2165231ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2165294ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2165354ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2165418ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2165465ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2165527ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[ 2165574ms] [ERROR] ./app/articles/page.tsx:674:16
+Parsing ecmascript source code failed
+  672 |         </div>
+  673 |       </main>
+> 674 |       <Footer />
+      |                ^
+  675 |     </>
+  676 |   );
+  677 | }
+
+Expression expected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127

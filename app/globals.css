@@ -322,10 +322,15 @@ a:hover {
     border-radius: 8px !important;
   }
 
-  /* ServiceCards — rank badge smaller */
+  /* ServiceCards — rank badge smaller on mobile */
   .service-card-rank {
-    width: 30px !important;
-    height: 30px !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    border-radius: 9px !important;
+  }
+  .service-card-rank-text {
+    font-size: 12px !important;
   }
 
   /* RankingTabs — panel stronger border on mobile */

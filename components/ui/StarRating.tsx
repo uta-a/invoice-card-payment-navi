@@ -188,7 +188,7 @@ export default function StarRating({
           className={`leading-none ${COUNT_SIZE_CLASS[size]}`}
           style={{ color: "var(--color-gray)" }}
         >
-          ({reviewCount.toLocaleString()}件)
+          口コミ {reviewCount.toLocaleString()}件
         </span>
       )}
     </span>

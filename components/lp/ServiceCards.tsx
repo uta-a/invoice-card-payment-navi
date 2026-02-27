@@ -298,51 +298,32 @@ function ServiceCard({
         <div
           className="service-card-rank"
           style={{
-            width: 52,
-            height: 52,
-            borderRadius: 14,
+            width: 44,
+            height: 44,
+            borderRadius: 12,
             background: rankStyle.bg,
             border: rankStyle.border,
             color: rankStyle.text,
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
             flexShrink: 0,
             boxShadow: "0 4px 12px rgba(0,0,0,0.14)",
+            overflow: "hidden",
           }}
           aria-label={`総合${rankStyle.label}`}
         >
           <span
+            className="service-card-rank-text"
             style={{
-              fontSize: 8,
-              fontWeight: 700,
-              letterSpacing: "0.06em",
-              opacity: 0.88,
-              lineHeight: 1,
-            }}
-          >
-            総合
-          </span>
-          <span
-            style={{
-              fontSize: 18,
+              fontSize: 15,
               fontWeight: 900,
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            {rank}
-          </span>
-          <span
-            style={{
-              fontSize: 9,
-              fontWeight: 700,
               lineHeight: 1,
-              opacity: 0.88,
+              letterSpacing: "-0.02em",
+              whiteSpace: "nowrap",
             }}
           >
-            位
+            {rankStyle.label}
           </span>
         </div>
 

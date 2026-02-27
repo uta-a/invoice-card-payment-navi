@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 
 // ============================================================
 // Static data (demo)
@@ -1325,9 +1323,7 @@ export default async function ArticlePage({
   await params;
 
   return (
-    <>
-      <Header />
-      <main
+      <div
         style={{
           background: "#F0F9FF",
           minHeight: "100vh",
@@ -1385,8 +1381,6 @@ export default async function ArticlePage({
             </aside>
           </div>
         </div>
-      </main>
-      <Footer />
-    </>
+      </div>
   );
 }

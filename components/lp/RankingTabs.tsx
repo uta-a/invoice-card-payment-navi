@@ -150,7 +150,7 @@ function StarRating({ rating, reviewCount }: { rating: number; reviewCount: numb
         {rating.toFixed(1)}
       </span>
       <span style={{ fontSize: 11, color: "#6B7A99" }}>
-        ({reviewCount.toLocaleString()}件)
+        口コミ {reviewCount.toLocaleString()}件
       </span>
     </div>
   );
