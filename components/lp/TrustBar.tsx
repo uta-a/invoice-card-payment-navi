@@ -69,31 +69,31 @@ function StatItem({ stat, index, inView }: { stat: TrustStat; index: number; inV
       initial={{ opacity: 0, y: 16 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, ease: EASE, delay: index * 0.1 }}
-      className="trustbar-item flex items-center gap-2.5 py-3 px-3.5 rounded-[14px] bg-white border border-[#EEF1F6] flex-1 min-w-0"
+      className="trustbar-item flex items-center gap-2 sm:gap-2.5 py-2.5 sm:py-3 px-2.5 sm:px-3.5 rounded-[14px] bg-white border border-[#EEF1F6] flex-1 min-w-0"
     >
       {/* Icon container */}
       <div
-        className="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center"
+        className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex-shrink-0 flex items-center justify-center"
         style={{ background: bgColor }}
       >
-        <Icon size={22} color={color} strokeWidth={1.75} />
+        <Icon size={20} color={color} strokeWidth={1.75} className="sm:!w-[22px] sm:!h-[22px]" />
       </div>
 
       {/* Text */}
-      <div className="min-w-0">
+      <div className="min-w-0 overflow-hidden">
         <div
-          className="font-extrabold leading-none whitespace-nowrap mb-0.5"
+          className="font-extrabold leading-tight mb-0.5"
           style={{
-            fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)",
+            fontSize: "clamp(0.85rem, 2.2vw, 1.5rem)",
             color,
           }}
         >
           {numericPart}
-          <span className="text-[0.65em] font-bold text-[#3A4D6A] ml-px">
+          <span className="text-[0.6em] sm:text-[0.65em] font-bold text-[#3A4D6A] ml-px">
             {suffix}
           </span>
         </div>
-        <div className="text-[11px] text-[#6B7A99] font-semibold tracking-wide whitespace-nowrap">
+        <div className="text-[10px] sm:text-[11px] text-[#6B7A99] font-semibold tracking-wide truncate">
           {label}
         </div>
       </div>

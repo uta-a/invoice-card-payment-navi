@@ -136,7 +136,7 @@ function FirstPlaceCard({ service, index }: { service: Service; index: number })
   return (
     <motion.div
       variants={cardVariants}
-      className="top3-card-first relative bg-white rounded-[20px] card-hover overflow-hidden"
+      className="top3-card-first relative bg-white rounded-[20px] card-hover"
       style={{
         border: "2px solid rgba(42, 171, 226, 0.35)",
         boxShadow: "0 8px 32px rgba(42,171,226,0.18), 0 2px 10px rgba(42,171,226,0.10)",
@@ -255,9 +255,9 @@ function SubCard({ service, index }: { service: Service; index: number }) {
       }}
     >
       {/* Card top: rank badge + logo + name + rating */}
-      <div className="flex items-start gap-3.5">
+      <div className="flex items-start gap-2.5 sm:gap-3.5">
         <div
-          className="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center text-[13px] font-extrabold text-white"
+          className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex-shrink-0 flex items-center justify-center text-[12px] sm:text-[13px] font-extrabold text-white"
           style={{
             background: meta.gradient,
             boxShadow: `0 3px 10px ${meta.shadowColor}`,
@@ -269,7 +269,7 @@ function SubCard({ service, index }: { service: Service; index: number }) {
         </div>
 
         <div
-          className="w-[60px] h-[60px] rounded-xl flex-shrink-0 flex items-center justify-center text-white text-[11px] font-bold text-center leading-tight overflow-hidden"
+          className="w-[52px] h-[52px] sm:w-[60px] sm:h-[60px] rounded-xl flex-shrink-0 flex items-center justify-center text-white text-[10px] sm:text-[11px] font-bold text-center leading-tight overflow-hidden"
           style={{
             background: logoGradient,
             boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
@@ -280,11 +280,11 @@ function SubCard({ service, index }: { service: Service; index: number }) {
           {service.shortName}
         </div>
 
-        <div className="flex-1 min-w-0 flex flex-col gap-1.5">
-          <h3 className="text-base font-extrabold text-[var(--color-dark)] leading-tight m-0 break-words">
+        <div className="flex-1 min-w-0 flex flex-col gap-1">
+          <h3 className="text-[15px] sm:text-base font-extrabold text-[var(--color-dark)] leading-tight m-0 break-words">
             {service.name}
           </h3>
-          <StarRating rating={service.rating} size="md" showNumber reviewCount={service.reviewCount} />
+          <StarRating rating={service.rating} size="md" showNumber reviewCount={service.reviewCount} className="flex-wrap" />
         </div>
       </div>
 
@@ -374,8 +374,10 @@ export default function Top3() {
           animate={isInView ? "visible" : "hidden"}
           className="flex flex-col gap-5"
         >
-          {/* 1st place — full width horizontal */}
-          <FirstPlaceCard service={top3[0]} index={0} />
+          {/* 1st place — full width horizontal (mt-4 for badge overflow) */}
+          <div className="mt-4">
+            <FirstPlaceCard service={top3[0]} index={0} />
+          </div>
 
           {/* 2nd & 3rd — 2-column grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

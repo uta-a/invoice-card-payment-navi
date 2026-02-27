@@ -13,7 +13,7 @@ export default function Home() {
 
       <SectionDivider
         variant="wave"
-        colorTop="#EDFBF5"
+        colorTop="#F0F9FF"
         colorBottom="#FFFFFF"
       />
 
@@ -22,7 +22,7 @@ export default function Home() {
 
       <SectionDivider
         variant="curve"
-        colorTop="#FFFFFF"
+        colorTop="#F8FBFF"
         colorBottom="#F0F9FF"
       />
 

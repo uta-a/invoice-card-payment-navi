@@ -23,11 +23,11 @@ const sectionFadeUp: Variants = {
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: EASE },
+    transition: { duration: 0.55, ease: EASE },
   },
 };
 
@@ -169,7 +169,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.08 }}
+      viewport={{ once: true, margin: "-50px 0px" }}
       className="relative overflow-hidden rounded-[20px]"
       style={{
         background: isTop
@@ -248,7 +248,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
             variants={scoreBarsContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, margin: "-30px 0px" }}
           >
             <div className="flex items-center gap-1.5 text-[13px] font-bold text-[#1A2B4A] tracking-wider mb-3">
               <span

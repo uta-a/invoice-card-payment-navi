@@ -323,8 +323,8 @@ export default function RankingTabs() {
                 onClick={() => setActiveTab(tab.key)}
                 className="tab-btn relative flex-shrink-0 outline-none whitespace-nowrap"
                 style={{
-                  padding: "0.75rem 1.25rem",
-                  fontSize: "clamp(12px, 2vw, 14px)",
+                  padding: "0.75rem clamp(0.5rem, 2vw, 1.25rem)",
+                  fontSize: "clamp(12px, 2.5vw, 14px)",
                   fontWeight: isActive ? 700 : 500,
                   color: isActive ? "#2AABE2" : "#6B7A99",
                   background: isActive ? "#fff" : "transparent",
