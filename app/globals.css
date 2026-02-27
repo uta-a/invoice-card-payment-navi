@@ -352,6 +352,7 @@ a:hover {
   }
   .ranking-row:first-child {
     background: rgba(42,171,226,0.06) !important;
+    border-left-color: #2AABE2 !important;
   }
   .ranking-row-name {
     flex: 1 1 auto !important;
