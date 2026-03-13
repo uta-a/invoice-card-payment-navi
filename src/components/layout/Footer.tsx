@@ -4,6 +4,7 @@ const NAV_LINKS = [
   { label: "おすすめランキング", href: "/#ranking" },
   { label: "サービス比較", href: "/#services" },
   { label: "記事一覧", href: "/articles" },
+  { label: "口コミアンケート", href: "/survey" },
 ];
 
 const LEGAL_LINKS = [
@@ -16,7 +17,6 @@ const LEGAL_LINKS = [
 export default function Footer() {
   return (
     <footer style={{ background: "#1A2B4A", color: "#ffffff" }}>
-      {/* ── Main grid ── */}
       <div
         className="footer-grid"
         style={{
@@ -29,9 +29,7 @@ export default function Footer() {
           alignItems: "start",
         }}
       >
-        {/* ── Column 1: About ── */}
         <div>
-          {/* Logo */}
           <div style={{ marginBottom: "1rem" }}>
             <span
               style={{
@@ -52,11 +50,10 @@ export default function Footer() {
                 letterSpacing: "0.05em",
               }}
             >
-              専門比較サイト
+              資金繰り比較サイト
             </span>
           </div>
 
-          {/* Description */}
           <p
             style={{
               fontSize: "0.875rem",
@@ -65,10 +62,10 @@ export default function Footer() {
               marginBottom: "1rem",
             }}
           >
-            請求書カード払いサービスを専門に比較する情報サイトです。小規模法人・個人事業主の資金繰り改善をサポートします。
+            請求書カード払いサービスを比較し、導入判断に必要な情報を整理して届ける比較メディアです。
+            中小企業・個人事業主の資金繰り改善をサポートします。
           </p>
 
-          {/* Affiliate disclosure */}
           <p
             style={{
               fontSize: "0.75rem",
@@ -76,11 +73,10 @@ export default function Footer() {
               lineHeight: 1.6,
             }}
           >
-            当サイトはアフィリエイト広告を含む場合があります
+            当サイトにはアフィリエイト広告が含まれる場合があります。
           </p>
         </div>
 
-        {/* ── Column 2: Site map ── */}
         <div>
           <h3
             style={{
@@ -94,7 +90,7 @@ export default function Footer() {
               borderBottom: "1px solid rgba(255,255,255,0.12)",
             }}
           >
-            サイトマップ
+            Site Map
           </h3>
           <ul
             style={{
@@ -118,12 +114,10 @@ export default function Footer() {
                     display: "inline-block",
                   }}
                   onMouseEnter={(e) =>
-                    ((e.currentTarget as HTMLAnchorElement).style.color =
-                      "#2AABE2")
+                    ((e.currentTarget as HTMLAnchorElement).style.color = "#2AABE2")
                   }
                   onMouseLeave={(e) =>
-                    ((e.currentTarget as HTMLAnchorElement).style.color =
-                      "#B8C4D8")
+                    ((e.currentTarget as HTMLAnchorElement).style.color = "#B8C4D8")
                   }
                 >
                   {link.label}
@@ -133,7 +127,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* ── Column 3: Legal / Operations ── */}
         <div>
           <h3
             style={{
@@ -147,7 +140,7 @@ export default function Footer() {
               borderBottom: "1px solid rgba(255,255,255,0.12)",
             }}
           >
-            運営情報
+            Legal
           </h3>
           <ul
             style={{
@@ -171,12 +164,10 @@ export default function Footer() {
                     display: "inline-block",
                   }}
                   onMouseEnter={(e) =>
-                    ((e.currentTarget as HTMLAnchorElement).style.color =
-                      "#2AABE2")
+                    ((e.currentTarget as HTMLAnchorElement).style.color = "#2AABE2")
                   }
                   onMouseLeave={(e) =>
-                    ((e.currentTarget as HTMLAnchorElement).style.color =
-                      "#B8C4D8")
+                    ((e.currentTarget as HTMLAnchorElement).style.color = "#B8C4D8")
                   }
                 >
                   {link.label}
@@ -187,7 +178,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── Bottom bar ── */}
       <div
         style={{
           background: "#0F1A2E",
@@ -203,7 +193,7 @@ export default function Footer() {
             margin: 0,
           }}
         >
-          © 2025 請求書カード払いナビ All Rights Reserved.
+          © 2025 請求書カード払いナビ. All Rights Reserved.
         </p>
       </div>
     </footer>

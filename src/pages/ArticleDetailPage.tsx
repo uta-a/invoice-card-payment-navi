@@ -1363,6 +1363,62 @@ export default function ArticleDetailPage() {
             >
               <ArticleHeader />
               <ArticleBody />
+              <div
+                style={{
+                  marginTop: "2.5rem",
+                  marginBottom: "2.5rem",
+                  padding: "1.5rem",
+                  borderRadius: "18px",
+                  border: "1px solid #DDE5F0",
+                  background:
+                    "linear-gradient(140deg, rgba(232,246,253,0.92) 0%, rgba(255,255,255,0.98) 65%, rgba(237,251,245,0.96) 100%)",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: "1rem",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                  }}
+                >
+                  <div style={{ maxWidth: "680px" }}>
+                    <span className="section-label">Review Survey</span>
+                    <h2
+                      style={{
+                        fontSize: "clamp(1.25rem, 2.6vw, 1.6rem)",
+                        marginBottom: "0.5rem",
+                        lineHeight: 1.35,
+                      }}
+                    >
+                      利用体験をアンケートで投稿する
+                    </h2>
+                    <p style={{ margin: 0, color: "#4E6385", lineHeight: 1.8 }}>
+                      請求書カード払いを実際に使った方の声を募集しています。
+                      手数料や審査スピードの実体験を、専用フォームから投稿してください。
+                    </p>
+                  </div>
+                  <Link
+                    to="/survey"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      minWidth: "220px",
+                      padding: "0.95rem 1.5rem",
+                      borderRadius: "9999px",
+                      background: "#2AABE2",
+                      color: "#FFFFFF",
+                      fontWeight: 700,
+                      textDecoration: "none",
+                      boxShadow: "0 10px 24px rgba(42,171,226,0.22)",
+                    }}
+                  >
+                    口コミアンケートへ進む
+                  </Link>
+                </div>
+              </div>
               <AuthorBox />
               <RelatedArticles />
             </div>
