@@ -4,10 +4,12 @@ const NAV_LINKS = [
   { label: "おすすめランキング", href: "/#ranking" },
   { label: "サービス比較", href: "/#services" },
   { label: "記事一覧", href: "/articles" },
+  { label: "口コミを書く", href: "/review" },
 ];
 
 const LEGAL_LINKS = [
   { label: "プライバシーポリシー", href: "/privacy" },
+  { label: "口コミガイドライン", href: "/review-guideline" },
   { label: "免責事項", href: "/disclaimer" },
   { label: "運営会社", href: "/company" },
   { label: "お問い合わせ", href: "/contact" },

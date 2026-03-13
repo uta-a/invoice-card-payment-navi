@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# API リクエストはPHPに直接渡す
+RewriteRule ^api/ - [L]
+
+# 実在するファイル/ディレクトリはそのまま返す
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# その他は全て index.html へ（SPA フォールバック）
+RewriteRule ^ index.html [L]

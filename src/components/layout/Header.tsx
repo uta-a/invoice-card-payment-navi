@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu, X, Trophy, FileText, Percent, Zap, ClipboardCheck,
-  ChevronRight, PhoneCall
+  ChevronRight, PhoneCall, MessageSquarePlus
 } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -25,6 +25,7 @@ const NAV_SECTIONS = [
     items: [
       { icon: FileText,      label: "サービス詳細一覧",    sub: "全社まとめて確認",   action: "services" },
       { icon: FileText,      label: "お役立ち記事",        sub: "基礎知識・選び方",   href: "/articles" },
+      { icon: MessageSquarePlus, label: "口コミを投稿する",  sub: "利用体験を共有",     href: "/review" },
     ],
   },
 ];

@@ -1,0 +1,51 @@
+CREATE TABLE IF NOT EXISTS reviews (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  ip_address VARCHAR(45),
+  user_agent TEXT,
+
+  q1_service_used VARCHAR(100) NOT NULL,
+  q2_business_type VARCHAR(50) NOT NULL,
+  q3_usage_purpose VARCHAR(100) NOT NULL,
+  q4_compared_services JSON,
+  q5_selection_reasons JSON,
+  q6_urgency VARCHAR(50) NOT NULL,
+  q7_impression_change VARCHAR(50) NOT NULL,
+
+  q8_rating_overall TINYINT NOT NULL,
+  q8_rating_fee TINYINT NOT NULL,
+  q8_rating_speed TINYINT NOT NULL,
+  q8_rating_screening TINYINT NOT NULL,
+  q8_rating_simplicity TINYINT NOT NULL,
+  q8_rating_support TINYINT NOT NULL,
+  q9_fee_percentage VARCHAR(20) NOT NULL,
+  q10_additional_costs VARCHAR(50) NOT NULL,
+  q10_additional_costs_detail TEXT,
+  q11_screening_time VARCHAR(50) NOT NULL,
+  q11_payment_time VARCHAR(50) NOT NULL,
+  q12_card_brand VARCHAR(50) NOT NULL,
+
+  q13_concerns JSON,
+  q13_good_points JSON,
+  q13_free_text TEXT,
+  q14_improvements JSON,
+  q14_free_text TEXT,
+  q15_experience TEXT NOT NULL,
+  q16_recommendation TEXT NOT NULL,
+
+  q17_future_use VARCHAR(50) NOT NULL,
+  attr_company_name VARCHAR(200) NOT NULL,
+  attr_industry VARCHAR(50) NOT NULL,
+  attr_prefecture VARCHAR(20),
+  attr_usage_period VARCHAR(50) NOT NULL,
+  attr_usage_status VARCHAR(50) NOT NULL,
+  attr_usage_amount VARCHAR(50) NOT NULL,
+  attr_online_complete VARCHAR(10),
+
+  consent_privacy BOOLEAN DEFAULT FALSE,
+  consent_guideline BOOLEAN DEFAULT FALSE,
+  is_published BOOLEAN DEFAULT FALSE,
+
+  INDEX idx_service (q1_service_used),
+  INDEX idx_created (created_at DESC)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
