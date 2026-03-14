@@ -5,13 +5,20 @@ import { Lightbulb, Check } from "lucide-react";
 const SCROLL_THRESHOLD = 30; // スクロール率(%)でも表示
 const DELAY_MS = 4000;       // ページ読み込み後4秒で自動表示
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const STORAGE_KEY = "popup_dismissed";
 
 // ポップアップの3状態
 type PopupState = "hidden" | "expanded" | "minimized";
 
 export default function ConversionPopup() {
   const [state, setState] = useState<PopupState>("hidden");
-  const [hasTriggered, setHasTriggered] = useState(false);
+  const [hasTriggered, setHasTriggered] = useState(() => {
+    try {
+      return localStorage.getItem(STORAGE_KEY) === "true";
+    } catch {
+      return false;
+    }
+  });
 
   const show = useCallback(() => {
     if (hasTriggered) return;
@@ -42,6 +49,11 @@ export default function ConversionPopup() {
   // バツ → ミニタブへ
   const handleMinimize = useCallback(() => {
     setState("minimized");
+    try {
+      localStorage.setItem(STORAGE_KEY, "true");
+    } catch {
+      // ignore
+    }
   }, []);
 
   // タブクリック → 再展開

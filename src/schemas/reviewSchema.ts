@@ -2,17 +2,17 @@ import { z } from "zod";
 
 export const reviewSchema = z.object({
   // === PHASE A (Q1-Q7): Simple selection questions ===
-  q1_service_used: z.string().min(1, "利用サービスを選択してください"),
-  q2_business_type: z.string().min(1, "事業形態を選択してください"),
-  q3_usage_purpose: z.string().min(1, "利用目的を選択してください"),
+  q1_service_used: z.string({ message: "利用サービスを選択してください" }).min(1, "利用サービスを選択してください"),
+  q2_business_type: z.string({ message: "事業形態を選択してください" }).min(1, "事業形態を選択してください"),
+  q3_usage_purpose: z.string({ message: "利用目的を選択してください" }).min(1, "利用目的を選択してください"),
   q4_compared_services: z
     .array(z.string())
     .min(1, "少なくとも1つ選択してください"),
   q5_selection_reasons: z
     .array(z.string())
     .min(1, "少なくとも1つ選択してください"),
-  q6_urgency: z.string().min(1, "緊急度を選択してください"),
-  q7_impression_change: z.string().min(1, "印象の変化を選択してください"),
+  q6_urgency: z.string({ message: "緊急度を選択してください" }).min(1, "緊急度を選択してください"),
+  q7_impression_change: z.string({ message: "印象の変化を選択してください" }).min(1, "印象の変化を選択してください"),
 
   // === PHASE B (Q8-Q12): Star ratings and selections ===
   q8_rating_overall: z.number({ message: "評価を選択してください" }).int().min(1, "評価を選択してください").max(5),
@@ -21,14 +21,14 @@ export const reviewSchema = z.object({
   q8_rating_screening: z.number({ message: "評価を選択してください" }).int().min(1, "評価を選択してください").max(5),
   q8_rating_simplicity: z.number({ message: "評価を選択してください" }).int().min(1, "評価を選択してください").max(5),
   q8_rating_support: z.number({ message: "評価を選択してください" }).int().min(1, "評価を選択してください").max(5),
-  q9_fee_percentage: z.string().min(1, "手数料率を入力してください"),
+  q9_fee_percentage: z.string({ message: "手数料率を入力してください" }).min(1, "手数料率を入力してください"),
   q9_fee_unknown: z.boolean().optional(),
-  q10_additional_costs: z.string().min(1, "追加費用について選択してください"),
+  q10_additional_costs: z.string({ message: "追加費用について選択してください" }).min(1, "追加費用について選択してください"),
   q10_additional_costs_detail: z.string().optional(),
   q10_additional_costs_amount: z.string().optional(),
-  q11_screening_time: z.string().min(1, "審査時間を選択してください"),
-  q11_payment_time: z.string().min(1, "入金時間を選択してください"),
-  q12_card_brand: z.string().min(1, "カードブランドを選択してください"),
+  q11_screening_time: z.string({ message: "審査時間を選択してください" }).min(1, "審査時間を選択してください"),
+  q11_payment_time: z.string({ message: "入金時間を選択してください" }).min(1, "入金時間を選択してください"),
+  q12_card_brand: z.string({ message: "カードブランドを選択してください" }).min(1, "カードブランドを選択してください"),
 
   // === PHASE C (Q13-Q16): Free text + selections ===
   q13_concerns: z
@@ -43,25 +43,25 @@ export const reviewSchema = z.object({
     .min(1, "少なくとも1つ選択してください"),
   q14_free_text: z.string().max(500).optional(),
   q15_experience: z
-    .string()
+    .string({ message: "利用体験を入力してください" })
     .min(1, "利用体験を入力してください")
     .max(500, "500文字以内で入力してください"),
   q16_recommendation: z
-    .string()
+    .string({ message: "アドバイスを入力してください" })
     .min(1, "アドバイスを入力してください")
     .max(200, "200文字以内で入力してください"),
 
   // === PHASE D (Q17 + attributes) ===
-  q17_future_use: z.string().min(1, "今後の利用意向を選択してください"),
+  q17_future_use: z.string({ message: "今後の利用意向を選択してください" }).min(1, "今後の利用意向を選択してください"),
   attr_company_name: z
-    .string()
+    .string({ message: "会社名またはペンネームを入力してください" })
     .min(1, "会社名またはペンネームを入力してください")
     .max(200),
-  attr_industry: z.string().min(1, "業種を選択してください"),
+  attr_industry: z.string({ message: "業種を選択してください" }).min(1, "業種を選択してください"),
   attr_prefecture: z.string().optional(),
-  attr_usage_period: z.string().min(1, "利用期間を選択してください"),
-  attr_usage_status: z.string().min(1, "利用状況を選択してください"),
-  attr_usage_amount: z.string().min(1, "利用金額を選択してください"),
+  attr_usage_period: z.string({ message: "利用期間を選択してください" }).min(1, "利用期間を選択してください"),
+  attr_usage_status: z.string({ message: "利用状況を選択してください" }).min(1, "利用状況を選択してください"),
+  attr_usage_amount: z.string({ message: "利用金額を選択してください" }).min(1, "利用金額を選択してください"),
   attr_online_complete: z.string().optional(),
 
   // === CONSENT ===

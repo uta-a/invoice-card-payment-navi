@@ -26,6 +26,7 @@ npm run lint     # ESLint (flat config, eslint.config.mjs)
 - Tailwind CSS v4 (@tailwindcss/postcss 経由)
 - Framer Motion (アニメーション)
 - Lucide React (アイコン)
+- React Hook Form + Zod (フォームバリデーション)
 - フォント: Noto Sans JP (Google Fonts CDN, index.html で読み込み)
 
 **README は Next.js 記載だが、実際は Vite + React Router に移行済み。**
@@ -38,6 +39,10 @@ npm run lint     # ESLint (flat config, eslint.config.mjs)
 - `/` → `HomePage` (LP: Hero → TrustBar → Top3 → RankingTabs → ServiceCards)
 - `/articles` → `ArticlesPage`
 - `/articles/:slug` → `ArticleDetailPage`
+- `/review` → `ReviewPage` (レビュー投稿ウィザード)
+- `/review/complete` → `ReviewCompletePage`
+- `/privacy` → `PrivacyPolicyPage`
+- `/review-guideline` → `ReviewGuidelinePage`
 
 全ページ共通: `Header` + `Footer` + `ConversionPopup`
 
@@ -57,6 +62,19 @@ npm run lint     # ESLint (flat config, eslint.config.mjs)
 ### データフロー
 
 `src/data/services.ts` に全サービスデータ (`Service[]`) とヘルパー関数を定義。コンポーネントが直接 import して使用（API 通信なし、完全静的データ）。
+
+### レビューフォーム
+
+マルチステップウィザード形式 (`ReviewWizard`)。5ステップ (Phase A〜D + 確認) で構成。
+
+- スキーマ: `src/schemas/reviewSchema.ts` — Zod でバリデーション定義。各フェーズのフィールド名は `PHASE_A_FIELDS` 等の定数で管理
+- フォーム: React Hook Form (`FormProvider`) + `zodResolver` でステップごとにバリデーション (`trigger`)
+- 送信: `src/lib/submitReview.ts` — 開発時はコンソールログ + モック応答、本番は `VITE_API_URL` へ POST
+- UI部品: `src/components/review/fields/` に再利用可能なフォームフィールドコンポーネント群
+
+### 環境変数
+
+- `VITE_API_URL` — レビュー送信先 API エンドポイント（未設定時は `/api/submit-review.php`）
 
 ### SEO
 
