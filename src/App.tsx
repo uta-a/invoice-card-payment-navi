@@ -9,6 +9,9 @@ import ReviewPage from "./pages/ReviewPage";
 import ReviewCompletePage from "./pages/ReviewCompletePage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import ReviewGuidelinePage from "./pages/ReviewGuidelinePage";
+import DisclaimerPage from "./pages/DisclaimerPage";
+import CompanyPage from "./pages/CompanyPage";
+import ContactPage from "./pages/ContactPage";
 
 export default function App() {
   return (
@@ -23,6 +26,9 @@ export default function App() {
           <Route path="/review/complete" element={<ReviewCompletePage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/review-guideline" element={<ReviewGuidelinePage />} />
+          <Route path="/disclaimer" element={<DisclaimerPage />} />
+          <Route path="/company" element={<CompanyPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </main>
       <Footer />
