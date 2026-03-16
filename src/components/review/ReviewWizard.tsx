@@ -49,14 +49,14 @@ export default function ReviewWizard() {
     if (valid) {
       setDirection(1);
       setCurrentStep((prev) => Math.min(prev + 1, STEPS.length - 1));
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "instant" });
     }
   };
 
   const handlePrev = () => {
     setDirection(-1);
     setCurrentStep((prev) => Math.max(prev - 1, 0));
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "instant" });
   };
 
   const onSubmit = async (data: ReviewFormData) => {

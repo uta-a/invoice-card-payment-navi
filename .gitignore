@@ -30,6 +30,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
+# api credentials
+api/config.php
+
 # user
 提出資料/*
 提供資料/*

@@ -113,6 +113,19 @@ export default function Header() {
             >
               記事
             </Link>
+            <Link to="/review" style={{
+              background: "#2AABE2", color: "#fff", border: "none",
+              borderRadius: 9999, padding: "0.375rem 1rem",
+              fontSize: "0.8125rem", fontWeight: 600, cursor: "pointer",
+              textDecoration: "none", whiteSpace: "nowrap",
+              transition: "background 0.2s, transform 0.15s",
+              boxShadow: "0 2px 8px rgba(42,171,226,0.25)",
+            }}
+              onMouseEnter={(e) => { const b = e.currentTarget as HTMLElement; b.style.background = "#1E8FBF"; b.style.transform = "translateY(-1px)"; }}
+              onMouseLeave={(e) => { const b = e.currentTarget as HTMLElement; b.style.background = "#2AABE2"; b.style.transform = "translateY(0)"; }}
+            >
+              口コミを投稿
+            </Link>
             <button onClick={() => scrollTo("services")} style={{
               background: "#3EBF8A", color: "#fff", border: "none",
               borderRadius: 9999, padding: "0.5rem 1.375rem",
@@ -294,7 +307,7 @@ export default function Header() {
 
               {/* CTA at bottom */}
               <div style={{
-                padding: "16px 20px 32px", flexShrink: 0,
+                padding: "16px 20px 24px", flexShrink: 0,
                 borderTop: "1px solid #DDE5F0",
               }}>
                 <button
@@ -317,6 +330,31 @@ export default function Header() {
                 }}>
                   <PhoneCall size={12} color="#6B7A99" />
                   <span style={{ fontSize: 11, color: "#6B7A99" }}>完全無料・最短3分</span>
+                </div>
+
+                {/* サブリンク */}
+                <div style={{
+                  display: "flex", justifyContent: "center", gap: 16,
+                  marginTop: 16, paddingTop: 16,
+                  borderTop: "1px solid #F1F5F9",
+                }}>
+                  {[
+                    { label: "免責事項", href: "/disclaimer" },
+                    { label: "運営会社", href: "/company" },
+                    { label: "お問い合わせ", href: "/contact" },
+                  ].map(({ label, href }) => (
+                    <Link
+                      key={href}
+                      to={href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      style={{
+                        fontSize: 11, color: "#9AA5B8",
+                        textDecoration: "none",
+                      }}
+                    >
+                      {label}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </motion.nav>

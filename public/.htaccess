@@ -1,12 +1,10 @@
 RewriteEngine On
+RewriteBase /
 
-# API リクエストはPHPに直接渡す
+# api/ ディレクトリはリライトしない（PHPがそのまま実行される）
 RewriteRule ^api/ - [L]
 
-# 実在するファイル/ディレクトリはそのまま返す
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
-
-# その他は全て index.html へ（SPA フォールバック）
-RewriteRule ^ index.html [L]
+# 実ファイルが存在しない場合は /index.html にリライト（SPA ルーティング）
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]

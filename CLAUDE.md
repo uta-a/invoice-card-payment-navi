@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## プロジェクト概要
 
-請求書のクレジットカード払いサービスを比較・ランキング形式で紹介するアフィリエイトサイト。中小企業・個人事業主向け。Netlify にデプロイ（`_redirects` で SPA フォールバック設定済み）。
+請求書のクレジットカード払いサービスを比較・ランキング形式で紹介するアフィリエイトサイト。中小企業・個人事業主向け。ロリポップVPS にデプロイ（Apache `.htaccess` で SPA フォールバック設定）。
 
 **注意:** サービスデータ (`src/data/services.ts`) は XXXX プレースホルダーのままで、実データ未投入。
 

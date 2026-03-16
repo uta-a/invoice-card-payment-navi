@@ -11,7 +11,13 @@ const STORAGE_KEY = "popup_dismissed";
 type PopupState = "hidden" | "expanded" | "minimized";
 
 export default function ConversionPopup() {
-  const [state, setState] = useState<PopupState>("hidden");
+  const [state, setState] = useState<PopupState>(() => {
+    try {
+      return localStorage.getItem(STORAGE_KEY) === "true" ? "minimized" : "hidden";
+    } catch {
+      return "hidden";
+    }
+  });
   const [hasTriggered, setHasTriggered] = useState(() => {
     try {
       return localStorage.getItem(STORAGE_KEY) === "true";
