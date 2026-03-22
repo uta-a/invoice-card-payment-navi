@@ -15,3 +15,6 @@ define('RATE_LIMIT_SECONDS', 60);
 
 // 同一IP重複投稿ブロック（時間）
 define('DUPLICATE_BLOCK_HOURS', 24);
+
+// 管理画面パスワード（ハッシュ値）
+define('ADMIN_PASSWORD_HASH', '$2y$12$YUpr4geKE/lL3FKQxiZ2pOEglyZGOPRBwf.8jijVHqmigkoS/iH.S');
