@@ -32,6 +32,7 @@ yarn-error.log*
 
 # api credentials
 api/config.php
+api/debug.php
 
 # user
 提出資料/*
