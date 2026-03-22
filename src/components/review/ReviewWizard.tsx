@@ -50,6 +50,18 @@ export default function ReviewWizard() {
       setDirection(1);
       setCurrentStep((prev) => Math.min(prev + 1, STEPS.length - 1));
       window.scrollTo({ top: 0, behavior: "instant" });
+    } else {
+      // 最初のエラーフィールドにスクロール
+      setTimeout(() => {
+        const errorFields = Object.keys(methods.formState.errors);
+        for (const fieldName of errorFields) {
+          const el = document.querySelector(`[data-field="${fieldName}"]`);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "center" });
+            break;
+          }
+        }
+      }, 0);
     }
   };
 

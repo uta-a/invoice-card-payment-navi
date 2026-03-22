@@ -12,7 +12,7 @@ export default function CheckboxGroup({ name, label, options, required }: Checkb
   const error = errors[name];
 
   return (
-    <fieldset style={{ border: "none", padding: 0, margin: "0 0 1.5rem" }}>
+    <fieldset data-field={name} style={{ border: "none", padding: 0, margin: "0 0 1.5rem" }}>
       <legend style={{
         fontSize: "0.9375rem", fontWeight: 700, color: "#1A2B4A",
         marginBottom: "0.75rem", display: "block",

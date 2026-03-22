@@ -18,7 +18,7 @@ export default function StarRatingInput({ name, label, required }: StarRatingInp
   const error = errors[name];
 
   return (
-    <div style={{ marginBottom: "1.25rem" }}>
+    <div data-field={name} style={{ marginBottom: "1.25rem" }}>
       <label style={{
         display: "block", fontSize: "0.9375rem", fontWeight: 700,
         color: "#1A2B4A", marginBottom: "0.5rem",

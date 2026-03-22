@@ -12,7 +12,7 @@ export default function CheckboxField({ name, label, required }: CheckboxFieldPr
   const error = errors[name];
 
   return (
-    <div style={{ marginBottom: "1rem" }}>
+    <div data-field={name} style={{ marginBottom: "1rem" }}>
       <Controller
         name={name}
         control={control}
