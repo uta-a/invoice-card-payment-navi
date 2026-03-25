@@ -8,30 +8,29 @@ import {
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-// ─── メニュー定義 ─────────────────────────────────────────────────────────────
-
+// Menu definition
 const NAV_SECTIONS = [
   {
     label: "ランキング・比較",
     items: [
-      { icon: Trophy,        label: "おすすめランキング",  sub: "総合評価TOP6",       action: "ranking" },
-      { icon: Percent,       label: "手数料で比較",        sub: "最安X.X%〜",        action: "ranking" },
-      { icon: Zap,           label: "入金速度で比較",      sub: "最短即日対応",       action: "ranking" },
-      { icon: ClipboardCheck,label: "審査難易度で比較",    sub: "やさしい順",         action: "ranking" },
+      { icon: Trophy, label: "おすすめランキング", sub: "総合評価TOP6", action: "ranking" },
+      { icon: Percent, label: "手数料で比較", sub: "最安X.X%〜", action: "ranking" },
+      { icon: Zap, label: "入金速度で比較", sub: "最短即日対応", action: "ranking" },
+      { icon: ClipboardCheck, label: "審査難易度で比較", sub: "やさしい順", action: "ranking" },
     ],
   },
   {
     label: "サービス詳細・記事",
     items: [
-      { icon: FileText,      label: "サービス詳細一覧",    sub: "全社まとめて確認",   action: "services" },
-      { icon: FileText,      label: "お役立ち記事",        sub: "基礎知識・選び方",   href: "/articles" },
-      { icon: MessageSquarePlus, label: "口コミを投稿する",  sub: "利用体験を共有",     href: "/review" },
+      { icon: FileText, label: "サービス詳細一覧", sub: "全社まとめて確認", action: "services" },
+      { icon: FileText, label: "お役立ち記事", sub: "基礎知識・選び方", href: "/articles" },
+      { icon: MessageSquarePlus, label: "口コミを投稿する", sub: "利用体験を共有", href: "/review" },
     ],
   },
 ];
 
 export default function Header() {
-  const [scrolled, setScrolled]         = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = useLocation().pathname;
   const navigate = useNavigate();
@@ -42,10 +41,11 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // body スクロールロック
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileMenuOpen]);
 
   const scrollTo = (id: string) => {
@@ -69,89 +69,141 @@ export default function Header() {
           transition: "background 0.3s, box-shadow 0.3s",
         }}
       >
-        {/* ── Main bar ─────────────────────────────────────────────────────── */}
-        <div style={{
-          maxWidth: 1200, margin: "0 auto", padding: "0 1.5rem",
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          height: 64,
-        }}>
-          {/* Logo */}
-          <Link to="/" style={{ textDecoration: "none", flexShrink: 0 }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
-              <span style={{ fontSize: "1.125rem", fontWeight: 700, color: "#2AABE2", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
-                請求書カード払いナビ
-              </span>
-              <span style={{ fontSize: "0.6875rem", color: "#6B7A99", lineHeight: 1, letterSpacing: "0.05em" }}>
-                専門比較サイト
-              </span>
-            </div>
+        <div
+          style={{
+            maxWidth: 1200,
+            margin: "0 auto",
+            padding: "0 1.5rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: 72,
+          }}
+        >
+          <Link to="/" style={{ textDecoration: "none", flexShrink: 0, display: "flex", alignItems: "center", gap: 8 }}>
+            <img
+              src="/icon.svg"
+              alt="請求書カード払いナビ"
+              style={{ display: "block", height: 36, width: 36 }}
+            />
+            <span style={{ fontSize: "1.0625rem", fontWeight: 700, color: "#1A2B4A", whiteSpace: "nowrap" }}>
+              請求書カード払いナビ
+            </span>
           </Link>
 
-          {/* Desktop Nav */}
           <nav className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
             {[
               { label: "おすすめランキング", action: "ranking" },
-              { label: "サービス比較",       action: "services" },
+              { label: "サービス比較", action: "services" },
             ].map(({ label, action }) => (
-              <button key={label} onClick={() => scrollTo(action)} style={{
-                background: "none", border: "none", cursor: "pointer",
-                fontSize: "0.9375rem", fontWeight: 500, color: "#1A2B4A",
-                padding: "0.25rem 0", transition: "color 0.2s",
-              }}
+              <button
+                key={label}
+                onClick={() => scrollTo(action)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  fontSize: "0.9375rem",
+                  fontWeight: 500,
+                  color: "#1A2B4A",
+                  padding: "0.25rem 0",
+                  transition: "color 0.2s",
+                }}
                 onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#2AABE2")}
                 onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#1A2B4A")}
               >
                 {label}
               </button>
             ))}
-            <Link to="/articles" style={{
-              fontSize: "0.9375rem", fontWeight: 500, color: "#1A2B4A",
-              textDecoration: "none", padding: "0.25rem 0", transition: "color 0.2s",
-            }}
+            <Link
+              to="/articles"
+              style={{
+                fontSize: "0.9375rem",
+                fontWeight: 500,
+                color: "#1A2B4A",
+                textDecoration: "none",
+                padding: "0.25rem 0",
+                transition: "color 0.2s",
+              }}
               onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#2AABE2")}
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#1A2B4A")}
             >
               記事
             </Link>
-            <Link to="/review" style={{
-              background: "#2AABE2", color: "#fff", border: "none",
-              borderRadius: 9999, padding: "0.375rem 1rem",
-              fontSize: "0.8125rem", fontWeight: 600, cursor: "pointer",
-              textDecoration: "none", whiteSpace: "nowrap",
-              transition: "background 0.2s, transform 0.15s",
-              boxShadow: "0 2px 8px rgba(42,171,226,0.25)",
-            }}
-              onMouseEnter={(e) => { const b = e.currentTarget as HTMLElement; b.style.background = "#1E8FBF"; b.style.transform = "translateY(-1px)"; }}
-              onMouseLeave={(e) => { const b = e.currentTarget as HTMLElement; b.style.background = "#2AABE2"; b.style.transform = "translateY(0)"; }}
+            <Link
+              to="/review"
+              style={{
+                background: "#2AABE2",
+                color: "#fff",
+                border: "none",
+                borderRadius: 9999,
+                padding: "0.375rem 1rem",
+                fontSize: "0.8125rem",
+                fontWeight: 600,
+                cursor: "pointer",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+                transition: "background 0.2s, transform 0.15s",
+                boxShadow: "0 2px 8px rgba(42,171,226,0.25)",
+              }}
+              onMouseEnter={(e) => {
+                const button = e.currentTarget as HTMLElement;
+                button.style.background = "#1E8FBF";
+                button.style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                const button = e.currentTarget as HTMLElement;
+                button.style.background = "#2AABE2";
+                button.style.transform = "translateY(0)";
+              }}
             >
               口コミを投稿
             </Link>
-            <button onClick={() => scrollTo("services")} style={{
-              background: "#3EBF8A", color: "#fff", border: "none",
-              borderRadius: 9999, padding: "0.5rem 1.375rem",
-              fontSize: "0.9375rem", fontWeight: 700, cursor: "pointer",
-              whiteSpace: "nowrap", transition: "background 0.2s, transform 0.15s",
-              boxShadow: "0 2px 8px rgba(62,191,138,0.30)",
-            }}
-              onMouseEnter={(e) => { const b = e.currentTarget as HTMLElement; b.style.background = "#2DA374"; b.style.transform = "translateY(-1px)"; }}
-              onMouseLeave={(e) => { const b = e.currentTarget as HTMLElement; b.style.background = "#3EBF8A"; b.style.transform = "translateY(0)"; }}
+            <button
+              onClick={() => scrollTo("services")}
+              style={{
+                background: "#3EBF8A",
+                color: "#fff",
+                border: "none",
+                borderRadius: 9999,
+                padding: "0.5rem 1.375rem",
+                fontSize: "0.9375rem",
+                fontWeight: 700,
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+                transition: "background 0.2s, transform 0.15s",
+                boxShadow: "0 2px 8px rgba(62,191,138,0.30)",
+              }}
+              onMouseEnter={(e) => {
+                const button = e.currentTarget as HTMLElement;
+                button.style.background = "#2DA374";
+                button.style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                const button = e.currentTarget as HTMLElement;
+                button.style.background = "#3EBF8A";
+                button.style.transform = "translateY(0)";
+              }}
             >
               無料で比較する
             </button>
           </nav>
 
-          {/* Hamburger button */}
           <button
             className="mobile-hamburger"
-            onClick={() => setMobileMenuOpen((v) => !v)}
+            onClick={() => setMobileMenuOpen((value) => !value)}
             aria-label={mobileMenuOpen ? "メニューを閉じる" : "メニューを開く"}
             aria-expanded={mobileMenuOpen}
             style={{
               background: mobileMenuOpen ? "#F0F9FF" : "none",
               border: mobileMenuOpen ? "1px solid #DDE5F0" : "none",
-              borderRadius: 10, cursor: "pointer",
-              color: "#1A2B4A", padding: "6px",
-              display: "flex", alignItems: "center", justifyContent: "center",
+              borderRadius: 10,
+              cursor: "pointer",
+              color: "#1A2B4A",
+              padding: "6px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
               transition: "background 0.2s",
             }}
           >
@@ -171,11 +223,9 @@ export default function Header() {
         </div>
       </header>
 
-      {/* ── Mobile Drawer overlay ──────────────────────────────────────────── */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               key="backdrop"
               initial={{ opacity: 0 }}
@@ -184,14 +234,15 @@ export default function Header() {
               transition={{ duration: 0.25 }}
               onClick={() => setMobileMenuOpen(false)}
               style={{
-                position: "fixed", inset: 0, zIndex: 48,
+                position: "fixed",
+                inset: 0,
+                zIndex: 48,
                 background: "rgba(26,43,74,0.35)",
                 backdropFilter: "blur(2px)",
               }}
               className="md:hidden"
             />
 
-            {/* Drawer panel */}
             <motion.nav
               key="drawer"
               initial={{ x: "100%" }}
@@ -200,30 +251,46 @@ export default function Header() {
               transition={{ duration: 0.32, ease: EASE }}
               aria-label="モバイルナビゲーション"
               style={{
-                position: "fixed", top: 0, right: 0, bottom: 0,
-                width: "min(320px, 88vw)", zIndex: 49,
+                position: "fixed",
+                top: 0,
+                right: 0,
+                bottom: 0,
+                width: "min(320px, 88vw)",
+                zIndex: 49,
                 background: "#fff",
                 boxShadow: "-8px 0 40px rgba(26,43,74,0.15)",
-                display: "flex", flexDirection: "column",
+                display: "flex",
+                flexDirection: "column",
                 overflowY: "auto",
               }}
               className="md:hidden"
             >
-              {/* Drawer header */}
-              <div style={{
-                display: "flex", alignItems: "center", justifyContent: "space-between",
-                padding: "0 20px", height: 64, flexShrink: 0,
-                borderBottom: "1px solid #DDE5F0",
-              }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "0 20px",
+                  height: 72,
+                  flexShrink: 0,
+                  borderBottom: "1px solid #DDE5F0",
+                }}
+              >
                 <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#6B7A99", letterSpacing: "0.06em" }}>
                   MENU
                 </span>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   style={{
-                    background: "#F1F5F9", border: "none", borderRadius: 8,
-                    width: 32, height: 32, cursor: "pointer",
-                    display: "flex", alignItems: "center", justifyContent: "center",
+                    background: "#F1F5F9",
+                    border: "none",
+                    borderRadius: 8,
+                    width: 32,
+                    height: 32,
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     color: "#6B7A99",
                   }}
                   aria-label="メニューを閉じる"
@@ -232,41 +299,51 @@ export default function Header() {
                 </button>
               </div>
 
-              {/* Sections */}
               <div style={{ flex: 1, padding: "12px 0 20px" }}>
-                {NAV_SECTIONS.map((section, si) => (
-                  <div key={si} style={{ marginBottom: 8 }}>
-                    {/* Section label */}
-                    <div style={{
-                      fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
-                      color: "#B8C4D8", padding: "10px 20px 6px",
-                      textTransform: "uppercase",
-                    }}>
+                {NAV_SECTIONS.map((section, sectionIndex) => (
+                  <div key={sectionIndex} style={{ marginBottom: 8 }}>
+                    <div
+                      style={{
+                        fontSize: 10,
+                        fontWeight: 700,
+                        letterSpacing: "0.1em",
+                        color: "#B8C4D8",
+                        padding: "10px 20px 6px",
+                        textTransform: "uppercase",
+                      }}
+                    >
                       {section.label}
                     </div>
 
-                    {/* Items */}
-                    {section.items.map((item, ii) => {
+                    {section.items.map((item, itemIndex) => {
                       const Icon = item.icon;
                       const inner = (
-                        <div style={{
-                          display: "flex", alignItems: "center", gap: 12,
-                          padding: "11px 20px",
-                          cursor: "pointer",
-                          transition: "background 0.15s",
-                        }}
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 12,
+                            padding: "11px 20px",
+                            cursor: "pointer",
+                            transition: "background 0.15s",
+                          }}
                           onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "#F0F9FF")}
                           onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "transparent")}
                         >
-                          {/* Icon bg */}
-                          <div style={{
-                            width: 38, height: 38, borderRadius: 10, flexShrink: 0,
-                            background: "#E8F6FD",
-                            display: "flex", alignItems: "center", justifyContent: "center",
-                          }}>
+                          <div
+                            style={{
+                              width: 38,
+                              height: 38,
+                              borderRadius: 10,
+                              flexShrink: 0,
+                              background: "#E8F6FD",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                          >
                             <Icon size={18} color="#2AABE2" strokeWidth={1.75} />
                           </div>
-                          {/* Text */}
                           <div style={{ flex: 1, minWidth: 0 }}>
                             <div style={{ fontSize: 14, fontWeight: 700, color: "#1A2B4A", lineHeight: 1.3 }}>
                               {item.label}
@@ -282,7 +359,7 @@ export default function Header() {
                       if (item.href) {
                         return (
                           <Link
-                            key={ii}
+                            key={itemIndex}
                             to={item.href}
                             onClick={() => setMobileMenuOpen(false)}
                             style={{ display: "block", textDecoration: "none" }}
@@ -291,53 +368,73 @@ export default function Header() {
                           </Link>
                         );
                       }
+
                       return (
-                        <div key={ii} onClick={() => scrollTo(item.action!)}>
+                        <div key={itemIndex} onClick={() => scrollTo(item.action!)}>
                           {inner}
                         </div>
                       );
                     })}
 
-                    {si < NAV_SECTIONS.length - 1 && (
+                    {sectionIndex < NAV_SECTIONS.length - 1 && (
                       <div style={{ height: 1, background: "#F1F5F9", margin: "8px 20px 0" }} />
                     )}
                   </div>
                 ))}
               </div>
 
-              {/* CTA at bottom */}
-              <div style={{
-                padding: "16px 20px 24px", flexShrink: 0,
-                borderTop: "1px solid #DDE5F0",
-              }}>
+              <div
+                style={{
+                  padding: "16px 20px 24px",
+                  flexShrink: 0,
+                  borderTop: "1px solid #DDE5F0",
+                }}
+              >
                 <button
                   onClick={() => scrollTo("services")}
                   style={{
-                    width: "100%", padding: "14px",
+                    width: "100%",
+                    padding: "14px",
                     background: "linear-gradient(135deg, #3EBF8A, #2DA374)",
-                    color: "#fff", border: "none", borderRadius: 14,
-                    fontSize: 15, fontWeight: 800, cursor: "pointer",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: 14,
+                    fontSize: 15,
+                    fontWeight: 800,
+                    cursor: "pointer",
                     boxShadow: "0 4px 16px rgba(62,191,138,0.35)",
-                    display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 6,
                   }}
                 >
                   無料でサービスを比較する
                   <ChevronRight size={16} strokeWidth={2.5} />
                 </button>
-                <div style={{
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  gap: 4, marginTop: 10,
-                }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 4,
+                    marginTop: 10,
+                  }}
+                >
                   <PhoneCall size={12} color="#6B7A99" />
                   <span style={{ fontSize: 11, color: "#6B7A99" }}>完全無料・最短3分</span>
                 </div>
 
-                {/* サブリンク */}
-                <div style={{
-                  display: "flex", justifyContent: "center", gap: 16,
-                  marginTop: 16, paddingTop: 16,
-                  borderTop: "1px solid #F1F5F9",
-                }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 16,
+                    marginTop: 16,
+                    paddingTop: 16,
+                    borderTop: "1px solid #F1F5F9",
+                  }}
+                >
                   {[
                     { label: "免責事項", href: "/disclaimer" },
                     { label: "運営会社", href: "/company" },
@@ -348,7 +445,8 @@ export default function Header() {
                       to={href}
                       onClick={() => setMobileMenuOpen(false)}
                       style={{
-                        fontSize: 11, color: "#9AA5B8",
+                        fontSize: 11,
+                        color: "#9AA5B8",
                         textDecoration: "none",
                       }}
                     >
