@@ -69,6 +69,10 @@ api/config.php を開き、手順1で設定した情報に書き換える。
   RATE_LIMIT_SECONDS → 同一IPの連続送信ブロック秒数（デフォルト: 60）
   DUPLICATE_BLOCK_HOURS → 同一IPの重複投稿ブロック時間（デフォルト: 24）
 
+  ADMIN_PASSWORD_HASH → 管理画面のパスワードハッシュ
+                         以下のコマンドでハッシュ値を生成し設定する:
+                         php -r "echo password_hash('設定したいパスワード', PASSWORD_DEFAULT);"
+
 注意: config.php には認証情報が含まれるため、Git にコミットしない。
       .gitignore に api/config.php を追加すること。
 
@@ -166,9 +170,30 @@ Apache の mod_rewrite が有効であることを確認:
 
 api/
   config.php          ... DB接続情報・設定定数（※Git管理外にすること）
+  config.php.example  ... config.php のテンプレート
   schema.sql          ... テーブル定義SQL
   submit-review.php   ... レビュー投稿エンドポイント
+  admin.php           ... アンケート回答管理画面（認証付き）
+  reviews.php         ... アンケート回答一覧表示（認証なし）
+  setup.php           ... DBセットアップスクリプト（初回のみ使用、完了後は削除）
   SETUP.md            ... 本ファイル
 
 public/
   .htaccess           ... Apache SPA フォールバック設定（ビルド時に dist/ へコピーされる）
+
+
+管理画面
+--------
+
+URL: /api/admin.php
+パスワード: config.php の ADMIN_PASSWORD_HASH で設定したもの
+
+機能:
+  - アンケート回答の一覧表示
+  - 各回答の編集（全項目）
+  - 各回答の削除
+
+セキュリティ:
+  - PHPセッションによるパスワード認証
+  - CSRFトークンによるフォーム保護
+  - プリペアドステートメントによるSQLインジェクション対策

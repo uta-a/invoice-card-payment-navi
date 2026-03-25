@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useId } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { getServicesByRank, Service } from "@/data/services";
 import SectionDecorations from "@/components/ui/SectionDecorations";
@@ -113,25 +113,27 @@ function LogoPlaceholder({ name, index }: { name: string; index: number }) {
 // ─── Star rating (sm) ─────────────────────────────────────────────────────────
 
 function StarRating({ rating, reviewCount }: { rating: number; reviewCount: number }) {
+  const uid = useId();
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 1.5 }}>
         {Array.from({ length: 5 }).map((_, i) => {
           const filled = i < Math.floor(rating);
           const partial = !filled && i < rating;
+          const gradId = `${uid}-star-${i}`;
           return (
             <svg key={i} width={13} height={13} viewBox="0 0 24 24">
               {partial ? (
                 <>
                   <defs>
-                    <linearGradient id={`star-partial-${i}`} x1="0" x2="1" y1="0" y2="0">
+                    <linearGradient id={gradId} x1="0" x2="1" y1="0" y2="0">
                       <stop offset={`${(rating % 1) * 100}%`} stopColor="#F59E0B" />
                       <stop offset={`${(rating % 1) * 100}%`} stopColor="#DDE5F0" />
                     </linearGradient>
                   </defs>
                   <path
                     d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                    fill={`url(#star-partial-${i})`}
+                    fill={`url(#${gradId})`}
                   />
                 </>
               ) : (

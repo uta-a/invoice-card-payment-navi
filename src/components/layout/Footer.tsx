@@ -205,7 +205,7 @@ export default function Footer() {
             margin: 0,
           }}
         >
-          © 2025 請求書カード払いナビ All Rights Reserved.
+          © {new Date().getFullYear()} 請求書カード払いナビ All Rights Reserved.
         </p>
       </div>
     </footer>

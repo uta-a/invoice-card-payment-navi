@@ -28,5 +28,9 @@ export async function submitReview(data: ReviewFormData): Promise<SubmitReviewRe
     throw new Error(message);
   }
 
-  return res.json();
+  const body = await res.json().catch(() => null);
+  if (!body) {
+    throw new Error("レスポンスの解析に失敗しました");
+  }
+  return body;
 }

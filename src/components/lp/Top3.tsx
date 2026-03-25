@@ -198,11 +198,10 @@ function MetricItem({ icon, label, value, iconColor }: MetricItemProps) {
 
 interface ServiceCardProps {
   service: Service;
-  rank: number;
   index: number;
 }
 
-function ServiceCard({ service, rank: _rank, index }: ServiceCardProps) {
+function ServiceCard({ service, index }: ServiceCardProps) {
   const meta = RANK_META[index];
   const logoGradient = LOGO_GRADIENTS[index];
   const isFirst = index === 0;
@@ -617,7 +616,6 @@ export default function Top3() {
             <ServiceCard
               key={service.id}
               service={service}
-              rank={index + 1}
               index={index}
             />
           ))}

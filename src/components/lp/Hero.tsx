@@ -17,12 +17,6 @@ const fadeUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
 };
 
-const _fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.55, ease: "easeOut" } },
-};
-void _fadeIn;
-
 const cardVariants: Variants = {
   hidden: { opacity: 0, x: 40, scale: 0.95 },
   visible: {

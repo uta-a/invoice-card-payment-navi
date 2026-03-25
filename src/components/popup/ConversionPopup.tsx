@@ -94,7 +94,6 @@ export default function ConversionPopup() {
               overflow: "hidden",
             }}
             role="dialog"
-            aria-modal="true"
             aria-label="資金繰りサポートのご案内"
           >
             {/* アクセントストライプ */}
