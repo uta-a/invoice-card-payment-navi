@@ -1,10 +1,11 @@
-import { motion, type Variants } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import StarRating from "@/components/ui/StarRating";
 import ScoreBar from "@/components/ui/ScoreBar";
 import Badge from "@/components/ui/Badge";
 import { services, Service } from "@/data/services";
 import SectionDecorations from "@/components/ui/SectionDecorations";
-import { Lightbulb, Check } from "lucide-react";
+import { Lightbulb, Check, ChevronDown } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -244,6 +245,20 @@ function ServiceCard({
   const rankStyle = getRankStyle(rank);
   const isTop = rank === 1;
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(
+    typeof window !== "undefined" ? window.matchMedia("(min-width: 768px)").matches : true
+  );
+
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 768px)");
+    const onChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+
+  const showDetails = isOpen || isDesktop;
+
   return (
     <motion.article
       variants={cardVariants}
@@ -281,15 +296,30 @@ function ServiceCard({
         />
       )}
 
-      {/* ── Card Header ─────────────────────────────────────────────────── */}
+      {/* ── Card Header (clickable on mobile) ─────────────────────────── */}
       <div
         className="service-card-header"
+        role={!isDesktop ? "button" : undefined}
+        tabIndex={!isDesktop ? 0 : undefined}
+        aria-expanded={!isDesktop ? isOpen : undefined}
+        onClick={!isDesktop ? () => setIsOpen((v) => !v) : undefined}
+        onKeyDown={
+          !isDesktop
+            ? (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setIsOpen((v) => !v);
+                }
+              }
+            : undefined
+        }
         style={{
           display: "flex",
           alignItems: "flex-start",
           gap: 18,
-          marginBottom: 24,
+          marginBottom: showDetails ? 24 : 0,
           paddingTop: isTop ? 8 : 0,
+          cursor: !isDesktop ? "pointer" : undefined,
         }}
       >
         {/* Rank badge */}
@@ -358,8 +388,78 @@ function ServiceCard({
             showNumber
             reviewCount={service.reviewCount}
           />
+
+          {/* Mobile summary row (collapsed state) */}
+          {!isDesktop && (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                marginTop: 10,
+                flexWrap: "wrap",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 12,
+                  fontWeight: 700,
+                  color: "#1A2B4A",
+                  background: "#F8FAFD",
+                  border: "1px solid #DDE5F0",
+                  borderRadius: 6,
+                  padding: "2px 8px",
+                }}
+              >
+                {service.fee}
+              </span>
+              <span
+                style={{
+                  fontSize: 12,
+                  fontWeight: 700,
+                  color: "#1A2B4A",
+                  background: "#F8FAFD",
+                  border: "1px solid #DDE5F0",
+                  borderRadius: 6,
+                  padding: "2px 8px",
+                }}
+              >
+                {service.paymentSpeed}
+              </span>
+              <ScreeningIndicator level={service.screeningLevel} />
+            </div>
+          )}
         </div>
+
+        {/* Chevron (mobile only) */}
+        {!isDesktop && (
+          <div
+            style={{
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              alignSelf: "center",
+              color: "#6B7A99",
+              transition: "transform 0.3s",
+              transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+            }}
+            aria-hidden="true"
+          >
+            <ChevronDown size={22} />
+          </div>
+        )}
       </div>
+
+      {/* ── Collapsible details ──────────────────────────────────────── */}
+      <AnimatePresence initial={false}>
+        {showDetails && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: EASE }}
+            style={{ overflow: "hidden" }}
+          >
 
       {/* ── Card Body — two columns ──────────────────────────────────────── */}
       <div
@@ -737,6 +837,10 @@ function ServiceCard({
           ※外部サイトに遷移します
         </p>
       </div>
+
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.article>
   );
 }
