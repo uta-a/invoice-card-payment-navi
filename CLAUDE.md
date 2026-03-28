@@ -8,6 +8,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **注意:** サービスデータ (`src/data/services.ts`) は XXXX プレースホルダーのままで、実データ未投入。
 
+**注意:** README.md は Next.js 記載だが、実際は Vite + React Router の SPA 構成。
+
 ## コマンド
 
 ```bash
@@ -28,8 +30,7 @@ npm run lint     # ESLint (flat config, eslint.config.mjs)
 - Lucide React (アイコン)
 - React Hook Form + Zod (フォームバリデーション)
 - フォント: Noto Sans JP (Google Fonts CDN, index.html で読み込み)
-
-**README は Next.js 記載だが、実際は Vite + React Router に移行済み。**
+- バックエンド API: PHP (MySQL, ロリポップVPS)
 
 ## アーキテクチャ
 
@@ -43,6 +44,10 @@ npm run lint     # ESLint (flat config, eslint.config.mjs)
 - `/review/complete` → `ReviewCompletePage`
 - `/privacy` → `PrivacyPolicyPage`
 - `/review-guideline` → `ReviewGuidelinePage`
+- `/disclaimer` → `DisclaimerPage`
+- `/company` → `CompanyPage`
+- `/contact` → `ContactPage`
+- `*` → `NotFoundPage` (App.tsx 内で定義)
 
 全ページ共通: `Header` + `Footer` + `ConversionPopup`
 
@@ -65,12 +70,27 @@ npm run lint     # ESLint (flat config, eslint.config.mjs)
 
 ### レビューフォーム
 
-マルチステップウィザード形式 (`ReviewWizard`)。5ステップ (Phase A〜D + 確認) で構成。
+マルチステップウィザード形式 (`src/components/review/ReviewWizard.tsx`)。5ステップ (Phase A〜D + 確認) で構成。
 
 - スキーマ: `src/schemas/reviewSchema.ts` — Zod でバリデーション定義。各フェーズのフィールド名は `PHASE_A_FIELDS` 等の定数で管理
 - フォーム: React Hook Form (`FormProvider`) + `zodResolver` でステップごとにバリデーション (`trigger`)
+- ステップUI: `src/components/review/steps/` に各ステップのコンポーネント
+- フィールドUI: `src/components/review/fields/` に再利用可能なフォームフィールドコンポーネント群
+- プログレス: `src/components/review/ProgressBar.tsx`
 - 送信: `src/lib/submitReview.ts` — 開発時はコンソールログ + モック応答、本番は `VITE_API_URL` へ POST
-- UI部品: `src/components/review/fields/` に再利用可能なフォームフィールドコンポーネント群
+
+### バックエンド API (PHP)
+
+`api/` ディレクトリに PHP で実装されたバックエンド。フロントエンドと同一サーバー（ロリポップVPS）にデプロイ。
+
+- `submit-review.php` — レビュー投稿エンドポイント (POST)
+- `admin.php` — 管理画面 (PHPセッション認証、CSRF保護)
+- `reviews.php` — 回答一覧表示
+- `config.php` — DB接続情報・設定定数 (**Git管理外にすること**)
+- `schema.sql` — テーブル定義SQL
+- `setup.php` — 初回DBセットアップ用 (完了後は削除)
+
+セットアップ手順の詳細は `api/SETUP.md` を参照。
 
 ### 環境変数
 
@@ -78,4 +98,8 @@ npm run lint     # ESLint (flat config, eslint.config.mjs)
 
 ### SEO
 
-SPA のため `usePageMeta` フックで `document.title` と meta description を動的に更新。初期値は `index.html` に記載。
+SPA のため `src/hooks/usePageMeta.ts` フックで `document.title` と meta description を動的に更新。初期値は `index.html` に記載。
+
+### デプロイ
+
+ロリポップVPS (Apache) にデプロイ。`npm run build` で `dist/` を生成し、`rsync` でドキュメントルートに配置。`.htaccess` による SPA フォールバック設定あり。詳細は `docs/deployment.md` および `api/SETUP.md` を参照。

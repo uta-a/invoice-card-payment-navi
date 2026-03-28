@@ -53,10 +53,14 @@ export default function StepPhaseA() {
 
       <CheckboxGroup
         name="q4_compared_services"
-        label="Q4. 比較検討した他のサービスを選択してください"
+        label="Q4. 利用前に比較したサービスはありますか？"
         options={[
-          ...services.map((s) => ({ value: s.name, label: s.name })),
-          { value: "比較していない", label: "比較していない" },
+          { value: "他社の請求書カード払い", label: "他社の請求書カード払い" },
+          { value: "ファクタリング", label: "ファクタリング" },
+          { value: "銀行融資", label: "銀行融資" },
+          { value: "ビジネスローン", label: "ビジネスローン" },
+          { value: "法人カード", label: "法人カード" },
+          { value: "比較せず利用", label: "比較せず利用" },
         ]}
         required
       />
